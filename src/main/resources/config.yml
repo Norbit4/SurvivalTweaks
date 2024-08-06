@@ -1,4 +1,54 @@
-compass: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z}'
-clock: '&7Godzina: &d{TIME}'
-recovery-compass: '&f&l☠ &7X: &c{X} &7Y: &c{Y} &7Z: &c{Z}'
-no-death-location: '&fBrak'
+#---------------------------------------------------------------------------------#
+#                                                                                 #
+#      _____                    _            _ _______                 _          #
+#    / ____|                  (_)          | |__   __|               | |          #
+#   | (___  _   _ _ ____   __  ___   ____ _| |  | |_      _____  __ _| | _____    #
+#   \___ \| | | | '__\ \ / / | \ \ / / _` | |  | \ \ /\ / / _ \/ _` | |/ / __|    #
+#    ____) | |_| | |   \ V /  | |\ V / (_| | |  | |\ V  V /  __/ (_| |   <\__ \   #
+#   |_____/ \__,_|_|    \_/   |_| \_/ \__,_|_|  |_| \_/\_/ \___|\__,_|_|\_\___/   #
+#                                                                                 #
+#---------------------------------------------------------------------------------#
+
+# TreeCuter by Norbit4
+
+# github: https://github.com/Norbit4
+# wiki: https://github.com/Norbit4/SurvivalTweaks/
+
+# This plugin is created to add some useful mechanics for useless items in Minecraft.
+# If you like the plugin, support me with a positive opinion, thanks! <3
+#
+# If you have any suggestions, write to me on discord: n0rbit
+# or join to my discord server: https://discord.com/invite/bA2kamGNyH
+
+# Plugin supports Minecraft 1.20.6+ with engine Paper or forks.
+# Spigot and Bukkit are not supported.
+#---------------------------------------#
+#               [Config]                #
+#---------------------------------------#
+# reload: /survivaltweaks reload, permission: survivaltweaks.command
+
+reload-message: '&aPlugin has been reloaded!'
+
+mechanics:
+  # block cords in f3 screen, display cords when player holds compass
+  compass:
+    enabled: true
+    display: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z}'
+  # display time when player holds clock
+  clock:
+    enabled: true
+    display: '&7Time: &d{TIME}'
+  # display last death location when player holds recovery_compass
+  recovery-compass:
+    enabled: true
+    display: '&f&l☠ &7X: &c{X} &7Y: &c{Y} &7Z: &c{Z}'
+    display-no-death-location: '&f&l☠ &7You have not died yet!'
+  # mark entities when player look at them
+  spyglass:
+    enabled: true
+    display: '&#dcee9a {ENTITY} {DISTANCE}m'
+  # change you size when eat
+  size:
+    enabled: true
+    small: GLOW_BERRIES
+    normal: GOLDEN_CARROT

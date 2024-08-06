@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.norbit.survivaltweaks.commands.MainCommand;
 import pl.norbit.survivaltweaks.mechanics.listeners.PlayerSkyGlassListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.PlayerEatListener;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
-import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.GlowUtils;
 
 public final class SurvivalTweaks extends JavaPlugin {
@@ -21,8 +21,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         // Plugin startup logic
         setInstance(this);
 
-        Config.load(false);
-        MechanicsLoader.load();
+        MechanicsLoader.load(false);
 
         PluginManager pluginManager = getServer().getPluginManager();
 
@@ -30,6 +29,8 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         pluginManager.registerEvents(new PlayerEatListener(), this);
         pluginManager.registerEvents(new PlayerSkyGlassListener(), this);
+
+        getCommand("survivaltweaks").setExecutor(new MainCommand());
     }
 
     @Override

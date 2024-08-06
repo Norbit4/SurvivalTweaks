@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 import pl.norbit.survivaltweaks.utils.DoubleFormatter;
@@ -19,7 +20,7 @@ public class CompassMechanic {
     }
 
     protected static void load(){
-        updateGameRules(true);
+        updateGameRules(MechanicsLoader.isEnabled(Mechanic.COMPASS));
     }
 
     protected static void unload(){
@@ -32,6 +33,10 @@ public class CompassMechanic {
     }
 
     protected static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
+        if(MechanicsLoader.isDisabled(Mechanic.COMPASS)) {
+            return;
+        }
+
         Material mainType = itemInMainHand.getType();
         Material offType = itemInOffHand.getType();
 

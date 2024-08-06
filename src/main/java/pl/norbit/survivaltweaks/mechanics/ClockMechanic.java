@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
@@ -14,6 +15,10 @@ public class ClockMechanic {
     }
 
     protected static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
+        if(MechanicsLoader.isDisabled(Mechanic.CLOCK)) {
+            return;
+        }
+
         Material mainType = itemInMainHand.getType();
         Material offType = itemInOffHand.getType();
 
