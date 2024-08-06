@@ -1,18 +1,23 @@
 package pl.norbit.survivaltweaks.mechanics.listeners;
 
+import net.kyori.adventure.text.Component;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.SpyGlassMechanic;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
-import pl.norbit.survivaltweaks.utils.ChatUtils;
+import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class PlayerSkyGlassListener implements Listener {
 
@@ -40,9 +45,13 @@ public class PlayerSkyGlassListener implements Listener {
         }
 
         Player p = e.getPlayer();
-        Entity targetEntity = p.getTargetEntity(80);
+        Entity targetEntity = getEntityLookingAt(p, 80);
 
         if (targetEntity == null) {
+            return;
+        }
+
+        if(!(targetEntity instanceof LivingEntity)){
             return;
         }
 
@@ -54,6 +63,16 @@ public class PlayerSkyGlassListener implements Listener {
                 .replace("{ENTITY}", targetEntity.getName())
                 .replace("{DISTANCE}", String.valueOf(distance));
 
-        p.sendActionBar(ChatUtils.format(message));
+        PlayerUtils.sendActionBar(p, message);
+    }
+
+    public static Entity getEntityLookingAt(Player p, double maxDistance) {
+        Location eyeLocation = p.getEyeLocation();
+        Vector direction = eyeLocation.getDirection();
+
+        RayTraceResult rayTraceResult = p.getWorld().rayTraceEntities(
+                eyeLocation, direction, maxDistance, entity -> entity != p);
+
+        return rayTraceResult != null ? rayTraceResult.getHitEntity() : null;
     }
 }

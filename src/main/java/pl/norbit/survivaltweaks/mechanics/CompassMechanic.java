@@ -1,14 +1,15 @@
 package pl.norbit.survivaltweaks.mechanics;
 
 import org.bukkit.GameRule;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
-import pl.norbit.survivaltweaks.utils.ChatUtils;
 import pl.norbit.survivaltweaks.utils.DoubleFormatter;
+import pl.norbit.survivaltweaks.utils.PlayerUtils;
 import pl.norbit.survivaltweaks.utils.WorldUtils;
 
 import java.util.List;
@@ -43,15 +44,17 @@ public class CompassMechanic {
         if(!(mainType == Material.COMPASS || offType == Material.COMPASS)){
             return;
         }
-        String x = DoubleFormatter.format(p.getX());
-        String y = DoubleFormatter.format(p.getY());
-        String z = DoubleFormatter.format(p.getZ());
+        Location loc = p.getLocation();
+
+        String x = DoubleFormatter.format(loc.getX());
+        String y = DoubleFormatter.format(loc.getY());
+        String z = DoubleFormatter.format(loc.getZ());
 
         String message = Config.getCompass()
                 .replace("{X}", x)
                 .replace("{Y}", y)
                 .replace("{Z}", z);
 
-        p.sendActionBar(ChatUtils.format(message));
+        PlayerUtils.sendActionBar(p, message);
     }
 }

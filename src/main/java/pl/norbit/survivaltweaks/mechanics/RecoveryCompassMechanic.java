@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
-import pl.norbit.survivaltweaks.utils.ChatUtils;
 import pl.norbit.survivaltweaks.utils.DoubleFormatter;
+import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class RecoveryCompassMechanic {
 
@@ -29,7 +29,7 @@ public class RecoveryCompassMechanic {
         Location lastDeathLocation = p.getLastDeathLocation();
 
         if(lastDeathLocation == null){
-            p.sendActionBar(ChatUtils.format(Config.getNoDeathLocation()));
+            PlayerUtils.sendActionBar(p, Config.getNoDeathLocation());
             return;
         }
 
@@ -42,7 +42,7 @@ public class RecoveryCompassMechanic {
                 .replace("{Y}", y)
                 .replace("{Z}", z);
 
-        p.sendActionBar(ChatUtils.format(message));
+        PlayerUtils.sendActionBar(p, message);
     }
 
 }

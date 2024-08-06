@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
-import pl.norbit.survivaltweaks.utils.ChatUtils;
+import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class ClockMechanic {
 
@@ -38,7 +38,7 @@ public class ClockMechanic {
         String message = Config.getClock()
                 .replace("{TIME}", formattedTime);
 
-        p.sendActionBar(ChatUtils.format(message));
+        PlayerUtils.sendActionBar(p, message);
     }
 
     private static String formatMinecraftTime(long ticks) {
