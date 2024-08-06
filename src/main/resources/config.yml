@@ -1,0 +1,4 @@
+compass: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z}'
+clock: '&7Godzina: &d{TIME}'
+recovery-compass: '&f&l☠ &7X: &c{X} &7Y: &c{Y} &7Z: &c{Z}'
+no-death-location: '&fBrak'
