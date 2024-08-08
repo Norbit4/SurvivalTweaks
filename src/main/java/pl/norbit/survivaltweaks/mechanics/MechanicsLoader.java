@@ -1,9 +1,13 @@
 package pl.norbit.survivaltweaks.mechanics;
 
+import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.utils.BlockUtils;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
+
+import java.util.List;
 
 import static pl.norbit.survivaltweaks.utils.TaskUtils.asyncTimer;
 
@@ -19,7 +23,9 @@ public class MechanicsLoader {
         if(!reload) {
             SpyGlassMechanic.start();
 
-            asyncTimer(MechanicsLoader::task, 20L, 6L);
+            asyncTimer(MechanicsLoader::heldItemTask, 30L, 6L);
+            asyncTimer(MechanicsLoader::blocksTask, 30L, 45L);
+            asyncTimer(MechanicsLoader::headItemTask, 30L, 25L);
         }
     }
 
@@ -38,10 +44,14 @@ public class MechanicsLoader {
             case CLOCK -> Config.isClockEnabled();
             case SPYGLASS -> Config.isSpyglassEnabled();
             case SIZE -> Config.isSizeEnabled();
+            case CAMPFIRE -> Config.isCampfireEnabled();
+            case TURTLE_HELMET -> Config.isTurtleHelmetEnabled();
+            case FIREBALL -> Config.isFireballEnabled();
+            case PLAYER_HEAD -> Config.isPlayerHeadEnabled();
         };
     }
 
-    private static void task(){
+    private static void heldItemTask(){
         PlayerUtils.getOnlinePlayers().forEach(p -> {
             ItemStack itemInMainHand = p.getInventory().getItemInMainHand();
             ItemStack itemInOffHand = p.getInventory().getItemInOffHand();
@@ -49,6 +59,24 @@ public class MechanicsLoader {
             CompassMechanic.check(p, itemInMainHand, itemInOffHand);
             ClockMechanic.check(p, itemInMainHand, itemInOffHand);
             RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
+        });
+    }
+    private static void headItemTask(){
+        PlayerUtils.getOnlinePlayers().forEach(p -> {
+            ItemStack headItem = p.getInventory().getHelmet();
+
+            if(headItem == null){
+                return;
+            }
+
+            TurtleHelmetMechanic.check(p, headItem);
+        });
+    }
+
+    private static void blocksTask(){
+        PlayerUtils.getOnlinePlayers().forEach(p -> {
+            List<Block> blocks = BlockUtils.getNearBlocks(p, 2);
+            CampfireMechanic.applyEffect(p, blocks);
         });
     }
 }

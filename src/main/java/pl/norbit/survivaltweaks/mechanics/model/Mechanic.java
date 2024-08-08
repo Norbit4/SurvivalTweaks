@@ -5,5 +5,9 @@ public enum Mechanic {
     COMPASS,
     RECOVERY_COMPASS,
     CLOCK,
-    SPYGLASS
+    SPYGLASS,
+    CAMPFIRE,
+    TURTLE_HELMET,
+    FIREBALL,
+    PLAYER_HEAD,
 }
