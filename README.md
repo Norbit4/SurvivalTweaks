@@ -27,12 +27,13 @@ This plugin is created to add some useful mechanics for useless items in minecra
 <h2 align="left" id="content">Table of contents</h2>
 
 - [Compass](#compass)
-- [Clock](#clock)
-- [Recovery compass](#recovery-compass)
 - [Size](#size)
+- [Recovery compass](#recovery-compass)
+- [Spyglass](#spyglass)
 - [Campfire](#campfire)
 - [Turtle helmet](#turtle-helmet)
 - [Fireball](#fireball)
+- [Clock](#clock)
 - [Player head](#player-head)
 - [Download](https://github.com/Norbit4/SurvivalTweaks/releases/latest)
 - [Config](https://github.com/Norbit4/SurvivalTweaks/blob/master/src/main/resources/config.yml)
@@ -42,25 +43,33 @@ This plugin is created to add some useful mechanics for useless items in minecra
 
 Block **cords in f3 screen**, display cords when player **holds compass**.
 
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/9b852d4f-5412-4fba-9f61-f94c125ed2c9" width=600 alt="img"/></a>
 
-<h2 align="left" id="clock">Clock</h2>
+<h2 align="left" id="size">Size</h2>
 
-Display **time** when player **holds clock**.
+Change your **size** when eat.
 
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/3264d824-83ac-4056-a6cf-10449467b5f5" width=600 alt="img"/></a>
 
 <h2 align="left" id="recovery-compass">Recovery compass</h2>
 
 Display last **death location** when player **holds recovery compass**.
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/4c40ac91-0b7a-4bf8-af5f-334afac2604f" width=600 alt="img"/></a>
 
 
 <h2 align="left" id="spyglass">Spyglass</h2>
 
 **Mark entities** when player look at them.
 
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/05970d43-c6b5-4507-95ba-a17517483d91" width=600 alt="img"/></a>
 
-<h2 align="left" id="size">Size</h2>
-
-Change your **size** when eat.
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/7ed6ee7f-8c3c-41ff-9897-a40d567690bf" width=600 alt="img"/></a>
 
 
 <h2 align="left" id="campfire">Campfire</h2>
@@ -69,10 +78,16 @@ _Add:_
   - **Regeneration effect** when player is near campfire _(2 blocks)_.
   - **Fire resistance effect** when player is near soul campfire _(2 blocks)_.
 
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/e7eca386-4766-4a20-a907-079c7f5bbb83" width=600 alt="img"/></a>
 
 <h2 align="left" id="turtle-helmet">Turtle helmet</h2>
 
 Add **dolphin's grace effect** when player is in water and has turtle helmet in head.
+
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/83f74d8e-838b-4da6-8b13-1dd5a8fc6376" width=600 alt="img"/></a>
 
 
 <h2 align="left" id="fireball">Fireball</h2>
@@ -80,6 +95,17 @@ Add **dolphin's grace effect** when player is in water and has turtle helmet in 
 Fireball like **ghost attack** when player right click with fire charge.
 
 
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/6a8f0dc9-7dfb-4f2f-ab8c-b894d933e000" width=600 alt="img"/></a>
+
+<h2 align="left" id="clock">Clock</h2>
+
+Display **time** when player **holds clock**.
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/284c4272-a9dc-40bf-b162-4f911b3b8037" width=600 alt="img"/></a>
+
 <h2 align="left" id="player-head">Player head</h2>
 
 Drop player head when player **die**.
+
