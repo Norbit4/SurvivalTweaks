@@ -40,6 +40,9 @@ public class Config {
     private static String spyglass;
 
     @Getter
+    private static int spyglassCooldown;
+
+    @Getter
     private static boolean spyglassEnabled;
 
     //size
@@ -51,6 +54,30 @@ public class Config {
 
     @Getter
     private static boolean sizeEnabled;
+
+    @Getter
+    private static boolean campfireEnabled;
+
+    @Getter
+    private static boolean turtleHelmetEnabled;
+
+    @Getter
+    private static boolean turtleHelmetDurabilityEnabled;
+
+    @Getter
+    private static boolean fireballEnabled;
+
+    @Getter
+    private static int fireballCooldown;
+
+    @Getter
+    private static int fireballYield;
+
+    @Getter
+    private static boolean playerHeadEnabled;
+
+    @Getter
+    private static double playerHeadDropChance;
 
     private Config() {
         throw new IllegalStateException("Utility class");
@@ -87,6 +114,7 @@ public class Config {
 
         //spyglass
         spyglass = config.getString("mechanics.spyglass.display");
+        spyglassCooldown = config.getInt("mechanics.spyglass.cooldown");
         spyglassEnabled = config.getBoolean("mechanics.spyglass.enabled");
 
         //size
@@ -103,5 +131,21 @@ public class Config {
         normalSizeItem = Material.getMaterial(normal.toUpperCase());
 
         sizeEnabled = config.getBoolean("mechanics.size.enabled");
+
+        //campfire
+        campfireEnabled = config.getBoolean("mechanics.campfire.enabled");
+
+        //turtleHelmet
+        turtleHelmetEnabled = config.getBoolean("mechanics.turtle-helmet.enabled");
+        turtleHelmetDurabilityEnabled = config.getBoolean("mechanics.turtle-helmet.durability");
+
+        //fireball
+        fireballEnabled = config.getBoolean("mechanics.fireball.enabled");
+        fireballCooldown = config.getInt("mechanics.fireball.cooldown");
+        fireballYield = config.getInt("mechanics.fireball.yield");
+
+        //playerHead
+        playerHeadEnabled = config.getBoolean("mechanics.player-head.enabled");
+        playerHeadDropChance = config.getDouble("mechanics.player-head.chance");
     }
 }

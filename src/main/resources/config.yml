@@ -46,9 +46,31 @@ mechanics:
   # mark entities when player look at them
   spyglass:
     enabled: true
+    cooldown: 3
     display: '&#dcee9a {ENTITY} {DISTANCE}m'
   # change you size when eat
   size:
     enabled: true
     small: GLOW_BERRIES
     normal: GOLDEN_CARROT
+  # add:
+  # - regeneration effect when player is near campfire (2 blocks)
+  # - fire resistance effect when player is near soul campfire (2 blocks)
+  campfire:
+    enabled: true
+  # add dolphin's grace effect when player is in water and has turtle helmet in head
+  turtle-helmet:
+    enabled: true
+    # 30% chance to set -1 durability when player is in water (every 2sec)
+    durability: true
+  # fireball like ghost when player right click with fire charge
+  fireball:
+    enabled: true
+    cooldown: 40
+    # fireball break scale, high value = more explosion
+    yield: 2
+  # drop player head when player die
+  player-head:
+    enabled: true
+    # chance to drop player head, 1 = 100%
+    chance: 0.2
