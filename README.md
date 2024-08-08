@@ -44,7 +44,7 @@ This plugin is created to add some useful mechanics for useless items in minecra
 Block **cords in f3 screen**, display cords when player **holds compass**.
 
   <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
-  <img src="https://github.com/user-attachments/assets/9b852d4f-5412-4fba-9f61-f94c125ed2c9" width=600 alt="img"/></a>
+  <img src="https://github.com/user-attachments/assets/791f2b79-a1f6-4b52-bcae-3f56abf9569b" width=750 alt="img"/></a>
 
 <h2 align="left" id="size">Size</h2>
 
@@ -108,4 +108,7 @@ Display **time** when player **holds clock**.
 <h2 align="left" id="player-head">Player head</h2>
 
 Drop player head when player **die**.
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/7abd87c5-7617-44b4-b71f-8539a682bb71" width=600 alt="img"/></a>
 
