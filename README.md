@@ -22,6 +22,64 @@
 <h1 align="left"><b>SurvivalTweaks</b></h1>
 
 <p align="left">
-Created to add some useful mechanics for useless items in game minecraft
+This plugin is created to add some useful mechanics for useless items in minecraft. It contains unique mechanics that improve items in the game.
 
-**wiki: in progress...**
+<h2 align="left" id="content">Table of contents</h2>
+
+- [Compass](#compass)
+- [Clock](#clock)
+- [Recovery compass](#recovery-compass)
+- [Size](#size)
+- [Campfire](#campfire)
+- [Turtle helmet](#turtle-helmet)
+- [Fireball](#fireball)
+- [Player head](#player-head)
+- [Download](https://github.com/Norbit4/SurvivalTweaks/releases/latest)
+- [Config](https://github.com/Norbit4/SurvivalTweaks/blob/master/src/main/resources/config.yml)
+
+
+<h2 align="left" id="compass">Compass</h2>
+
+Block **cords in f3 screen**, display cords when player **holds compass**.
+
+
+<h2 align="left" id="clock">Clock</h2>
+
+Display **time** when player **holds clock**.
+
+
+<h2 align="left" id="recovery-compass">Recovery compass</h2>
+
+Display last **death location** when player **holds recovery compass**.
+
+
+<h2 align="left" id="spyglass">Spyglass</h2>
+
+**Mark entities** when player look at them.
+
+
+<h2 align="left" id="size">Size</h2>
+
+Change your **size** when eat.
+
+
+<h2 align="left" id="campfire">Campfire</h2>
+
+_Add:_
+  - **Regeneration effect** when player is near campfire _(2 blocks)_.
+  - **Fire resistance effect** when player is near soul campfire _(2 blocks)_.
+
+
+<h2 align="left" id="turtle-helmet">Turtle helmet</h2>
+
+Add **dolphin's grace effect** when player is in water and has turtle helmet in head.
+
+
+<h2 align="left" id="fireball">Fireball</h2>
+
+Fireball like **ghost attack** when player right click with fire charge.
+
+
+<h2 align="left" id="player-head">Player head</h2>
+
+Drop player head when player **die**.
