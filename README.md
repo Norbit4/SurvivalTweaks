@@ -48,7 +48,11 @@ Block **cords in f3 screen**, display cords when player **holds compass**.
 
 <h2 align="left" id="size">Size</h2>
 
-Change your **size** when eat.
+Change your **size** when eat. After eating **glow berries** you become small.
+<br>To return to your normal size eat a **golden carrot**.
+
+> [!TIP]
+> *Items can be configured.*
 
   <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
   <img src="https://github.com/user-attachments/assets/3264d824-83ac-4056-a6cf-10449467b5f5" width=600 alt="img"/></a>
@@ -93,7 +97,6 @@ Add **dolphin's grace effect** when player is in water and has turtle helmet in 
 <h2 align="left" id="fireball">Fireball</h2>
 
 Fireball like **ghost attack** when player right click with fire charge.
-
 
   <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
   <img src="https://github.com/user-attachments/assets/6a8f0dc9-7dfb-4f2f-ab8c-b894d933e000" width=600 alt="img"/></a>
