@@ -48,7 +48,7 @@ mechanics:
     enabled: true
     cooldown: 3
     display: '&#dcee9a {ENTITY} {DISTANCE}m'
-  # change you size when eat
+  # change your size when eat
   size:
     enabled: true
     small: GLOW_BERRIES
