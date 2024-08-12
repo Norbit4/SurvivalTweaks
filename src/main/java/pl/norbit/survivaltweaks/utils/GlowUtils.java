@@ -17,9 +17,9 @@ public class GlowUtils {
         glowingEntities = new GlowingEntities(SurvivalTweaks.getInstance());
     }
 
-    public static void setGlowing(Entity entity, Player receiver) {
+    public static void setGlowing(Entity entity, Player receiver, ChatColor color) {
         try {
-            setGlowing(entity, receiver, ChatColor.YELLOW);
+            glow(entity, receiver, color);
         } catch (ReflectiveOperationException ignored) {
         }
     }
@@ -35,7 +35,7 @@ public class GlowUtils {
         glowingEntities.unsetGlowing(entity, receiver);
     }
 
-    private static void setGlowing(Entity entity, Player receiver, ChatColor color) throws ReflectiveOperationException {
+    private static void glow(Entity entity, Player receiver, ChatColor color) throws ReflectiveOperationException {
         glowingEntities.setGlowing(entity, receiver, color);
     }
 }
