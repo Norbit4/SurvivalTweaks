@@ -79,6 +79,73 @@ public class Config {
     @Getter
     private static double playerHeadDropChance;
 
+    @Getter
+    private static boolean voidTotemEnabled;
+
+    @Getter
+    private static boolean customDeathMessageEnabled;
+
+    @Getter
+    private static String deathMessagePrefix;
+
+    @Getter
+    private static String deathMessageDrowning;
+
+    @Getter
+    private static String deathMessageSuffocation;
+
+    @Getter
+    private static String deathMessageFall;
+
+    @Getter
+    private static String deathMessageLava;
+
+    @Getter
+    private static String deathMessageFire;
+
+    @Getter
+    private static String deathMessageFireTick;
+
+    @Getter
+    private static String deathMessageVoid;
+
+    @Getter
+    private static String deathMessageLightning;
+
+    @Getter
+    private static String deathMessageEntityAttack;
+
+    @Getter
+    private static String deathMessageEntityExplosion;
+
+    @Getter
+    private static String deathMessageProjectile;
+
+    @Getter
+    private static String deathMessageMagic;
+
+    @Getter
+    private static String deathMessageWither;
+
+    @Getter
+    private static String deathMessageStarvation;
+
+    @Getter
+    private static String deathMessagePoison;
+
+    @Getter
+    private static String deathMessageThorns;
+
+    @Getter
+    private static String deathMessageDragon;
+
+    @Getter
+    private static String deathMessageHotFloor;
+
+    @Getter
+    private static String deathMessageOther;
+
+
     private Config() {
         throw new IllegalStateException("Utility class");
     }
@@ -147,5 +214,32 @@ public class Config {
         //playerHead
         playerHeadEnabled = config.getBoolean("mechanics.player-head.enabled");
         playerHeadDropChance = config.getDouble("mechanics.player-head.chance");
+
+        //void totem
+        voidTotemEnabled = config.getBoolean("mechanics.void-totem.enabled");
+
+        //custom death message
+        customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
+
+        deathMessagePrefix = config.getString("mechanics.dead-messages.prefix");
+        deathMessageDrowning = config.getString("mechanics.dead-messages.messages.drowning");
+        deathMessageSuffocation = config.getString("mechanics.dead-messages.messages.suffocation");
+        deathMessageFall = config.getString("mechanics.dead-messages.messages.fall");
+        deathMessageLava = config.getString("mechanics.dead-messages.messages.lava");
+        deathMessageFire = config.getString("mechanics.dead-messages.messages.fire");
+        deathMessageFireTick = config.getString("mechanics.dead-messages.messages.fire-tick");
+        deathMessageVoid = config.getString("mechanics.dead-messages.messages.void");
+        deathMessageLightning = config.getString("mechanics.dead-messages.messages.lightning");
+        deathMessageEntityAttack = config.getString("mechanics.dead-messages.messages.entity-attack");
+        deathMessageEntityExplosion = config.getString("mechanics.dead-messages.messages.entity-explosion");
+        deathMessageProjectile = config.getString("mechanics.dead-messages.messages.projectile");
+        deathMessageMagic = config.getString("mechanics.dead-messages.messages.magic");
+        deathMessageWither = config.getString("mechanics.dead-messages.messages.wither");
+        deathMessageStarvation = config.getString("mechanics.dead-messages.messages.starvation");
+        deathMessagePoison = config.getString("mechanics.dead-messages.messages.poison");
+        deathMessageThorns = config.getString("mechanics.dead-messages.messages.thorns");
+        deathMessageDragon = config.getString("mechanics.dead-messages.messages.dragon");
+        deathMessageHotFloor = config.getString("mechanics.dead-messages.messages.hot-floor");
+        deathMessageOther = config.getString("mechanics.dead-messages.messages.other");
     }
 }

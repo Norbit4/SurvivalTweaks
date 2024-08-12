@@ -31,23 +31,36 @@ reload-message: '&aPlugin has been reloaded!'
 
 mechanics:
   # block cords in f3 screen, display cords when player holds compass
+  # {X} - display X cord
+  # {Y} - display Y cord
+  # {Z} - display Z cord
+  # {BIOME} - display biome name
+  # {WORLD} - display world name
   compass:
     enabled: true
-    display: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z}'
+    display: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z} &#7ed323[{BIOME}]'
   # display time when player holds clock
+  # {TIME} - display time
   clock:
     enabled: true
-    display: '&7Time: &d{TIME}'
+    display: '&7Time: &#d786f3{TIME}'
   # display last death location when player holds recovery_compass
+  # {X} - display X cord
+  # {Y} - display Y cord
+  # {Z} - display Z cord
+  # {WORLD} - display world name
   recovery-compass:
     enabled: true
     display: '&f&l☠ &7X: &c{X} &7Y: &c{Y} &7Z: &c{Z}'
     display-no-death-location: '&f&l☠ &7You have not died yet!'
   # mark entities when player look at them
+  # {ENTITY} - display entity name
+  # {HEALTH} - display entity health
+  # {DISTANCE} - display distance from entity
   spyglass:
     enabled: true
     cooldown: 3
-    display: '&#dcee9a {ENTITY} {DISTANCE}m'
+    display: '&#dcee9a {ENTITY} [{HEALTH}&c&c❤&#dcee9a] {DISTANCE}m'
   # change your size when eat
   size:
     enabled: true
@@ -74,3 +87,30 @@ mechanics:
     enabled: true
     # chance to drop player head, 1 = 100%
     chance: 0.2
+  # activate totem of undying when player die in void, apply levitation effect
+  void-totem:
+    enabled: true
+  # add custom dead messages
+  dead-messages:
+    enabled: true
+    prefix: '&#9e9e9e[{DEATH}&f&l☠&#9e9e9e] &#ee6535{PLAYER}'
+    messages:
+      drowning: '{PREFIX} &#e5dbd8drowing!'
+      suffocation: '{PREFIX} &#e5dbd8suffocated in a wall!'
+      fall: '{PREFIX} &#e5dbd8fell from a high place!'
+      lava: '{PREFIX} &#e5dbd8fell into a pit of lava!'
+      fire: '{PREFIX} &#e5dbd8burned to death!'
+      fire-tick: '{PREFIX} &#e5dbd8walked into fire!'
+      void: '{PREFIX} &#e5dbd8fell out of the world!'
+      lightning: '{PREFIX} &#e5dbd8was struck by lightning!'
+      entity-attack: '{PREFIX} &#e5dbd8was slain by {ENTITY}!'
+      entity-explosion: '{PREFIX} &#e5dbd8was blown up by {ENTITY}!'
+      projectile: '{PREFIX} &#e5dbd8was shot by {ENTITY}!'
+      magic: '{PREFIX} &#e5dbd8was killed by magic!'
+      wither: '{PREFIX} &#e5dbd8withered away!'
+      starvation: '{PREFIX} &#e5dbd8starved to death!'
+      poison: '{PREFIX} &#e5dbd8was poisoned!'
+      thorns: '{PREFIX} &#e5dbd8was killed by thorns!'
+      dragon: '{PREFIX} &#e5dbd8was killed by the ender dragon!'
+      hot-floor: '{PREFIX} &#e5dbd8discovered the floor was lava!'
+      other: '{PREFIX} &#e5dbd8died!'
