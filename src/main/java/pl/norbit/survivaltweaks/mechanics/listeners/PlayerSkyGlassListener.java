@@ -52,7 +52,7 @@ public class PlayerSkyGlassListener implements Listener {
             return;
         }
 
-        if(!(targetEntity instanceof LivingEntity)){
+        if(!(targetEntity instanceof LivingEntity livingEntity)){
             return;
         }
 
@@ -62,6 +62,7 @@ public class PlayerSkyGlassListener implements Listener {
 
         String message = Config.getSpyglass()
                 .replace("{ENTITY}", targetEntity.getName())
+                .replace("{HEALTH}", String.valueOf((int) livingEntity.getHealth()))
                 .replace("{DISTANCE}", String.valueOf(distance));
 
         PlayerUtils.sendActionBar(p, message);
