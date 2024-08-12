@@ -35,6 +35,8 @@ This plugin is created to add some useful mechanics for useless items in minecra
 - [Fireball](#fireball)
 - [Clock](#clock)
 - [Player head](#player-head)
+- [Void totem](#void-totem)
+- [Death messages](#death-messages)
 - [Download](https://github.com/Norbit4/SurvivalTweaks/releases/latest)
 - [Config](https://github.com/Norbit4/SurvivalTweaks/blob/master/src/main/resources/config.yml)
 
@@ -115,3 +117,16 @@ Drop player head when player **die**.
   <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
   <img src="https://github.com/user-attachments/assets/7abd87c5-7617-44b4-b71f-8539a682bb71" width=600 alt="img"/></a>
 
+<h2 align="left" id="void-totem">Void totem</h2>
+
+Activating **Totem of Undying** while falling into the **void**. Gives the player a **levitation** effect.
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/33086126-cf06-4550-9982-acad9d6ad2a5" width=600 alt="img"/></a>
+
+<h2 align="left" id="death-messages">Death messages</h2>
+
+Custom **death** messages.
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/faa793bb-df82-4b3a-a5d7-019d20ccfae2" width=600 alt="img"/></a>
