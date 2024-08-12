@@ -1,5 +1,6 @@
 package pl.norbit.survivaltweaks.mechanics;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.norbit.survivaltweaks.mechanics.model.GlowEntity;
@@ -36,7 +37,7 @@ public class SpyGlassMechanic {
         async(() -> findByPlayerAndEntity(player, entity)
                 .ifPresentOrElse(glowEntity -> glowEntity.setDuration(duration),
                     () ->{
-                        GlowUtils.setGlowing(entity, player);
+                        GlowUtils.setGlowing(entity, player, ChatColor.YELLOW);
                         glowEntities.add(new GlowEntity(player, entity, duration));
                     }
                 ));

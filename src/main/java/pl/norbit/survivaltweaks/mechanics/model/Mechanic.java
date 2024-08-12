@@ -10,4 +10,6 @@ public enum Mechanic {
     TURTLE_HELMET,
     FIREBALL,
     PLAYER_HEAD,
+    VOID_TOTEM,
+    CUSTOM_DEATH_MESSAGES
 }

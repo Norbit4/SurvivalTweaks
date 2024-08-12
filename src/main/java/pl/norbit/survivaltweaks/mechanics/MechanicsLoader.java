@@ -48,6 +48,8 @@ public class MechanicsLoader {
             case TURTLE_HELMET -> Config.isTurtleHelmetEnabled();
             case FIREBALL -> Config.isFireballEnabled();
             case PLAYER_HEAD -> Config.isPlayerHeadEnabled();
+            case VOID_TOTEM -> Config.isVoidTotemEnabled();
+            case CUSTOM_DEATH_MESSAGES -> Config.isCustomDeathMessageEnabled();
         };
     }
 
@@ -61,6 +63,7 @@ public class MechanicsLoader {
             RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
         });
     }
+
     private static void headItemTask(){
         PlayerUtils.getOnlinePlayers().forEach(p -> {
             ItemStack headItem = p.getInventory().getHelmet();

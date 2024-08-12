@@ -3,11 +3,14 @@ package pl.norbit.survivaltweaks.mechanics.listeners;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.utils.ChatUtils;
+import pl.norbit.survivaltweaks.utils.DeathMessagesUtils;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 import java.util.Random;
@@ -16,7 +19,7 @@ public class PlayerDeadListener implements Listener {
     private static final Random random = new Random();
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent e) {
+    public void onPlayerDeathHeadDrop(PlayerDeathEvent e) {
         if(MechanicsLoader.isDisabled(Mechanic.PLAYER_HEAD)){
             return;
         }
@@ -31,6 +34,20 @@ public class PlayerDeadListener implements Listener {
         ItemStack customSkull = PlayerUtils.getCustomSkull(p);
 
         e.getDrops().add(customSkull);
+    }
+
+    @EventHandler
+    public void onPlayerDeathCustomMessage(PlayerDeathEvent e) {
+        if(MechanicsLoader.isDisabled(Mechanic.CUSTOM_DEATH_MESSAGES)){
+            return;
+        }
+
+        Player p = e.getEntity();
+        EntityDamageEvent lastDamageCause = p.getLastDamageCause();
+
+        String message = DeathMessagesUtils.getMessage(p, lastDamageCause);
+
+        e.setDeathMessage(ChatUtils.format(message));
     }
 }
 

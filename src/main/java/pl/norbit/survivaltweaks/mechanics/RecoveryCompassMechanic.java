@@ -2,6 +2,7 @@ package pl.norbit.survivaltweaks.mechanics;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
@@ -36,13 +37,14 @@ public class RecoveryCompassMechanic {
         String x = DoubleFormatter.format(lastDeathLocation.getX());
         String y = DoubleFormatter.format(lastDeathLocation.getY());
         String z = DoubleFormatter.format(lastDeathLocation.getZ());
+        World w = lastDeathLocation.getWorld();
 
         String message = Config.getRecoveryCompass()
                 .replace("{X}", x)
                 .replace("{Y}", y)
-                .replace("{Z}", z);
+                .replace("{Z}", z)
+                .replace("{WORLD}", w.getName());
 
         PlayerUtils.sendActionBar(p, message);
     }
-
 }
