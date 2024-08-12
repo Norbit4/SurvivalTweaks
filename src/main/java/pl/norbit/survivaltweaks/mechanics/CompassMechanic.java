@@ -4,6 +4,7 @@ import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
@@ -50,10 +51,15 @@ public class CompassMechanic {
         String y = DoubleFormatter.format(loc.getY());
         String z = DoubleFormatter.format(loc.getZ());
 
+        World w = loc.getWorld();
+        Block b = loc.getBlock();
+
         String message = Config.getCompass()
                 .replace("{X}", x)
                 .replace("{Y}", y)
-                .replace("{Z}", z);
+                .replace("{Z}", z)
+                .replace("{WORLD}", w.getName())
+                .replace("{BIOME}", b.getBiome().name());
 
         PlayerUtils.sendActionBar(p, message);
     }
