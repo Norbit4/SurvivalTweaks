@@ -90,6 +90,12 @@ mechanics:
   # activate totem of undying when player die in void, apply levitation effect
   void-totem:
     enabled: true
+  # tp horse with when player sitting on it and ender pearl teleport
+  horse-tp:
+    enabled: true
+  # mine spawners with silk touch
+  mine-spawners:
+    enabled: true
   # add custom dead messages
   dead-messages:
     enabled: true

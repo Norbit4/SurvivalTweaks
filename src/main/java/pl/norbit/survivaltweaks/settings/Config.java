@@ -1,13 +1,9 @@
 package pl.norbit.survivaltweaks.settings;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
-
-import java.util.List;
 
 public class Config {
     @Getter
@@ -145,6 +141,11 @@ public class Config {
     @Getter
     private static String deathMessageOther;
 
+    @Getter
+    private static boolean mineSpawnersEnabled;
+
+    @Getter
+    private static boolean horseTpEnabled;
 
     private Config() {
         throw new IllegalStateException("Utility class");
@@ -217,6 +218,12 @@ public class Config {
 
         //void totem
         voidTotemEnabled = config.getBoolean("mechanics.void-totem.enabled");
+
+        //mine spawner
+        mineSpawnersEnabled = config.getBoolean("mechanics.mine-spawners.enabled");
+
+        //horse tp
+        horseTpEnabled = config.getBoolean("mechanics.horse-tp.enabled");
 
         //custom death message
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
