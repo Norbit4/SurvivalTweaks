@@ -11,5 +11,7 @@ public enum Mechanic {
     FIREBALL,
     PLAYER_HEAD,
     VOID_TOTEM,
-    CUSTOM_DEATH_MESSAGES
+    CUSTOM_DEATH_MESSAGES,
+    MINE_SPAWNERS,
+    HORSE_TP
 }

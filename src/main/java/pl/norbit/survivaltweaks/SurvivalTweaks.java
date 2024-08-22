@@ -31,6 +31,8 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new PlayerDeadListener(), this);
         pluginManager.registerEvents(new FireballListener(), this);
         pluginManager.registerEvents(new PlayerTotemVoidListener(), this);
+        pluginManager.registerEvents(new SpawnerBreakListener(), this);
+        pluginManager.registerEvents(new PlayerTpListener(), this);
 
         getCommand("survivaltweaks").setExecutor(new MainCommand());
     }

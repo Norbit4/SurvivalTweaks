@@ -50,6 +50,8 @@ public class MechanicsLoader {
             case PLAYER_HEAD -> Config.isPlayerHeadEnabled();
             case VOID_TOTEM -> Config.isVoidTotemEnabled();
             case CUSTOM_DEATH_MESSAGES -> Config.isCustomDeathMessageEnabled();
+            case MINE_SPAWNERS -> Config.isMineSpawnersEnabled();
+            case HORSE_TP -> Config.isHorseTpEnabled();
         };
     }
 
