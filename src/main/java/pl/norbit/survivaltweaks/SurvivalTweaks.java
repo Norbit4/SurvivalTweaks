@@ -9,6 +9,7 @@ import pl.norbit.survivaltweaks.commands.MainCommand;
 import pl.norbit.survivaltweaks.mechanics.listeners.*;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.utils.GlowUtils;
+import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
 
 public final class SurvivalTweaks extends JavaPlugin {
     @Getter
@@ -25,6 +26,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
 
         GlowUtils.init();
+        PlaceholderUtils.load();
 
         pluginManager.registerEvents(new PlayerEatListener(), this);
         pluginManager.registerEvents(new PlayerSkyGlassListener(), this);
@@ -33,6 +35,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new PlayerTotemVoidListener(), this);
         pluginManager.registerEvents(new SpawnerBreakListener(), this);
         pluginManager.registerEvents(new PlayerTpListener(), this);
+        pluginManager.registerEvents(new AmethystBreakListener(), this);
 
         getCommand("survivaltweaks").setExecutor(new MainCommand());
     }

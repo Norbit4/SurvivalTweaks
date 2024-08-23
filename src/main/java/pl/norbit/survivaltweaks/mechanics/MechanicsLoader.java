@@ -52,6 +52,7 @@ public class MechanicsLoader {
             case CUSTOM_DEATH_MESSAGES -> Config.isCustomDeathMessageEnabled();
             case MINE_SPAWNERS -> Config.isMineSpawnersEnabled();
             case HORSE_TP -> Config.isHorseTpEnabled();
+            case AMETHYST -> Config.isAmethystEnabled();
         };
     }
 

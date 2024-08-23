@@ -13,5 +13,6 @@ public enum Mechanic {
     VOID_TOTEM,
     CUSTOM_DEATH_MESSAGES,
     MINE_SPAWNERS,
-    HORSE_TP
+    HORSE_TP,
+    AMETHYST
 }
