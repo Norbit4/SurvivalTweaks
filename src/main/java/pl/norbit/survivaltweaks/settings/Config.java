@@ -147,6 +147,9 @@ public class Config {
     @Getter
     private static boolean horseTpEnabled;
 
+    @Getter
+    private static boolean amethystEnabled;
+
     private Config() {
         throw new IllegalStateException("Utility class");
     }
@@ -224,6 +227,9 @@ public class Config {
 
         //horse tp
         horseTpEnabled = config.getBoolean("mechanics.horse-tp.enabled");
+
+        //amethyst
+        amethystEnabled = config.getBoolean("mechanics.mine-budding-amethyst.enabled");
 
         //custom death message
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
