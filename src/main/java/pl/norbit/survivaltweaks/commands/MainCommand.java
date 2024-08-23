@@ -22,7 +22,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
 
         if(arg.equalsIgnoreCase("reload")){
             MechanicsLoader.load(true);
-            commandSender.sendMessage(ChatUtils.format(Config.getReloadMessage()));
+            commandSender.sendMessage(ChatUtils.format(Config.getReloadMessage(), null));
         }
         return true;
     }

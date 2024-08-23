@@ -38,6 +38,6 @@ public class PlayerUtils {
     }
 
     public static void sendActionBar(Player p, String message) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatUtils.format(message)));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatUtils.format(message, p)));
     }
 }

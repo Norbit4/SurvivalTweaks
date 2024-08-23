@@ -1,6 +1,7 @@
 package pl.norbit.survivaltweaks.utils;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 public class ChatUtils {
     private static final String WITH_DELIMITER = "((?<=%1$s)|(?=%1$s))";
@@ -10,8 +11,8 @@ public class ChatUtils {
     }
 
 
-    public static String format(String text) {
-        return translateColorCodes(text);
+    public static String format(String text, Player p) {
+        return PlaceholderUtils.setPlaceholders(translateColorCodes(text), p);
     }
 
     /**
