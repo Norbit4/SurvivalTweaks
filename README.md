@@ -37,6 +37,9 @@ This plugin is created to add some useful mechanics for useless items in minecra
 - [Player head](#player-head)
 - [Void totem](#void-totem)
 - [Death messages](#death-messages)
+- [Minable budding amethyst](#budding-amethyst)
+- [Minable spawners](#minable-spawners)
+- [Horse tp](#horse-tp)
 - [Download](https://github.com/Norbit4/SurvivalTweaks/releases/latest)
 - [Config](https://github.com/Norbit4/SurvivalTweaks/blob/master/src/main/resources/config.yml)
 
@@ -130,3 +133,23 @@ Custom **death** messages.
 
   <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
   <img src="https://github.com/user-attachments/assets/faa793bb-df82-4b3a-a5d7-019d20ccfae2" width=600 alt="img"/></a>
+
+<h2 align="left" id="budding-amethyst">Minable budding amethyst</h2>
+
+Mine budding amethyst with **silk touch**
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/812e360c-c62a-4115-a24c-7711a8996990" width=600 alt="img"/></a>
+
+<h2 align="left" id="minable-spawners">Minable spawners</h2>
+
+Mine spawner with **silk touch**.
+
+  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
+  <img src="https://github.com/user-attachments/assets/4350d14a-ce59-4914-b60b-5398d4b4f7f0" width=600 alt="img"/></a>
+
+<h2 align="left" id="horse-tp">Horse tp</h2>
+
+Tp **horse** with when player sitting on it and ender pearl teleport
+
+  <img src="https://github.com/user-attachments/assets/74a337b8-2903-430b-8ab6-4428429e06da" width=600 alt="img"/></a>
