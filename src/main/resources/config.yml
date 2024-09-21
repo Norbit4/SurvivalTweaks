@@ -38,7 +38,16 @@ mechanics:
   # {WORLD} - display world name
   compass:
     enabled: true
+    block-f3: true
     display: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z} &#7ed323[{BIOME}]'
+    messages:
+      track-usage: '&7Usage: /track <x, z>'
+      only-player: '&cOnly player can use this command!'
+      invalid-material: '&cYou must be holding a compass to use this command!'
+      invalid-number: '&cInvalid number format!'
+      track-success: '&7Tracking location: &#a6e194{X}, {Z}'
+      track-item: '&fTracking Compass &7[&#a6e194{X}, {Z}&7]'
+
   # display time when player holds clock
   # {TIME} - display time
   clock:
@@ -99,10 +108,14 @@ mechanics:
   # mine budding amethyst with silk touch
   mine-budding-amethyst:
     enabled: true
+  #show mob hp:
+  entity-hp:
+    enabled: true
+    display: '&#decfa6{ENTITY} &#df5252{HEALTH}❤'
   # add custom dead messages
   dead-messages:
     enabled: true
-    prefix: '&#9e9e9e[{DEATH}&f&l☠&#9e9e9e] &#ee6535{PLAYER} %player_compass_x%'
+    prefix: '&#9e9e9e[{DEATH}&f&l☠&#9e9e9e] &#ee6535{PLAYER}'
     messages:
       drowning: '{PREFIX} &#e5dbd8drowing!'
       suffocation: '{PREFIX} &#e5dbd8suffocated in a wall!'

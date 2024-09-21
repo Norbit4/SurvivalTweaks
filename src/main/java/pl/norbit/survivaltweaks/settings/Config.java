@@ -12,7 +12,21 @@ public class Config {
     @Getter
     private static String compass;
     @Getter
+    private static boolean blockF3;
+    @Getter
     private static boolean compassEnabled;
+    @Getter
+    private static String messageTrackUsage;
+    @Getter
+    private static String messageOnlyPlayer;
+    @Getter
+    private static String messageInvalidMaterial;
+    @Getter
+    private static String messageInvalidNumber;
+    @Getter
+    private static String messageTrackSuccess;
+    @Getter
+    private static String messageTrackItem;
 
     //clock
     @Getter
@@ -150,6 +164,12 @@ public class Config {
     @Getter
     private static boolean amethystEnabled;
 
+    @Getter
+    private static boolean entityHpEnabled;
+
+    @Getter
+    private static String entityHpDisplay;
+
     private Config() {
         throw new IllegalStateException("Utility class");
     }
@@ -172,7 +192,15 @@ public class Config {
 
         //compass
         compass = config.getString("mechanics.compass.display");
+        blockF3 = config.getBoolean("mechanics.compass.block-f3");
         compassEnabled = config.getBoolean("mechanics.compass.enabled");
+
+        messageTrackUsage = config.getString("mechanics.compass.messages.track-usage");
+        messageOnlyPlayer = config.getString("mechanics.compass.messages.only-player");
+        messageInvalidMaterial = config.getString("mechanics.compass.messages.invalid-material");
+        messageInvalidNumber = config.getString("mechanics.compass.messages.invalid-number");
+        messageTrackSuccess = config.getString("mechanics.compass.messages.track-success");
+        messageTrackItem = config.getString("mechanics.compass.messages.track-item");
 
         //clock
         clock = config.getString("mechanics.clock.display");
@@ -230,6 +258,10 @@ public class Config {
 
         //amethyst
         amethystEnabled = config.getBoolean("mechanics.mine-budding-amethyst.enabled");
+
+        //entity hp
+        entityHpEnabled = config.getBoolean("mechanics.entity-hp.enabled");
+        entityHpDisplay = config.getString("mechanics.entity-hp.display");
 
         //custom death message
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
