@@ -14,5 +14,6 @@ public enum Mechanic {
     CUSTOM_DEATH_MESSAGES,
     MINE_SPAWNERS,
     HORSE_TP,
-    AMETHYST
+    AMETHYST,
+    ENTITY_HP
 }

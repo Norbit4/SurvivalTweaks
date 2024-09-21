@@ -46,7 +46,7 @@ public class PlayerSkyGlassListener implements Listener {
             return;
         }
 
-        Entity targetEntity = getEntityLookingAt(p, 80);
+        Entity targetEntity = PlayerUtils.getEntityLookingAt(p, 80);
 
         if (targetEntity == null) {
             return;
@@ -54,6 +54,18 @@ public class PlayerSkyGlassListener implements Listener {
 
         if(!(targetEntity instanceof LivingEntity livingEntity)){
             return;
+        }
+
+        if(targetEntity instanceof ArmorStand){
+            return;
+        }
+
+        if(targetEntity instanceof Player player){
+            String playerName = player.getName();
+
+            if(PlayerUtils.getPlayerByName(playerName) == null){
+                return;
+            }
         }
 
         SpyGlassMechanic.addGlowingEntity(targetEntity, p, 25);
@@ -69,15 +81,5 @@ public class PlayerSkyGlassListener implements Listener {
 
         int spyglassCooldown = Config.getSpyglassCooldown();
         p.setCooldown(Material.SPYGLASS, 20 * spyglassCooldown);
-    }
-
-    public static Entity getEntityLookingAt(Player p, double maxDistance) {
-        Location eyeLocation = p.getEyeLocation();
-        Vector direction = eyeLocation.getDirection();
-
-        RayTraceResult rayTraceResult = p.getWorld().rayTraceEntities(
-                eyeLocation, direction, maxDistance, entity -> entity != p);
-
-        return rayTraceResult != null ? rayTraceResult.getHitEntity() : null;
     }
 }

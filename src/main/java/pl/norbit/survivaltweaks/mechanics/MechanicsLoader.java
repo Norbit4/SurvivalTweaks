@@ -53,6 +53,7 @@ public class MechanicsLoader {
             case MINE_SPAWNERS -> Config.isMineSpawnersEnabled();
             case HORSE_TP -> Config.isHorseTpEnabled();
             case AMETHYST -> Config.isAmethystEnabled();
+            case ENTITY_HP -> Config.isEntityHpEnabled();
         };
     }
 
@@ -61,6 +62,7 @@ public class MechanicsLoader {
             ItemStack itemInMainHand = p.getInventory().getItemInMainHand();
             ItemStack itemInOffHand = p.getInventory().getItemInOffHand();
 
+            ActionHealthMechanic.check(p, itemInMainHand, itemInOffHand);
             CompassMechanic.check(p, itemInMainHand, itemInOffHand);
             ClockMechanic.check(p, itemInMainHand, itemInOffHand);
             RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
