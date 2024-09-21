@@ -13,3 +13,7 @@ commands:
     usage: '/survivaltweaks <reload>'
     permission: 'survivaltweaks.command'
     aliases: [st]
+  track:
+    description: 'Track location'
+    usage: '/track <x, z>'
+    permission: 'survivaltweaks.track'
