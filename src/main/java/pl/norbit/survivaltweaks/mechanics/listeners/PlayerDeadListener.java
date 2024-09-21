@@ -15,6 +15,8 @@ import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 import java.util.Random;
 
+import static org.bukkit.event.EventPriority.MONITOR;
+
 public class PlayerDeadListener implements Listener {
     private static final Random random = new Random();
 
@@ -36,7 +38,7 @@ public class PlayerDeadListener implements Listener {
         e.getDrops().add(customSkull);
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true, priority = MONITOR)
     public void onPlayerDeathCustomMessage(PlayerDeathEvent e) {
         if(MechanicsLoader.isDisabled(Mechanic.CUSTOM_DEATH_MESSAGES)){
             return;
@@ -44,6 +46,10 @@ public class PlayerDeadListener implements Listener {
 
         Player p = e.getEntity();
         EntityDamageEvent lastDamageCause = p.getLastDamageCause();
+
+        if(lastDamageCause == null){
+            return;
+        }
 
         String message = DeathMessagesUtils.getMessage(p, lastDamageCause);
 
