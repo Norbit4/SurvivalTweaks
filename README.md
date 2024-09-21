@@ -24,6 +24,11 @@
 <p align="left">
 This plugin is created to add some useful mechanics for useless items in minecraft. It contains unique mechanics that improve items in the game.
 
+Command | Permission | Info | 
+--- | --- | --- |
+**/survivaltweaks** | *survivaltweaks.command* | Main cmd |
+**/track [x] [z]** | *survivaltweaks.track* | Set locations for the compass |
+
 <h2 align="left" id="content">Table of contents</h2>
 
 - [Compass](#compass)
@@ -40,13 +45,13 @@ This plugin is created to add some useful mechanics for useless items in minecra
 - [Minable budding amethyst](#budding-amethyst)
 - [Minable spawners](#minable-spawners)
 - [Horse tp](#horse-tp)
+- [Hp status](#hp-bar)
 - [Download](https://github.com/Norbit4/SurvivalTweaks/releases/latest)
 - [Config](https://github.com/Norbit4/SurvivalTweaks/blob/master/src/main/resources/config.yml)
 
-
 <h2 align="left" id="compass">Compass</h2>
 
-Block **cords in f3 screen**, display cords when player **holds compass**.
+Block **cords in f3 screen**, display cords when player **holds compass**. The player can use the **/track [x] [z]** command, this command allows the compass to track a location.
 
   <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
   <img src="https://github.com/user-attachments/assets/791f2b79-a1f6-4b52-bcae-3f56abf9569b" width=750 alt="img"/></a>
@@ -153,3 +158,11 @@ Mine spawner with **silk touch**.
 Tp **horse** with when player sitting on it and ender pearl teleport
 
   <img src="https://github.com/user-attachments/assets/74a337b8-2903-430b-8ab6-4428429e06da" width=600 alt="img"/></a>
+
+<h2 align="left" id="hp-bar">Hp status</h2>
+
+Action Hp status when if you are looking at entity.
+
+  <img src="https://github.com/user-attachments/assets/16460289-df6a-4405-be3f-def7ce06f853" width=400 alt="img"/></a>
+
+  
