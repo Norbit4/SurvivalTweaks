@@ -22,7 +22,12 @@ public class CompassMechanic {
     }
 
     protected static void load(){
-        updateGameRules(MechanicsLoader.isEnabled(Mechanic.COMPASS));
+        if(MechanicsLoader.isDisabled(Mechanic.COMPASS)){
+            unload();
+            return;
+        }
+
+        updateGameRules(Config.isBlockF3());
     }
 
     protected static void unload(){
