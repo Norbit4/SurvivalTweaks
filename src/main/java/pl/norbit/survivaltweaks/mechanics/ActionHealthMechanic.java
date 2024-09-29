@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
@@ -49,6 +50,14 @@ public class ActionHealthMechanic {
             //check npc
             if(targetEntity instanceof Player player){
                 String playerName = player.getName();
+
+                if(player.isInvisible()){
+                    return;
+                }
+
+                if(player.hasPotionEffect(PotionEffectType.INVISIBILITY)){
+                    return;
+                }
 
                 if(PlayerUtils.getPlayerByName(playerName) == null){
                     return;
