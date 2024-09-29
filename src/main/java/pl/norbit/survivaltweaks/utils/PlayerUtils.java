@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -49,13 +50,29 @@ public class PlayerUtils {
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatUtils.format(message, p)));
     }
 
-    public static Entity getEntityLookingAt(Player p, double maxDistance) {
-        Location eyeLocation = p.getEyeLocation();
-        Vector direction = eyeLocation.getDirection();
+    public static Entity getEntityLookingAt(Player p, double maxDist) {
+        Location eyeLoc = p.getEyeLocation();
+        Vector direction = eyeLoc.getDirection();
+        World w = p.getWorld();
 
-        RayTraceResult rayTraceResult = p.getWorld().rayTraceEntities(
-                eyeLocation, direction, maxDistance, entity -> entity != p);
+        RayTraceResult rayTraceResult = w.rayTraceEntities(eyeLoc, direction, maxDist, entity -> entity != p);
 
-        return rayTraceResult != null ? rayTraceResult.getHitEntity() : null;
+        if (rayTraceResult != null) {
+            Entity hitEntity = rayTraceResult.getHitEntity();
+
+            if (hitEntity == null) {
+                return null;
+            }
+
+            Location entityLoc = hitEntity.getLocation();
+            RayTraceResult bTrace = w.rayTraceBlocks(eyeLoc, direction, entityLoc.distance(eyeLoc));
+
+            if (bTrace != null && bTrace.getHitBlock() != null) {
+                return null;
+            }
+            return hitEntity;
+        }
+
+        return null;
     }
 }
