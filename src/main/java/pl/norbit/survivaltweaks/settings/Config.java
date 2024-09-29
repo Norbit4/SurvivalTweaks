@@ -168,6 +168,24 @@ public class Config {
     private static boolean entityHpEnabled;
 
     @Getter
+    private static boolean blazeWaterDropEnabled;
+
+    @Getter
+    private static boolean villagerProfessionCooldownEnabled;
+
+    @Getter
+    private static int villagerProfessionCooldown;
+
+    @Getter
+    private static String villagerProfessionCooldownMessage;
+
+    @Getter
+    private static String villagerProfessionCooldownTimeMinutes;
+
+    @Getter
+    private static String villagerProfessionCooldownTimeSeconds;
+
+    @Getter
     private static String entityHpDisplay;
 
     private Config() {
@@ -263,9 +281,18 @@ public class Config {
         entityHpEnabled = config.getBoolean("mechanics.entity-hp.enabled");
         entityHpDisplay = config.getString("mechanics.entity-hp.display");
 
+        //blaze water drop
+        blazeWaterDropEnabled = config.getBoolean("mechanics.blaze-water-drop.enabled");
+
+        //villager profession cooldown
+        villagerProfessionCooldownEnabled = config.getBoolean("mechanics.villager-profession-cooldown.enabled");
+        villagerProfessionCooldown = config.getInt("mechanics.villager-profession-cooldown.cooldown");
+        villagerProfessionCooldownMessage = config.getString("mechanics.villager-profession-cooldown.message");
+        villagerProfessionCooldownTimeMinutes = config.getString("mechanics.villager-profession-cooldown.time.minutes");
+        villagerProfessionCooldownTimeSeconds = config.getString("mechanics.villager-profession-cooldown.time.seconds");
+
         //custom death message
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
-
         deathMessagePrefix = config.getString("mechanics.dead-messages.prefix");
         deathMessageDrowning = config.getString("mechanics.dead-messages.messages.drowning");
         deathMessageSuffocation = config.getString("mechanics.dead-messages.messages.suffocation");

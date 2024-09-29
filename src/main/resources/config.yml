@@ -112,6 +112,18 @@ mechanics:
   entity-hp:
     enabled: true
     display: '&#decfa6{ENTITY} &#df5252{HEALTH}❤'
+  # chance to drop blaze rod when blaze die on water, 50% chance - 1 rod, 10% chance - 2 rods
+  blaze-water-drop:
+    enabled: true
+  # villagers profession cooldown, 5sec
+  villager-profession-cooldown:
+    enabled: true
+    # cooldown time in minutes
+    cooldown: 5
+    message: '&fChanging a villager's profession is possible for &c{TIME}.'
+    time:
+      minutes: 'minutes'
+      seconds: 'seconds'
   # add custom dead messages
   dead-messages:
     enabled: true
