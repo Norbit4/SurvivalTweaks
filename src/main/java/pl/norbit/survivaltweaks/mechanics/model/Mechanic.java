@@ -15,5 +15,7 @@ public enum Mechanic {
     MINE_SPAWNERS,
     HORSE_TP,
     AMETHYST,
-    ENTITY_HP
+    ENTITY_HP,
+    BLAZE_DROP,
+    VIILAGER_PROFESSION_CHANGE
 }

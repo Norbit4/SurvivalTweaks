@@ -37,6 +37,8 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new SpawnerBreakListener(), this);
         pluginManager.registerEvents(new PlayerTpListener(), this);
         pluginManager.registerEvents(new AmethystBreakListener(), this);
+        pluginManager.registerEvents(new BlazeWaterDeathListener(), this);
+        pluginManager.registerEvents(new VillagerChangeListener(), this);
 
         getCommand("survivaltweaks").setExecutor(new MainCommand());
         getCommand("track").setExecutor(new TrackCommand());
