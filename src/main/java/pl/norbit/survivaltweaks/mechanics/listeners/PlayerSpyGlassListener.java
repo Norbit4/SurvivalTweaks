@@ -13,7 +13,7 @@ import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
-public class PlayerSkyGlassListener implements Listener {
+public class PlayerSpyGlassListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
