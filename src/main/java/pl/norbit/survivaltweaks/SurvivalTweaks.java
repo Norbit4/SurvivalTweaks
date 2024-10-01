@@ -30,7 +30,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         PlaceholderUtils.load();
 
         pluginManager.registerEvents(new PlayerEatListener(), this);
-        pluginManager.registerEvents(new PlayerSkyGlassListener(), this);
+        pluginManager.registerEvents(new PlayerSpyGlassListener(), this);
         pluginManager.registerEvents(new PlayerDeadListener(), this);
         pluginManager.registerEvents(new FireballListener(), this);
         pluginManager.registerEvents(new PlayerTotemVoidListener(), this);

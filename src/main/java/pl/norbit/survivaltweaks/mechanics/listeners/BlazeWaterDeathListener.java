@@ -42,13 +42,15 @@ public class BlazeWaterDeathListener implements Listener {
         Location loc = entity.getLocation();
         World w = loc.getWorld();
 
+        ItemStack rod = new ItemStack(Material.BLAZE_ROD, 1);
+
         if (randomDouble < 0.1) {
-            w.dropItemNaturally(loc, new ItemStack(Material.BLAZE_ROD, 2));
+            e.getDrops().add(rod.clone().add());
             return;
         }
 
         if (randomDouble < 0.50) {
-            w.dropItemNaturally(loc, new ItemStack(Material.BLAZE_ROD, 1));
+            w.dropItemNaturally(loc, rod);
         }
     }
 }

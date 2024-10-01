@@ -2,6 +2,7 @@ package pl.norbit.survivaltweaks.mechanics.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +20,7 @@ import static pl.norbit.survivaltweaks.utils.TaskUtils.*;
 
 public class PlayerTpListener implements Listener {
     private final Map<UUID, Horse> horses = new HashMap<>();
+    private final Map<UUID, Pig> pigs = new HashMap<>();
 
     @EventHandler
     public void onPlayerTeleport(PlayerTeleportEvent e) {
@@ -36,12 +38,19 @@ public class PlayerTpListener implements Listener {
         if (horses.containsKey(p.getUniqueId())) {
             Horse horse = horses.get(p.getUniqueId());
 
-            if(horse.isDead()){
-                return;
-            }
+            if(horse.isDead()) return;
 
             horse.teleport(loc);
             syncLater(() -> horse.addPassenger(p), 6);
+        }
+
+        if(pigs.containsKey(p.getUniqueId())){
+            Pig pig = pigs.get(p.getUniqueId());
+
+            if(pig.isDead()) return;
+
+            pig.teleport(loc);
+            syncLater(()->pig.addPassenger(p),6);
         }
     }
 
@@ -54,6 +63,10 @@ public class PlayerTpListener implements Listener {
         if (e.getMount() instanceof Horse horse && e.getEntity() instanceof Player p) {
             horses.put(p.getUniqueId(), horse);
         }
+
+        if (e.getMount() instanceof Pig pig && e.getEntity() instanceof Player p) {
+            pigs.put(p.getUniqueId(), pig);
+        }
     }
 
     @EventHandler
@@ -64,6 +77,16 @@ public class PlayerTpListener implements Listener {
 
         Player p = e.getPlayer();
 
-        horses.remove(p.getUniqueId());
+        if(p.getVehicle() == null) return;
+
+        if(p.getVehicle() instanceof Pig){
+            pigs.remove(p.getUniqueId());
+        }
+
+        if(p.getVehicle() instanceof Horse){
+            horses.remove(p.getUniqueId());
+        }
+
+
     }
 }
