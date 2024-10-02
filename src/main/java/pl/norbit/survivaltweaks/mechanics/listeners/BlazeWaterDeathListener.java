@@ -45,12 +45,12 @@ public class BlazeWaterDeathListener implements Listener {
         ItemStack rod = new ItemStack(Material.BLAZE_ROD, 1);
 
         if (randomDouble < 0.1) {
-            e.getDrops().add(rod.clone().add());
+            e.getDrops().add(rod.clone().add(1));
             return;
         }
 
         if (randomDouble < 0.50) {
-            w.dropItemNaturally(loc, rod);
+            e.getDrops().add(rod);
         }
     }
 }
