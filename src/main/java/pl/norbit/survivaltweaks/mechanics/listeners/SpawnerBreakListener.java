@@ -8,6 +8,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -18,8 +19,12 @@ import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 
 public class SpawnerBreakListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent e) {
+        if(e.isCancelled()) {
+            return;
+        }
+
         if(MechanicsLoader.isDisabled(Mechanic.MINE_SPAWNERS)){
             return;
         }

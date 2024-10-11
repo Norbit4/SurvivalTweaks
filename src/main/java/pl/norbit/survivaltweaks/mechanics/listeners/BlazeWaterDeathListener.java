@@ -39,8 +39,6 @@ public class BlazeWaterDeathListener implements Listener {
         }
 
         double randomDouble = random.nextDouble();
-        Location loc = entity.getLocation();
-        World w = loc.getWorld();
 
         ItemStack rod = new ItemStack(Material.BLAZE_ROD, 1);
 

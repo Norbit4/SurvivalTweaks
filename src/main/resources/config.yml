@@ -120,7 +120,7 @@ mechanics:
     enabled: true
     # cooldown time in minutes
     cooldown: 5
-    message: '&fChanging a villager's profession is possible for &c{TIME}.'
+    message: '&fChanging a villagers profession is possible for &c{TIME}.'
     time:
       minutes: 'minutes'
       seconds: 'seconds'

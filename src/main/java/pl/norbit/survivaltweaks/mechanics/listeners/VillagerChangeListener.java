@@ -54,7 +54,7 @@ public class VillagerChangeListener implements Listener {
                 String time = minutesFormat + " " + secondsFormat;
 
                 String message = Config.getVillagerProfessionCooldownMessage()
-                        .replace("{time}", time);
+                        .replace("{TIME}", time);
 
                 String finalMessage = ChatUtils.format(message, null);
 

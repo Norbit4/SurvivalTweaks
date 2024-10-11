@@ -10,7 +10,6 @@ public class ChatUtils {
         throw new IllegalStateException("Utility class");
     }
 
-
     public static String format(String text, Player p) {
         return PlaceholderUtils.setPlaceholders(translateColorCodes(text), p);
     }

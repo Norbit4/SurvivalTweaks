@@ -86,7 +86,5 @@ public class PlayerTpListener implements Listener {
         if(p.getVehicle() instanceof Horse){
             horses.remove(p.getUniqueId());
         }
-
-
     }
 }
