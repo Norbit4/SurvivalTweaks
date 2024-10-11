@@ -46,6 +46,8 @@ Command | Permission | Info |
 - [Minable spawners](#minable-spawners)
 - [Horse tp](#horse-tp)
 - [Hp status](#hp-bar)
+- [Blaze drop](#blaze-drop)
+- [Villager profession cooldown](#villager-profession-cooldown)
 - [Download](https://github.com/Norbit4/SurvivalTweaks/releases/latest)
 - [Config](https://github.com/Norbit4/SurvivalTweaks/blob/master/src/main/resources/config.yml)
 
@@ -164,5 +166,17 @@ Tp **horse** with when player sitting on it and ender pearl teleport
 Action Hp status when if you are looking at entity.
 
   <img src="https://github.com/user-attachments/assets/16460289-df6a-4405-be3f-def7ce06f853" width=400 alt="img"/></a>
+
+<h2 align="left" id="blaze-drop">Blaze drop</h2>
+
+Chance to drop blaze rod when blaze die on water, 50% chance - 1 rod, 10% chance - 2 rods
+
+  <img src="https://github.com/user-attachments/assets/53263428-7543-4bf1-b397-f887958e1814" width=600 alt="img"/></a>
+
+<h2 align="left" id="villager-profession-cooldown">Villager profession cooldown</h2>
+
+Villagers profession change cooldown.
+
+  <img src="https://github.com/user-attachments/assets/6734adc5-703a-4c53-98a3-9ef2d367e68b" width=600 alt="img"/></a>
 
   
