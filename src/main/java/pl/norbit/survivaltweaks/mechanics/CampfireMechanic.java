@@ -2,6 +2,8 @@ package pl.norbit.survivaltweaks.mechanics;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.Lightable;
+import org.bukkit.block.data.type.Campfire;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -22,11 +24,11 @@ public class CampfireMechanic {
             return;
         }
 
-        if(containsMaterial(Material.CAMPFIRE, blocks)){
+        if(containsLitMaterial(Material.CAMPFIRE, blocks)){
             sync(() -> applyEffect(p, PotionEffectType.REGENERATION));
         }
 
-        if(containsMaterial(Material.SOUL_CAMPFIRE, blocks)){
+        if(containsLitMaterial(Material.SOUL_CAMPFIRE, blocks)){
             sync(() -> applyEffect(p, PotionEffectType.FIRE_RESISTANCE));
         }
     }
@@ -35,9 +37,18 @@ public class CampfireMechanic {
         player.addPotionEffect(new PotionEffect(potionEffectType, 50, 0));
     }
 
-    private static boolean containsMaterial(Material mat, List<Block> blocks) {
-        return blocks
+    private static boolean containsLitMaterial(Material mat, List<Block> blocks) {
+        List<Block> campfires = blocks
                 .stream()
-                .anyMatch(b -> b.getType() == mat);
+                .filter(b -> b.getType() == mat)
+                .toList();
+
+        if(campfires.isEmpty()){
+            return false;
+        }
+
+        return campfires.stream()
+                .map(b -> (Campfire) b.getBlockData())
+                .anyMatch(Lightable::isLit);
     }
 }
