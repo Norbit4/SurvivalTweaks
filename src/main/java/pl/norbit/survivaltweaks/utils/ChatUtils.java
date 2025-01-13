@@ -14,6 +14,10 @@ public class ChatUtils {
         return PlaceholderUtils.setPlaceholders(translateColorCodes(text), p);
     }
 
+    public static String format(String text) {
+        return PlaceholderUtils.setPlaceholders(translateColorCodes(text), null);
+    }
+
     /**
      * @param text The string of text to apply color/effects to
      * @return Returns a string of text with color/effects applied

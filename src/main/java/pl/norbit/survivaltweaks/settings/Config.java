@@ -3,7 +3,13 @@ package pl.norbit.survivaltweaks.settings;
 import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.EntityType;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class Config {
     @Getter
@@ -82,6 +88,9 @@ public class Config {
 
     @Getter
     private static int fireballYield;
+
+    @Getter
+    private static List<Material> fireballBlockedList;
 
     @Getter
     private static boolean playerHeadEnabled;
@@ -186,7 +195,34 @@ public class Config {
     private static String villagerProfessionCooldownTimeSeconds;
 
     @Getter
+    private static boolean sleepMechanicEnabled;
+
+    @Getter
+    private static double sleepMechanicPercentage;
+
+    @Getter
+    private static String sleepMechanicActionBarMessage;
+
+    @Getter
+    private static String sleepMechanicTitleMessage;
+
+    @Getter
+    private static String sleepMechanicSubtitleMessage;
+
+    @Getter
+    private static String sleepMechanicSubtitleSuccessMessage;
+
+    @Getter
+    private static String sleepMechanicDenyMessage;
+
+    @Getter
     private static String entityHpDisplay;
+
+    private static Map<String, String> mobNames;
+
+    public static String getMobNameOrDefault(EntityType mobType, String defaultName) {
+        return mobNames.getOrDefault(mobType.name().toUpperCase(), defaultName);
+    }
 
     private Config() {
         throw new IllegalStateException("Utility class");
@@ -261,6 +297,12 @@ public class Config {
         fireballCooldown = config.getInt("mechanics.fireball.cooldown");
         fireballYield = config.getInt("mechanics.fireball.yield");
 
+        fireballBlockedList = config.getStringList("mechanics.fireball.blocked-blocks")
+                .stream()
+                .map(Material::getMaterial)
+                .filter(Objects::nonNull)
+                .toList();
+
         //playerHead
         playerHeadEnabled = config.getBoolean("mechanics.player-head.enabled");
         playerHeadDropChance = config.getDouble("mechanics.player-head.chance");
@@ -291,6 +333,15 @@ public class Config {
         villagerProfessionCooldownTimeMinutes = config.getString("mechanics.villager-profession-cooldown.time.minutes");
         villagerProfessionCooldownTimeSeconds = config.getString("mechanics.villager-profession-cooldown.time.seconds");
 
+        //sleep
+        sleepMechanicEnabled = config.getBoolean("mechanics.sleep.enabled");
+        sleepMechanicPercentage = config.getDouble("mechanics.sleep.percentage");
+        sleepMechanicActionBarMessage = config.getString("mechanics.sleep.messages.action-bar");
+        sleepMechanicTitleMessage = config.getString("mechanics.sleep.messages.title");
+        sleepMechanicSubtitleMessage = config.getString("mechanics.sleep.messages.subtitle");
+        sleepMechanicDenyMessage = config.getString("mechanics.sleep.messages.deny");
+        sleepMechanicSubtitleSuccessMessage = config.getString("mechanics.sleep.messages.subtitle-skip");
+
         //custom death message
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
         deathMessagePrefix = config.getString("mechanics.dead-messages.prefix");
@@ -313,5 +364,15 @@ public class Config {
         deathMessageDragon = config.getString("mechanics.dead-messages.messages.dragon");
         deathMessageHotFloor = config.getString("mechanics.dead-messages.messages.hot-floor");
         deathMessageOther = config.getString("mechanics.dead-messages.messages.other");
+
+        mobNames = new HashMap<>();
+
+        for (String mob : config.getConfigurationSection("mob-names").getKeys(false)) {
+            String name = config.getString("mob-names." + mob);
+            if (name == null) {
+                continue;
+            }
+            mobNames.put(mob.toUpperCase(), name);
+        }
     }
 }

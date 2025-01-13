@@ -13,6 +13,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
+import pl.norbit.survivaltweaks.settings.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,34 @@ public class PlayerUtils {
         skullMeta.setOwningPlayer(offlinePlayer);
         head.setItemMeta(skullMeta);
         return head;
+    }
+
+    public static int getNeedSleepingPlayersCount() {
+        int needSleepingPlayersCount = getNeedSleepingPlayersCount(Config.getSleepMechanicPercentage());
+        return needSleepingPlayersCount == 0 ? 1 : needSleepingPlayersCount;
+    }
+
+    private static int getNeedSleepingPlayersCount(double percent) {
+        long count = getOnlinePlayers()
+                .stream()
+                .filter(player -> !player.isOp())
+                .filter(player -> !player.hasPermission("survivaltweaks.bypass"))
+                .count();
+        return (int) Math.ceil(count * percent);
+    }
+
+    public static int getSleepingPlayersCount() {
+        int count = (int) getOnlinePlayers()
+                .stream()
+                .filter(Player::isSleeping)
+                .count();
+        return count == 0 ? 1 : count;
+    }
+    public static List<Player> getSleepingPlayers() {
+        return getOnlinePlayers()
+                .stream()
+                .filter(Player::isSleeping)
+                .toList();
     }
 
     public static List<Player> getOnlinePlayers() {

@@ -1,6 +1,5 @@
 package pl.norbit.survivaltweaks.mechanics;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
@@ -64,8 +63,11 @@ public class ActionHealthMechanic {
                 }
             }
 
+            //translate entity name
+            final String mobName = Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
+
             String message = Config.getEntityHpDisplay()
-                    .replace("{ENTITY}", targetEntity.getName())
+                    .replace("{ENTITY}", mobName)
                     .replace("{HEALTH}", String.valueOf((int) livingEntity.getHealth()));
 
             PlayerUtils.sendActionBar(p, message);

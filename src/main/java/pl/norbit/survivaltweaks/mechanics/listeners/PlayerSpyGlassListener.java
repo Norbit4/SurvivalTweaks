@@ -69,8 +69,11 @@ public class PlayerSpyGlassListener implements Listener {
 
         int distance = (int) p.getLocation().distance(targetEntity.getLocation());
 
+        //translate entity name
+        final String mobName = Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
+
         String message = Config.getSpyglass()
-                .replace("{ENTITY}", targetEntity.getName())
+                .replace("{ENTITY}", mobName)
                 .replace("{HEALTH}", String.valueOf((int) livingEntity.getHealth()))
                 .replace("{DISTANCE}", String.valueOf(distance));
 

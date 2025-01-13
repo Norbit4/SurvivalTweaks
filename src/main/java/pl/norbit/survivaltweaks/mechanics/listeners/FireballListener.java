@@ -1,6 +1,7 @@
 package pl.norbit.survivaltweaks.mechanics.listeners;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,6 +41,17 @@ public class FireballListener implements Listener {
         }
 
         if (action == Action.RIGHT_CLICK_AIR || action  == Action.RIGHT_CLICK_BLOCK) {
+
+            Block clickedBlock = e.getClickedBlock();
+
+            if(clickedBlock != null){
+                Material mat = clickedBlock.getType();
+
+                if(Config.getFireballBlockedList().contains(mat)){
+                    return;
+                }
+            }
+
             Fireball fireball = p.launchProjectile(Fireball.class);
             fireball.setYield(Config.getFireballYield());
 

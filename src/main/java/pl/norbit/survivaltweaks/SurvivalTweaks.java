@@ -7,6 +7,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.norbit.survivaltweaks.commands.MainCommand;
 import pl.norbit.survivaltweaks.commands.TrackCommand;
+import pl.norbit.survivaltweaks.mechanics.SleepMechanic;
 import pl.norbit.survivaltweaks.mechanics.listeners.*;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.utils.GlowUtils;
@@ -28,6 +29,7 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         GlowUtils.init();
         PlaceholderUtils.load();
+        SleepMechanic.startTask();
 
         pluginManager.registerEvents(new PlayerEatListener(), this);
         pluginManager.registerEvents(new PlayerSpyGlassListener(), this);
@@ -39,6 +41,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new AmethystBreakListener(), this);
         pluginManager.registerEvents(new BlazeWaterDeathListener(), this);
         pluginManager.registerEvents(new VillagerChangeListener(), this);
+        pluginManager.registerEvents(new BedListener(), this);
 
         getCommand("survivaltweaks").setExecutor(new MainCommand());
         getCommand("track").setExecutor(new TrackCommand());

@@ -56,6 +56,7 @@ public class MechanicsLoader {
             case ENTITY_HP -> Config.isEntityHpEnabled();
             case BLAZE_DROP -> Config.isBlazeWaterDropEnabled();
             case VIILAGER_PROFESSION_CHANGE -> Config.isVillagerProfessionCooldownEnabled();
+            case SLEEP -> Config.isSleepMechanicEnabled();
         };
     }
 
