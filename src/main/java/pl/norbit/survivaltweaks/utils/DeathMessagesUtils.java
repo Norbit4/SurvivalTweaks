@@ -19,6 +19,14 @@ public class DeathMessagesUtils {
         String name = p.getName();
         Entity causingEntity = damageSource.getCausingEntity();
 
+        String entityName;
+
+        if(causingEntity != null){
+            entityName = Config.getMobNameOrDefault(causingEntity.getType(), causingEntity.getName());
+        }else {
+            entityName = "";
+        }
+
         int deaths = p.getStatistic(Statistic.DEATHS);
 
         String prefix = Config.getDeathMessagePrefix();
@@ -26,7 +34,7 @@ public class DeathMessagesUtils {
         return message
                 .replace("{PREFIX}", prefix)
                 .replace("{PLAYER}", name)
-                .replace("{ENTITY}", causingEntity != null ? causingEntity.getName() : "")
+                .replace("{ENTITY}", entityName)
                 .replace("{DEATH}", String.valueOf(deaths + 1));
     }
 
