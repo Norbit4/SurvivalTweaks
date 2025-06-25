@@ -19,6 +19,9 @@ repositories {
     maven {
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
     }
+    maven {
+        url = 'https://jitpack.io'
+    }
 }
 
 dependencies {
@@ -33,6 +36,9 @@ dependencies {
     //lombok
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    //SuperVanish
+    compileOnly 'com.github.LeonMangler:SuperVanish:6.2.18-3'
 }
 
 def targetJavaVersion = 21
