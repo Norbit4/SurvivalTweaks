@@ -1,6 +1,5 @@
 package pl.norbit.survivaltweaks.mechanics;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
