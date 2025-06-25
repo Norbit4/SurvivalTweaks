@@ -70,10 +70,10 @@ public class ActionHealthMechanic {
             }
 
             //translate entity name
-            // 获取实体的自定义名称（如果有）或默认名称
-            Component customNameComponent = targetEntity.customName();
-            String displayName = customNameComponent != null
-                    ? customNameComponent.toString()
+            String customName = targetEntity.getCustomName();
+
+            String displayName = customName != null
+                    ? customName
                     : Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
 
 
