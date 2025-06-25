@@ -56,12 +56,10 @@ public class ActionHealthMechanic {
                 }
 
                 if (SuperVanish.isVanished(player)) { // Player is Vanished?
-                    if (SuperVanish.canSeeVanished(p)){ // IF SuperVanish IS OP
+                    if (!SuperVanish.canSeeVanished(p)){ // IF SuperVanish IS OP
                         return;
                     }
                 }
-
-
 
                 if(player.hasPotionEffect(PotionEffectType.INVISIBILITY)){
                     return;
