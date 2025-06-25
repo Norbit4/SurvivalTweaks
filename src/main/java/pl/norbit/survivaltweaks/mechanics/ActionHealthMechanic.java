@@ -55,7 +55,7 @@ public class ActionHealthMechanic {
                     return;
                 }
 
-                if (!SuperVanish.canSeeVanished(p)){ // IF SuperVanish is Vanished
+                if (!SuperVanish.canSeeVanished(player)){ // IF SuperVanish is Vanished
                     return;
                 }
 
