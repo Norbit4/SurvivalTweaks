@@ -12,25 +12,22 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: Update Gradle Wrapper
-      run: ./gradlew wrapper --gradle-version=8.8 --distribution-type=bin
 
-    - name: Set up JDK 21
+    - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-        java-version: '21'
+        java-version: '17'
         distribution: 'temurin'
 
     - name: Make gradlew executable
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew clean shadowJar --refresh-dependencies
+      run: ./gradlew build
 
     - name: Upload JAR artifact
       uses: actions/upload-artifact@v4
       with:
-        name: plugin-jar
+        name: jar-artifact
         path: build/libs/*.jar
         retention-days: 5
