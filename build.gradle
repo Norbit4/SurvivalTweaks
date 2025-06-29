@@ -1,7 +1,15 @@
-plugins {
-    id 'com.github.johnrengelman.shadow' version '8.1.7'
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal() 
+    }
+    dependencies {
+        classpath 'com.github.johnrengelman:shadow:8.1.7' 
+    }
 }
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
 
 group = 'pl.norbit'
 version = 'v1.5.1'
@@ -26,46 +34,31 @@ repositories {
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT"
-    
     implementation 'fr.skytasul:glowingentities:1.4.3'
-    
     compileOnly 'me.clip:placeholderapi:2.11.6'
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.18-3'
-    
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
 }
 
 shadowJar {
-    archiveClassifier = '' 
-    minimize()
-    
+    archiveClassifier = ''
+    minimize() 
     relocate 'fr.skytasul', 'pl.norbit.lib.glowingentities'
-    
     mergeServiceFiles()
-    
     exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
 }
 
-build.dependsOn shadowJar
-
 def targetJavaVersion = 21
 java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.compilerArgs << '-parameters'
-    
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release.set(targetJavaVersion)
-    }
 }
 
 processResources {
