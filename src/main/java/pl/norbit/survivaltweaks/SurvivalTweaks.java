@@ -12,6 +12,7 @@ import pl.norbit.survivaltweaks.mechanics.listeners.*;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.utils.GlowUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
+import pl.norbit.survivaltweaks.hooks.SuperVanish;
 
 public final class SurvivalTweaks extends JavaPlugin {
     @Getter
@@ -30,6 +31,8 @@ public final class SurvivalTweaks extends JavaPlugin {
         GlowUtils.init();
         PlaceholderUtils.load();
         SleepMechanic.startTask();
+
+        SuperVanish.init(this);
 
         pluginManager.registerEvents(new PlayerEatListener(), this);
         pluginManager.registerEvents(new PlayerSpyGlassListener(), this);

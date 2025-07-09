@@ -7,6 +7,8 @@ website: https://github.com/Norbit4
 description: 'This plugin is created to add some useful mechanics for useless items in Minecraft.'
 softdepend:
   - PlaceholderAPI
+  - PremiumVanish
+  - SuperVanish
 commands:
   survivaltweaks:
     description: 'Main command for SurvivalTweaks plugin'

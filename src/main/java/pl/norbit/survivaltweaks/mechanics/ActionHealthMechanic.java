@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
+import pl.norbit.survivaltweaks.hooks.SuperVanish;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
@@ -54,6 +55,12 @@ public class ActionHealthMechanic {
                     return;
                 }
 
+                if (SuperVanish.isVanished(player)) { // Player is Vanished?
+                    if (!SuperVanish.canSeeVanished(p)){ // IF SuperVanish IS OP
+                        return;
+                    }
+                }
+
                 if(player.hasPotionEffect(PotionEffectType.INVISIBILITY)){
                     return;
                 }
@@ -64,11 +71,18 @@ public class ActionHealthMechanic {
             }
 
             //translate entity name
-            final String mobName = Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
+            String customName = targetEntity.getCustomName();
+
+            String displayName = customName != null
+                    ? customName
+                    : Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
+
+
+
 
             String message = Config.getEntityHpDisplay()
-                    .replace("{ENTITY}", mobName)
-                    .replace("{HEALTH}", String.valueOf((int) livingEntity.getHealth()));
+                    .replace("{ENTITY}", displayName)
+                    .replace("{HEALTH}", Integer.toString((int) livingEntity.getHealth()));
 
             PlayerUtils.sendActionBar(p, message);
         });
