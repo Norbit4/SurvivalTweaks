@@ -322,7 +322,6 @@ public class Config {
         recoveryCompassEnabled = config.getBoolean("mechanics.recovery-compass.enabled");
 
         //spyglass
-        spyglass = config.getString("mechanics.spyglass.display");
         spyglassCooldown = config.getInt("mechanics.spyglass.cooldown");
         spyglassEnabled = config.getBoolean("mechanics.spyglass.enabled");
 
@@ -466,6 +465,9 @@ public class Config {
 
         //clock
         clock = config.getString("clock.display");
+
+        //
+        spyglass = config.getString("spyglass.display");
 
         //recoveryCompass
         recoveryCompass = config.getString("recovery-compass.display");
