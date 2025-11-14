@@ -1,6 +1,5 @@
-package pl.norbit.survivaltweaks.mechanics.listeners;
+package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
-import org.bukkit.Effect;
 import org.bukkit.EntityEffect;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -72,7 +71,7 @@ public class PlayerTotemVoidListener implements Listener {
         p.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, effectDuration, 1));
         p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, effectDuration, 2));
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, effectDuration, 0));
-        p.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 20 * 23, 6));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 20 * 25, 7));
     }
 
     private boolean removeTotem(PlayerInventory p){

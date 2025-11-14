@@ -20,152 +20,34 @@
 # If you have any suggestions, write to me on discord: n0rbit
 # or join to my discord server: https://discord.com/invite/bA2kamGNyH
 
-# Plugin supports Minecraft 1.20.6+ with engine Paper or forks.
+# Plugin supports Minecraft 1.21.8+ with engine Paper or forks.
 # Spigot and Bukkit are not supported.
 #---------------------------------------#
 #               [Config]                #
 #---------------------------------------#
-# reload: /survivaltweaks reload, permission: survivaltweaks.command
-
-reload-message: '&aPlugin has been reloaded!'
-
-#add mobs to change their names
-mob-names:
-  #entity_type 'new name'
-  allay: 'Allay'
-  armadillo: 'Armadillo'
-  axolotl: 'Axolotl'
-  bat: 'Bat'
-  bee: 'Bee'
-  blaze: 'Blaze'
-  bogged: 'Bogged'
-  breeze: 'Breeze'
-  camel: 'Camel'
-  cat: 'Cat'
-  cave_spider: 'Cave spider'
-  chicken: 'Chicken'
-  cod: 'Cod'
-  cow: 'Cow'
-  creeper: 'Creeper'
-  dolphin: 'Dolphin'
-  donkey: 'Donkey'
-  drowned: 'Drowned'
-  elder_guardian: 'Elder guardian'
-  ender_dragon: 'Ender dragon'
-  enderman: 'Enderman'
-  endermite: 'Endermite'
-  evoker: 'Evoker'
-  fox: 'Fox'
-  frog: 'Frog'
-  giant: 'Giant'
-  glow_squid: 'Glow squid'
-  guardian: 'Guardian'
-  ghast: 'Ghast'
-  goat: 'Goat'
-  hoglin: 'Hoglin'
-  horse: 'Horse'
-  husk: 'Husk'
-  illusioner: 'Illusioner'
-  iron_golem: 'Iron golem'
-  llama: 'Llama'
-  mooshroom: 'Mooshroom'
-  magma_cube: 'Magma cube'
-  ocelot: 'Ocelot'
-  mule: 'Mule'
-  panda: 'Panda'
-  parrot: 'Parrot'
-  phantom: 'Phantom'
-  pig: 'Pig'
-  piglin: 'Piglin'
-  piglin_brute: 'Piglin brute'
-  pillager: 'Pillager'
-  polar_bear: 'Polar bear'
-  pufferfish: 'Pufferfish'
-  rabbit: 'Rabbit'
-  ravager: 'Ravager'
-  salmon: 'Salmon'
-  sheep: 'Sheep'
-  shulker: 'Shulker'
-  silverfish: 'Silverfish'
-  skeleton: 'Skeleton'
-  skeleton_horse: 'Skeleton horse'
-  slime: 'Slime'
-  sniffer: 'Sniffer'
-  snow_golem: 'Snow golem'
-  spider: 'Spider'
-  squid: 'Squid'
-  stray: 'Stray'
-  strider: 'Strider'
-  tadpole: 'Tadpole'
-  trader_llama: 'Trader llama'
-  tropical_fish: 'Tropical fish'
-  turtle: 'Turtle'
-  vex: 'Vex'
-  villager: 'Villager'
-  vindicator: 'Vindicator'
-  wandering_trader: 'Wandering trader'
-  warden: 'Warden'
-  witch: 'Witch'
-  wither: 'Wither'
-  wither_skeleton: 'Wither skeleton'
-  wolf: 'Wolf'
-  zoglin: 'Zoglin'
-  zombie: 'Zombie'
-  zombie_horse: 'Zombie horse'
-  zombie_villager: 'Zombie villager'
-  zombified_piglin: 'Zombified piglin'
 
 mechanics:
-  # block cords in f3 screen, display cords when player holds compass
-  # {X} - display X cord
-  # {Y} - display Y cord
-  # {Z} - display Z cord
-  # {BIOME} - display biome name
-  # {WORLD} - display world name
+  # display cords when player holds compass
   compass:
     enabled: true
-    block-f3: true
-    display: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z} &#7ed323[{BIOME}]'
-    messages:
-      track-usage: '&7Usage: /track <x, z>'
-      only-player: '&cOnly player can use this command!'
-      invalid-material: '&cYou must be holding a compass to use this command!'
-      invalid-number: '&cInvalid number format!'
-      track-success: '&7Tracking location: &#a6e194{X}, {Z}'
-      track-item: '&fTracking Compass &7[&#a6e194{X}, {Z}&7]'
+    # block cords in f3 screen
+    block-f3: false
 
   # display time when player holds clock
-  # {TIME} - display time
   clock:
     enabled: true
-    display: '&7Time: &#d786f3{TIME}'
   # display last death location when player holds recovery_compass
-  # {X} - display X cord
-  # {Y} - display Y cord
-  # {Z} - display Z cord
-  # {WORLD} - display world name
   recovery-compass:
     enabled: true
-    display: '&f&l☠ &7X: &c{X} &7Y: &c{Y} &7Z: &c{Z}'
-    display-no-death-location: '&f&l☠ &7You have not died yet!'
-  # mark entities when player look at them
-  # {ENTITY} - display entity name
-  # {HEALTH} - display entity health
-  # {DISTANCE} - display distance from entity
+  # entity health and distance when player use spyglass
   spyglass:
     enabled: true
     cooldown: 3
-    display: '&#dcee9a {ENTITY} [{HEALTH}&c&c❤&#dcee9a] {DISTANCE}m'
   # change your size when eat
   size:
     enabled: true
     small: GLOW_BERRIES
     normal: GOLDEN_CARROT
-  # add:
-  # - regeneration effect when player is near campfire (2 blocks)
-  # - fire resistance effect when player is near soul campfire (2 blocks)
-  campfire:
-    enabled: true
   # add dolphin's grace effect when player is in water and has turtle helmet in head
   turtle-helmet:
     enabled: true
@@ -177,72 +59,6 @@ mechanics:
     cooldown: 40
     # fireball break scale, high value = more explosion
     yield: 2
-    blocked-blocks:
-      - 'CHEST'
-      - 'ENDER_CHEST'
-      - 'TRAPPED_CHEST'
-      - 'SHULKER_BOX'
-      - 'BARREL'
-      - 'SMOKER'
-      - 'BLAST_FURNACE'
-      - 'FURNACE'
-      - 'CRAFTING_TABLE'
-      - 'ANVIL'
-      - 'ENCHANTING_TABLE'
-      - 'GRINDSTONE'
-      - 'LOOM'
-      - 'SMITHING_TABLE'
-      - 'STONECUTTER'
-      - 'LECTERN'
-      - 'BREWING_STAND'
-      - 'BEACON'
-      - 'JUKEBOX'
-      - 'COMPOSTER'
-      - 'BELL'
-      - 'CAMPFIRE'
-      - 'SOUL_CAMPFIRE'
-      - 'SPRUCE_SIGN'
-      - 'BIRCH_SIGN'
-      - 'JUNGLE_SIGN'
-      - 'ACACIA_SIGN'
-      - 'DARK_OAK_SIGN'
-      - 'CRIMSON_SIGN'
-      - 'WARPED_SIGN'
-      - 'OAK_SIGN'
-      - 'SPRUCE_WALL_SIGN'
-      - 'BIRCH_WALL_SIGN'
-      - 'JUNGLE_WALL_SIGN'
-      - 'ACACIA_WALL_SIGN'
-      - 'DARK_OAK_WALL_SIGN'
-      - 'CRIMSON_WALL_SIGN'
-      - 'WARPED_WALL_SIGN'
-      - 'OAK_WALL_SIGN'
-      - 'OAK_DOOR'
-      - 'SPRUCE_DOOR'
-      - 'BIRCH_DOOR'
-      - 'JUNGLE_DOOR'
-      - 'ACACIA_DOOR'
-      - 'DARK_OAK_DOOR'
-      - 'CRIMSON_DOOR'
-      - 'WARPED_DOOR'
-      - 'IRON_DOOR'
-      - 'OAK_TRAPDOOR'
-      - 'SPRUCE_TRAPDOOR'
-      - 'BIRCH_TRAPDOOR'
-      - 'JUNGLE_TRAPDOOR'
-      - 'ACACIA_TRAPDOOR'
-      - 'DARK_OAK_TRAPDOOR'
-      - 'CRIMSON_TRAPDOOR'
-      - 'WARPED_TRAPDOOR'
-      - 'IRON_TRAPDOOR'
-      - 'OAK_FENCE_GATE'
-      - 'SPRUCE_FENCE_GATE'
-      - 'BIRCH_FENCE_GATE'
-      - 'JUNGLE_FENCE_GATE'
-      - 'ACACIA_FENCE_GATE'
-      - 'DARK_OAK_FENCE_GATE'
-      - 'CRIMSON_FENCE_GATE'
-      - 'WARPED_FENCE_GATE'
   # drop player head when player die
   player-head:
     enabled: true
@@ -263,50 +79,61 @@ mechanics:
   #show mob hp:
   entity-hp:
     enabled: true
-    display: '&#decfa6{ENTITY} &#df5252{HEALTH}❤'
   # chance to drop blaze rod when blaze die on water, 50% chance - 1 rod, 10% chance - 2 rods
   blaze-water-drop:
     enabled: true
   # villagers profession cooldown, 5sec
   villager-profession-cooldown:
-    enabled: true
+    enabled: false
     # cooldown time in minutes
     cooldown: 5
-    message: '&fChanging a villagers profession is possible for &c{TIME}.'
-    time:
-      minutes: 'minutes'
-      seconds: 'seconds'
-  sleep:
+  # block op mechanics/items
+  blocker:
+    # block sh
+    armadillo-brush-cooldown:
+      enabled: false
+      cooldown: 30
+    # despawn ender perls after 20sec, this block player teleport with "freeze" ender pearl in long distances
+    ender-pearl-despawn:
+      enabled: false
+    #block bone-meal usage
+    #bypass: survivaltweaks.bonemeal.bypass
+    block-bone-meal:
+      enabled: false
+    elytra:
+      # Block elytra natural generate in end cities
+      block-generate: false
+      # Block elytra mending enchantment
+      block-mending: false
+    # Block items generate in loot chests
+    block-loot:
+      enabled: false
+      items:
+      - 'NETHERITE_UPGRADE_SMITHING_TEMPLATE'
+  # Shift + right click to hide/unhide item frame
+  invisible-item-frames:
     enabled: true
-    # skip night when 30% players sleep
-    percentage: 0.3
-    messages:
-      action-bar: '&7To skip &a{SLEEP}&8/&e{NEED} &7players!'
-      title: '&6&lSLEEP'
-      subtitle: '&7ATo skip &a{SLEEP}&8/&e{NEED}'
-      deny: '&cYou can not sleep now!'
-      subtitle-skip: '&7Players skipped the night!'
+  # keep 50% items when player die
+  keep-items:
+    enabled: false
+    # worlds where keep-items is disabled
+    disabled-worlds:
+      - 'example_world'
+  #nerf mace damage
+  mace-nerf:
+    enabled: true
+    #nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal 10 damage
+    percentage: 50
+    disable-world:
+      - 'example_world'
+  #boost happy ghost speed and hp
+  happy-ghost-boost:
+    enabled: true
+    speed-multiplier: 1.5
+    hp: 100
+  #remove the anvil too expensive limit, change too expensive to mas possible level in anvil
+  anvil-too-expensive-fix:
+    enabled: true
   # add custom dead messages
   dead-messages:
     enabled: true
-    prefix: '&#9e9e9e[{DEATH}&f&l☠&#9e9e9e] &#ee6535{PLAYER}'
-    messages:
-      drowning: '{PREFIX} &#e5dbd8drowing!'
-      suffocation: '{PREFIX} &#e5dbd8suffocated in a wall!'
-      fall: '{PREFIX} &#e5dbd8fell from a high place!'
-      lava: '{PREFIX} &#e5dbd8fell into a pit of lava!'
-      fire: '{PREFIX} &#e5dbd8burned to death!'
-      fire-tick: '{PREFIX} &#e5dbd8walked into fire!'
-      void: '{PREFIX} &#e5dbd8fell out of the world!'
-      lightning: '{PREFIX} &#e5dbd8was struck by lightning!'
-      entity-attack: '{PREFIX} &#e5dbd8was slain by {ENTITY}!'
-      entity-explosion: '{PREFIX} &#e5dbd8was blown up by {ENTITY}!'
-      projectile: '{PREFIX} &#e5dbd8was shot by {ENTITY}!'
-      magic: '{PREFIX} &#e5dbd8was killed with magic by {ENTITY}!'
-      wither: '{PREFIX} &#e5dbd8withered away!'
-      starvation: '{PREFIX} &#e5dbd8starved to death!'
-      poison: '{PREFIX} &#e5dbd8was poisoned!'
-      thorns: '{PREFIX} &#e5dbd8was killed by thorns!'
-      dragon: '{PREFIX} &#e5dbd8was killed by the ender dragon!'
-      hot-floor: '{PREFIX} &#e5dbd8discovered the floor was lava!'
-      other: '{PREFIX} &#e5dbd8died!'

@@ -36,7 +36,7 @@ public class TurtleHelmetMechanic {
         }
 
         sync(() -> {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 35, 0));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 50, 0));
 
             if(!Config.isTurtleHelmetDurabilityEnabled()){
                 return;

@@ -1,4 +1,4 @@
-package pl.norbit.survivaltweaks.mechanics.listeners;
+package pl.norbit.survivaltweaks.mechanics.listeners.entity;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

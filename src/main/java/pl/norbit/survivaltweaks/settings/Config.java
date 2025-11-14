@@ -3,13 +3,12 @@ package pl.norbit.survivaltweaks.settings;
 import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.io.File;
+import java.util.*;
 
 public class Config {
     @Getter
@@ -195,41 +194,103 @@ public class Config {
     private static String villagerProfessionCooldownTimeSeconds;
 
     @Getter
-    private static boolean sleepMechanicEnabled;
-
-    @Getter
-    private static double sleepMechanicPercentage;
-
-    @Getter
-    private static String sleepMechanicActionBarMessage;
-
-    @Getter
-    private static String sleepMechanicTitleMessage;
-
-    @Getter
-    private static String sleepMechanicSubtitleMessage;
-
-    @Getter
-    private static String sleepMechanicSubtitleSuccessMessage;
-
-    @Getter
-    private static String sleepMechanicDenyMessage;
-
-    @Getter
     private static String entityHpDisplay;
 
     private static Map<String, String> mobNames;
 
-    public static String getMobNameOrDefault(EntityType mobType, String defaultName) {
-        return mobNames.getOrDefault(mobType.name().toUpperCase(), defaultName);
-    }
+    @Getter
+    private static boolean armadilloBrushCooldownEnabled;
+
+    @Getter
+    private static int armadilloBrushCooldown;
+
+    @Getter
+    private static boolean enderPearlDespawnEnabled;
+
+    @Getter
+    private static boolean blockBoneMealEnabled;
+
+    @Getter
+    private static String blockBoneMealMessage;
+
+    @Getter
+    private static List<Material> blockedBoneMeal;
+
+    @Getter
+    private static boolean elytraBlockGenerateEnabled;
+
+    @Getter
+    private static boolean elytraBlockMendingEnabled;
+
+    @Getter
+    private static boolean blockLootEnabled;
+
+    @Getter
+    private static List<Material> blockLootItems;
+
+    @Getter
+    private static boolean invisibleItemFramesEnabled;
+
+    @Getter
+    private static boolean keepItemsEnabled;
+
+    @Getter
+    private static List<String> disableKeepItemsWorlds;
+
+    @Getter
+    private static String respawnTitle;
+
+    @Getter
+    private static String respawnSubtitle;
+
+    @Getter
+    private static boolean maceNerfEnabled;
+
+    @Getter
+    private static double maceNerfPercentage;
+
+    @Getter
+    private static List<String> maceNerfDisabledWorlds;
+
+
+    @Getter
+    private static boolean happyGhostBoostEnabled;
+
+    @Getter
+    private static double happyGhostSpeedMultiplier;
+
+    @Getter
+    private static double happyGhostHp;
+
+    @Getter
+    private static boolean anvilTooExpensive;
+
 
     private Config() {
         throw new IllegalStateException("Utility class");
     }
 
+    public static boolean isBlockedBoneMeal(Material mat) {
+        return blockedBoneMeal.contains(mat);
+    }
+
+    public static boolean isDisabledMaceNerfWorld(String worldName) {
+        return maceNerfDisabledWorlds.stream().anyMatch(s -> s.equals(worldName));
+    }
+
+    public static boolean isWorldDisabledForKeepItems(String worldName) {
+        return disableKeepItemsWorlds.stream().anyMatch(s -> s.equals(worldName));
+    }
+
+    public static String getMobNameOrDefault(EntityType mobType, String defaultName) {
+        return mobNames.getOrDefault(mobType.name().toUpperCase(), defaultName);
+    }
+
     public static void load(boolean reload) {
         SurvivalTweaks instance = SurvivalTweaks.getInstance();
+
+        File messagesFile = new File(instance.getDataFolder(), "messages.yml");
+        File blockedFile = new File(instance.getDataFolder(), "blocked.yml");
 
         if (!reload) {
             instance.saveDefaultConfig();
@@ -239,30 +300,25 @@ public class Config {
             instance.reloadConfig();
         }
 
+        if (!messagesFile.exists()) {
+            instance.saveResource("messages.yml", false);
+            instance.saveResource("blocked.yml", false);
+        }
+
         FileConfiguration config = instance.getConfig();
+        FileConfiguration messages = YamlConfiguration.loadConfiguration(messagesFile);
+        FileConfiguration blocked = YamlConfiguration.loadConfiguration(blockedFile);
 
-        //reloadMessage
-        reloadMessage = config.getString("reload-message");
+        loadMessages(messages);
+        loadBlocked(instance, blocked);
 
-        //compass
-        compass = config.getString("mechanics.compass.display");
         blockF3 = config.getBoolean("mechanics.compass.block-f3");
         compassEnabled = config.getBoolean("mechanics.compass.enabled");
 
-        messageTrackUsage = config.getString("mechanics.compass.messages.track-usage");
-        messageOnlyPlayer = config.getString("mechanics.compass.messages.only-player");
-        messageInvalidMaterial = config.getString("mechanics.compass.messages.invalid-material");
-        messageInvalidNumber = config.getString("mechanics.compass.messages.invalid-number");
-        messageTrackSuccess = config.getString("mechanics.compass.messages.track-success");
-        messageTrackItem = config.getString("mechanics.compass.messages.track-item");
-
         //clock
-        clock = config.getString("mechanics.clock.display");
         clockEnabled = config.getBoolean("mechanics.clock.enabled");
 
         //recoveryCompass
-        recoveryCompass = config.getString("mechanics.recovery-compass.display");
-        noDeathLocation = config.getString("mechanics.recovery-compass.display-no-death-location");
         recoveryCompassEnabled = config.getBoolean("mechanics.recovery-compass.enabled");
 
         //spyglass
@@ -321,7 +377,6 @@ public class Config {
 
         //entity hp
         entityHpEnabled = config.getBoolean("mechanics.entity-hp.enabled");
-        entityHpDisplay = config.getString("mechanics.entity-hp.display");
 
         //blaze water drop
         blazeWaterDropEnabled = config.getBoolean("mechanics.blaze-water-drop.enabled");
@@ -329,41 +384,129 @@ public class Config {
         //villager profession cooldown
         villagerProfessionCooldownEnabled = config.getBoolean("mechanics.villager-profession-cooldown.enabled");
         villagerProfessionCooldown = config.getInt("mechanics.villager-profession-cooldown.cooldown");
-        villagerProfessionCooldownMessage = config.getString("mechanics.villager-profession-cooldown.message");
-        villagerProfessionCooldownTimeMinutes = config.getString("mechanics.villager-profession-cooldown.time.minutes");
-        villagerProfessionCooldownTimeSeconds = config.getString("mechanics.villager-profession-cooldown.time.seconds");
 
-        //sleep
-        sleepMechanicEnabled = config.getBoolean("mechanics.sleep.enabled");
-        sleepMechanicPercentage = config.getDouble("mechanics.sleep.percentage");
-        sleepMechanicActionBarMessage = config.getString("mechanics.sleep.messages.action-bar");
-        sleepMechanicTitleMessage = config.getString("mechanics.sleep.messages.title");
-        sleepMechanicSubtitleMessage = config.getString("mechanics.sleep.messages.subtitle");
-        sleepMechanicDenyMessage = config.getString("mechanics.sleep.messages.deny");
-        sleepMechanicSubtitleSuccessMessage = config.getString("mechanics.sleep.messages.subtitle-skip");
+        //blocker
+        armadilloBrushCooldownEnabled = config.getBoolean("mechanics.blocker.armadillo-brush-cooldown.enabled", false);
+        armadilloBrushCooldown = config.getInt("mechanics.blocker.armadillo-brush-cooldown.cooldown", 30);
+
+        enderPearlDespawnEnabled = config.getBoolean("mechanics.blocker.ender-pearl-despawn.enabled", false);
+
+        blockBoneMealEnabled = config.getBoolean("mechanics.blocker.block-bone-meal.enabled", false);
+
+        elytraBlockGenerateEnabled = config.getBoolean("mechanics.blocker.elytra.block-generate", false);
+        elytraBlockMendingEnabled = config.getBoolean("mechanics.blocker.elytra.block-mending", false);
+
+        blockLootEnabled = config.getBoolean("mechanics.blocker.block-loot.enabled", false);
+        blockLootItems = config.getStringList("mechanics.blocker.block-loot.items")
+                .stream()
+                .map(s -> {
+                    try {
+                        return Material.valueOf(s.toUpperCase());
+                    } catch (IllegalArgumentException e) {
+                        instance.getLogger().warning("Invalid material in blocker.block-loot.items: " + s);
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .toList();
+
+        invisibleItemFramesEnabled = config.getBoolean("mechanics.invisible-item-frames.enabled", true);
+
+        keepItemsEnabled = config.getBoolean("mechanics.keep-items.enabled", false);
+        disableKeepItemsWorlds = config.getStringList("mechanics.keep-items.disabled-worlds");
+
+        customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
+
+        //mace nerf
+        maceNerfEnabled = config.getBoolean("mechanics.mace-nerf.enabled");
+        maceNerfPercentage = config.getDouble("mechanics.mace-nerf.percentage");
+
+        //happy ghost
+        happyGhostBoostEnabled = config.getBoolean("mechanics.happy-ghost-boost.enabled");
+        happyGhostSpeedMultiplier = config.getDouble("mechanics.happy-ghost-boost.speed-multiplier");
+        happyGhostHp = config.getDouble("mechanics.happy-ghost-boost.hp");
+
+        //anvil too expensive
+        anvilTooExpensive = config.getBoolean("mechanics.anvil-too-expensive.enabled");
+    }
+
+    private static void loadBlocked(SurvivalTweaks instance, FileConfiguration config) {
+        blockedBoneMeal = config.getStringList("blocker.block-bone-meal.blocked")
+                .stream()
+                .map(s -> {
+                    try {
+                        return Material.valueOf(s.toUpperCase());
+                    } catch (IllegalArgumentException e) {
+                        instance.getLogger().warning("Invalid material in blocker.block-bone-meal.items: " + s);
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .toList();
+
+        fireballBlockedList = config.getStringList("fireball.blocked-blocks")
+                .stream()
+                .map(Material::getMaterial)
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    private static void loadMessages(FileConfiguration config) {
+        //reloadMessage
+        reloadMessage = config.getString("reload-message");
+
+        //compass
+        compass = config.getString("compass.display");
+        messageTrackUsage = config.getString("compass.messages.track-usage");
+        messageOnlyPlayer = config.getString("compass.messages.only-player");
+        messageInvalidMaterial = config.getString("compass.messages.invalid-material");
+        messageInvalidNumber = config.getString("compass.messages.invalid-number");
+        messageTrackSuccess = config.getString("compass.messages.track-success");
+        messageTrackItem = config.getString("compass.messages.track-item");
+
+        //clock
+        clock = config.getString("clock.display");
+
+        //recoveryCompass
+        recoveryCompass = config.getString("recovery-compass.display");
+        noDeathLocation = config.getString("recovery-compass.display-no-death-location");
+
+        //entity hp
+        entityHpDisplay = config.getString("entity-hp.display");
+
+        //villager profession cooldown
+        villagerProfessionCooldownMessage = config.getString("villager-profession-cooldown.message");
+        villagerProfessionCooldownTimeMinutes = config.getString("villager-profession-cooldown.time.minutes");
+        villagerProfessionCooldownTimeSeconds = config.getString("villager-profession-cooldown.time.seconds");
+
+        //block bone meal
+        blockBoneMealMessage = config.getString("blocker.block-bone-meal.messages");
+
+        //keep items
+        respawnTitle = config.getString("keep-items.messages.title", "&c&l☠ You died!");
+        respawnSubtitle = config.getString("keep-items.messages.subtitle", "&7You kept &a50% &7items!");
 
         //custom death message
-        customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
-        deathMessagePrefix = config.getString("mechanics.dead-messages.prefix");
-        deathMessageDrowning = config.getString("mechanics.dead-messages.messages.drowning");
-        deathMessageSuffocation = config.getString("mechanics.dead-messages.messages.suffocation");
-        deathMessageFall = config.getString("mechanics.dead-messages.messages.fall");
-        deathMessageLava = config.getString("mechanics.dead-messages.messages.lava");
-        deathMessageFire = config.getString("mechanics.dead-messages.messages.fire");
-        deathMessageFireTick = config.getString("mechanics.dead-messages.messages.fire-tick");
-        deathMessageVoid = config.getString("mechanics.dead-messages.messages.void");
-        deathMessageLightning = config.getString("mechanics.dead-messages.messages.lightning");
-        deathMessageEntityAttack = config.getString("mechanics.dead-messages.messages.entity-attack");
-        deathMessageEntityExplosion = config.getString("mechanics.dead-messages.messages.entity-explosion");
-        deathMessageProjectile = config.getString("mechanics.dead-messages.messages.projectile");
-        deathMessageMagic = config.getString("mechanics.dead-messages.messages.magic");
-        deathMessageWither = config.getString("mechanics.dead-messages.messages.wither");
-        deathMessageStarvation = config.getString("mechanics.dead-messages.messages.starvation");
-        deathMessagePoison = config.getString("mechanics.dead-messages.messages.poison");
-        deathMessageThorns = config.getString("mechanics.dead-messages.messages.thorns");
-        deathMessageDragon = config.getString("mechanics.dead-messages.messages.dragon");
-        deathMessageHotFloor = config.getString("mechanics.dead-messages.messages.hot-floor");
-        deathMessageOther = config.getString("mechanics.dead-messages.messages.other");
+        deathMessagePrefix = config.getString("dead-messages.prefix");
+        deathMessageDrowning = config.getString("dead-messages.messages.drowning");
+        deathMessageSuffocation = config.getString("dead-messages.messages.suffocation");
+        deathMessageFall = config.getString("dead-messages.messages.fall");
+        deathMessageLava = config.getString("dead-messages.messages.lava");
+        deathMessageFire = config.getString("dead-messages.messages.fire");
+        deathMessageFireTick = config.getString("dead-messages.messages.fire-tick");
+        deathMessageVoid = config.getString("dead-messages.messages.void");
+        deathMessageLightning = config.getString("dead-messages.messages.lightning");
+        deathMessageEntityAttack = config.getString("dead-messages.messages.entity-attack");
+        deathMessageEntityExplosion = config.getString("dead-messages.messages.entity-explosion");
+        deathMessageProjectile = config.getString("dead-messages.messages.projectile");
+        deathMessageMagic = config.getString("dead-messages.messages.magic");
+        deathMessageWither = config.getString("dead-messages.messages.wither");
+        deathMessageStarvation = config.getString("dead-messages.messages.starvation");
+        deathMessagePoison = config.getString("dead-messages.messages.poison");
+        deathMessageThorns = config.getString("dead-messages.messages.thorns");
+        deathMessageDragon = config.getString("dead-messages.messages.dragon");
+        deathMessageHotFloor = config.getString("dead-messages.messages.hot-floor");
+        deathMessageOther = config.getString("dead-messages.messages.other");
 
         mobNames = new HashMap<>();
 

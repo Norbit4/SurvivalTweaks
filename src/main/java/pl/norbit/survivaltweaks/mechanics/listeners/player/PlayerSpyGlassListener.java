@@ -1,5 +1,6 @@
-package pl.norbit.survivaltweaks.mechanics.listeners;
+package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -8,7 +9,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
-import pl.norbit.survivaltweaks.mechanics.SpyGlassMechanic;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
@@ -65,7 +65,7 @@ public class PlayerSpyGlassListener implements Listener {
             }
         }
 
-        SpyGlassMechanic.addGlowingEntity(targetEntity, p, 25);
+        Location location = p.getLocation();
 
         int distance = (int) p.getLocation().distance(targetEntity.getLocation());
 

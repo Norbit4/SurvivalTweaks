@@ -1,8 +1,6 @@
-package pl.norbit.survivaltweaks.mechanics.listeners;
+package pl.norbit.survivaltweaks.mechanics.listeners.entity;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.damage.DamageSource;
 import org.bukkit.damage.DamageType;
 import org.bukkit.entity.EntityType;

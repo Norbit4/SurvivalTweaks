@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'pl.norbit'
-version = 'v1.5.1'
+version = 'v1.6.0'
 
 repositories {
     mavenCentral()
@@ -24,11 +24,12 @@ repositories {
     }
 }
 
-dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT"
+shadowJar {
+    archiveClassifier.set("")
+}
 
-    //glowing entities
-    implementation 'fr.skytasul:glowingentities:1.4.3'
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT"
 
     //placeholderapi
     compileOnly 'me.clip:placeholderapi:2.11.6'

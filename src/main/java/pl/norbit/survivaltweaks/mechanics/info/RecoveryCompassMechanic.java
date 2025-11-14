@@ -1,10 +1,11 @@
-package pl.norbit.survivaltweaks.mechanics;
+package pl.norbit.survivaltweaks.mechanics.info;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.DoubleFormatter;
@@ -16,7 +17,7 @@ public class RecoveryCompassMechanic {
         throw new IllegalStateException("Utility class");
     }
 
-    protected static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
+    public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
         if(MechanicsLoader.isDisabled(Mechanic.RECOVERY_COMPASS)) {
             return;
         }

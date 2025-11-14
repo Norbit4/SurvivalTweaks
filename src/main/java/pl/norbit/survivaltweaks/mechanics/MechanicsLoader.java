@@ -1,13 +1,13 @@
 package pl.norbit.survivaltweaks.mechanics;
 
-import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.mechanics.info.ActionHealthMechanic;
+import pl.norbit.survivaltweaks.mechanics.info.ClockMechanic;
+import pl.norbit.survivaltweaks.mechanics.info.CompassMechanic;
+import pl.norbit.survivaltweaks.mechanics.info.RecoveryCompassMechanic;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
-import pl.norbit.survivaltweaks.utils.BlockUtils;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
-
-import java.util.List;
 
 import static pl.norbit.survivaltweaks.utils.TaskUtils.asyncTimer;
 
@@ -21,10 +21,7 @@ public class MechanicsLoader {
         Config.load(reload);
         CompassMechanic.load();
         if(!reload) {
-            SpyGlassMechanic.start();
-
-            asyncTimer(MechanicsLoader::heldItemTask, 30L, 6L);
-            asyncTimer(MechanicsLoader::blocksTask, 30L, 45L);
+            asyncTimer(MechanicsLoader::heldItemTask, 30L, 20L);
             asyncTimer(MechanicsLoader::headItemTask, 30L, 25L);
         }
     }
@@ -56,7 +53,17 @@ public class MechanicsLoader {
             case ENTITY_HP -> Config.isEntityHpEnabled();
             case BLAZE_DROP -> Config.isBlazeWaterDropEnabled();
             case VIILAGER_PROFESSION_CHANGE -> Config.isVillagerProfessionCooldownEnabled();
-            case SLEEP -> Config.isSleepMechanicEnabled();
+            case ARMADILLO_BRUSH_COOLDOWN -> Config.isArmadilloBrushCooldownEnabled();
+            case ENDER_PEARL_DESPAWN -> Config.isEnderPearlDespawnEnabled();
+            case BLOCK_BONE_MEAL -> Config.isBlockBoneMealEnabled();
+            case ELYTRA_GENERATE_DISABLED -> Config.isElytraBlockGenerateEnabled();
+            case ELYTRA_MENDING_DISABLED -> Config.isElytraBlockMendingEnabled();
+            case BLOCK_LOOT -> Config.isBlockLootEnabled();
+            case KEEP_ITEMS -> Config.isKeepItemsEnabled();
+            case INVISIBLE_ITEM_FRAMES -> Config.isInvisibleItemFramesEnabled();
+            case HAPPY_GHOST_BOOST -> Config.isHappyGhostBoostEnabled();
+            case ANVIL_TOO_EXPENSIVE -> Config.isAnvilTooExpensive();
+            case MACE_NERF -> Config.isMaceNerfEnabled();
         };
     }
 
@@ -81,13 +88,6 @@ public class MechanicsLoader {
             }
 
             TurtleHelmetMechanic.check(p, headItem);
-        });
-    }
-
-    private static void blocksTask(){
-        PlayerUtils.getOnlinePlayers().forEach(p -> {
-            List<Block> blocks = BlockUtils.getNearBlocks(p, 2);
-            CampfireMechanic.applyEffect(p, blocks);
         });
     }
 }

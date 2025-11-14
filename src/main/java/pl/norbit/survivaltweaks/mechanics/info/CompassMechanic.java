@@ -1,4 +1,4 @@
-package pl.norbit.survivaltweaks.mechanics;
+package pl.norbit.survivaltweaks.mechanics.info;
 
 import org.bukkit.GameRule;
 import org.bukkit.Location;
@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.DoubleFormatter;
@@ -21,7 +22,7 @@ public class CompassMechanic {
         throw new IllegalStateException("Utility class");
     }
 
-    protected static void load(){
+    public static void load(){
         if(MechanicsLoader.isDisabled(Mechanic.COMPASS)){
             unload();
             return;
@@ -30,7 +31,7 @@ public class CompassMechanic {
         updateGameRules(Config.isBlockF3());
     }
 
-    protected static void unload(){
+    public static void unload(){
         updateGameRules(false);
     }
 
@@ -39,7 +40,7 @@ public class CompassMechanic {
         worlds.forEach(w -> w.setGameRule(GameRule.REDUCED_DEBUG_INFO, value));
     }
 
-    protected static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
+    public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
         if(MechanicsLoader.isDisabled(Mechanic.COMPASS)) {
             return;
         }
@@ -64,7 +65,7 @@ public class CompassMechanic {
                 .replace("{Y}", y)
                 .replace("{Z}", z)
                 .replace("{WORLD}", w.getName())
-                .replace("{BIOME}", b.getBiome().name());
+                .replace("{BIOME}", b.getBiome().getKey().namespace());
 
         PlayerUtils.sendActionBar(p, message);
     }

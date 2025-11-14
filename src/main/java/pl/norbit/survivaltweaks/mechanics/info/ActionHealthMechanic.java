@@ -1,10 +1,11 @@
-package pl.norbit.survivaltweaks.mechanics;
+package pl.norbit.survivaltweaks.mechanics.info;
 
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
+import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.Config;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
@@ -17,7 +18,7 @@ public class ActionHealthMechanic {
         throw new IllegalStateException("Utility class");
     }
 
-    protected static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
+    public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
         if(MechanicsLoader.isDisabled(Mechanic.ENTITY_HP)) {
             return;
         }
@@ -76,8 +77,6 @@ public class ActionHealthMechanic {
             String displayName = customName != null
                     ? customName
                     : Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
-
-
 
 
             String message = Config.getEntityHpDisplay()

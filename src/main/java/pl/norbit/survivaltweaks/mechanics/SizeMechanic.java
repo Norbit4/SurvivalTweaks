@@ -11,10 +11,10 @@ public class SizeMechanic {
     }
 
     public static void setSize(Player p, PlayerSize size) {
-        updateAttribute(p, Attribute.GENERIC_SCALE, size.getSize());
-        updateAttribute(p, Attribute.GENERIC_JUMP_STRENGTH, size.getJumpStrength());
-        updateAttribute(p, Attribute.GENERIC_STEP_HEIGHT, size.getStepHeight());
-        updateAttribute(p, Attribute.GENERIC_MAX_HEALTH, size.getHealth());
+        updateAttribute(p, Attribute.SCALE, size.getSize());
+        updateAttribute(p, Attribute.JUMP_STRENGTH, size.getJumpStrength());
+        updateAttribute(p, Attribute.STEP_HEIGHT, size.getStepHeight());
+        updateAttribute(p, Attribute.MAX_HEALTH, size.getHealth());
     }
 
     private static void updateAttribute(Player p, Attribute attribute, double value) {

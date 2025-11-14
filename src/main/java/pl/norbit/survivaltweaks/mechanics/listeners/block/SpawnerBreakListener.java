@@ -1,4 +1,4 @@
-package pl.norbit.survivaltweaks.mechanics.listeners;
+package pl.norbit.survivaltweaks.mechanics.listeners.block;
 
 import org.bukkit.Material;
 import org.bukkit.World;

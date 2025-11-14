@@ -1,0 +1,165 @@
+# reload: /survivaltweaks reload, permission: survivaltweaks.command
+
+reload-message: '&aPlugin has been reloaded!'
+
+dead-messages:
+  prefix: '&#9e9e9e[{DEATH}&f&l☠&#9e9e9e] &#ee6535{PLAYER}'
+  messages:
+    drowning: '{PREFIX} &#e5dbd8drowing!'
+    suffocation: '{PREFIX} &#e5dbd8suffocated in a wall!'
+    fall: '{PREFIX} &#e5dbd8fell from a high place!'
+    lava: '{PREFIX} &#e5dbd8fell into a pit of lava!'
+    fire: '{PREFIX} &#e5dbd8burned to death!'
+    fire-tick: '{PREFIX} &#e5dbd8walked into fire!'
+    void: '{PREFIX} &#e5dbd8fell out of the world!'
+    lightning: '{PREFIX} &#e5dbd8was struck by lightning!'
+    entity-attack: '{PREFIX} &#e5dbd8was slain by {ENTITY}!'
+    entity-explosion: '{PREFIX} &#e5dbd8was blown up by {ENTITY}!'
+    projectile: '{PREFIX} &#e5dbd8was shot by {ENTITY}!'
+    magic: '{PREFIX} &#e5dbd8was killed with magic by {ENTITY}!'
+    wither: '{PREFIX} &#e5dbd8withered away!'
+    starvation: '{PREFIX} &#e5dbd8starved to death!'
+    poison: '{PREFIX} &#e5dbd8was poisoned!'
+    thorns: '{PREFIX} &#e5dbd8was killed by thorns!'
+    dragon: '{PREFIX} &#e5dbd8was killed by the ender dragon!'
+    hot-floor: '{PREFIX} &#e5dbd8discovered the floor was lava!'
+    other: '{PREFIX} &#e5dbd8died!'
+
+# {ENTITY} - display entity name
+# {HEALTH} - display entity health
+# {DISTANCE} - display distance from entity
+spyglass:
+  display: '&#dcee9a {ENTITY} [{HEALTH}&c&c❤&#dcee9a] {DISTANCE}m'
+
+# {TIME} - display time
+clock:
+  display: '&7Time: &#d786f3{TIME}'
+
+# {X} - display X cord
+# {Y} - display Y cord
+# {Z} - display Z cord
+# {BIOME} - display biome name
+# {WORLD} - display world name
+compass:
+  display: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z} &#7ed323[{BIOME}]'
+  messages:
+    track-usage: '&7Usage: /track <x, z>'
+    only-player: '&cOnly player can use this command!'
+    invalid-material: '&cYou must be holding a compass to use this command!'
+    invalid-number: '&cInvalid number format!'
+    track-success: '&7Tracking location: &#a6e194{X}, {Z}'
+    track-item: '&fTracking Compass &7[&#a6e194{X}, {Z}&7]'
+
+# {X} - display X cord
+# {Y} - display Y cord
+# {Z} - display Z cord
+# {WORLD} - display world name
+recovery-compass:
+  display: '&f&l☠ &7X: &c{X} &7Y: &c{Y} &7Z: &c{Z}'
+  display-no-death-location: '&f&l☠ &7You have not died yet!'
+
+# {ENTITY} - display entity name
+# {HEALTH} - display entity health
+entity-hp:
+  display: '&#decfa6{ENTITY} &#df5252{HEALTH}❤'
+
+# {TIME} - display time
+villager-profession-cooldown:
+  message: '&fChanging a villagers profession is possible for &c{TIME}.'
+  time:
+    minutes: 'minutes'
+    seconds: 'seconds'
+
+block-bone-meal:
+  messages: '&cYou can not use bonemeal here!'
+
+keep-items:
+  messages:
+    title: '&c&l☠ You died!'
+    subtitle: '&7You kept &a50% &7items!'
+
+#add mobs to change their names
+mob-names:
+  #entity_type 'new name'
+  allay: 'Allay'
+  armadillo: 'Armadillo'
+  axolotl: 'Axolotl'
+  bat: 'Bat'
+  bee: 'Bee'
+  blaze: 'Blaze'
+  bogged: 'Bogged'
+  breeze: 'Breeze'
+  camel: 'Camel'
+  cat: 'Cat'
+  cave_spider: 'Cave spider'
+  chicken: 'Chicken'
+  cod: 'Cod'
+  cow: 'Cow'
+  creeper: 'Creeper'
+  dolphin: 'Dolphin'
+  donkey: 'Donkey'
+  drowned: 'Drowned'
+  elder_guardian: 'Elder guardian'
+  ender_dragon: 'Ender dragon'
+  enderman: 'Enderman'
+  endermite: 'Endermite'
+  evoker: 'Evoker'
+  fox: 'Fox'
+  frog: 'Frog'
+  giant: 'Giant'
+  glow_squid: 'Glow squid'
+  guardian: 'Guardian'
+  ghast: 'Ghast'
+  goat: 'Goat'
+  hoglin: 'Hoglin'
+  horse: 'Horse'
+  husk: 'Husk'
+  illusioner: 'Illusioner'
+  iron_golem: 'Iron golem'
+  llama: 'Llama'
+  mooshroom: 'Mooshroom'
+  magma_cube: 'Magma cube'
+  ocelot: 'Ocelot'
+  mule: 'Mule'
+  panda: 'Panda'
+  parrot: 'Parrot'
+  phantom: 'Phantom'
+  pig: 'Pig'
+  piglin: 'Piglin'
+  piglin_brute: 'Piglin brute'
+  pillager: 'Pillager'
+  polar_bear: 'Polar bear'
+  pufferfish: 'Pufferfish'
+  rabbit: 'Rabbit'
+  ravager: 'Ravager'
+  salmon: 'Salmon'
+  sheep: 'Sheep'
+  shulker: 'Shulker'
+  silverfish: 'Silverfish'
+  skeleton: 'Skeleton'
+  skeleton_horse: 'Skeleton horse'
+  slime: 'Slime'
+  sniffer: 'Sniffer'
+  snow_golem: 'Snow golem'
+  spider: 'Spider'
+  squid: 'Squid'
+  stray: 'Stray'
+  strider: 'Strider'
+  tadpole: 'Tadpole'
+  trader_llama: 'Trader llama'
+  tropical_fish: 'Tropical fish'
+  turtle: 'Turtle'
+  vex: 'Vex'
+  villager: 'Villager'
+  vindicator: 'Vindicator'
+  wandering_trader: 'Wandering trader'
+  warden: 'Warden'
+  witch: 'Witch'
+  wither: 'Wither'
+  wither_skeleton: 'Wither skeleton'
+  wolf: 'Wolf'
+  zoglin: 'Zoglin'
+  zombie: 'Zombie'
+  zombie_horse: 'Zombie horse'
+  zombie_villager: 'Zombie villager'
+  zombified_piglin: 'Zombified piglin'
