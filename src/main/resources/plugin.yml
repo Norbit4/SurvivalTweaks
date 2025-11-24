@@ -1,7 +1,7 @@
 name: SurvivalTweaks
 version: '${version}'
 main: pl.norbit.survivaltweaks.SurvivalTweaks
-api-version: '1.20'
+api-version: '1.21'
 authors: [Norbit4]
 website: https://github.com/Norbit4
 description: 'This plugin is created to add some useful mechanics for useless items in Minecraft.'

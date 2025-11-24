@@ -9,7 +9,7 @@
 #                                                                                 #
 #---------------------------------------------------------------------------------#
 
-# TreeCuter by Norbit4
+# SurvivalTweaks by Norbit4
 
 # github: https://github.com/Norbit4
 # wiki: https://github.com/Norbit4/SurvivalTweaks/
@@ -100,6 +100,7 @@ mechanics:
     #bypass: survivaltweaks.bonemeal.bypass
     block-bone-meal:
       enabled: false
+      block-dispenser: true
     elytra:
       # Block elytra natural generate in end cities
       block-generate: false
@@ -131,9 +132,15 @@ mechanics:
     enabled: true
     speed-multiplier: 1.5
     hp: 100
-  #remove the anvil too expensive limit, change too expensive to mas possible level in anvil
+  #remove the anvil too expensive limit, change too expensive to mas possible level (39) in anvil
   anvil-too-expensive-fix:
     enabled: true
   # add custom dead messages
   dead-messages:
     enabled: true
+  #protections from grief explosions, like tnt, end crystal, respawn anchor
+  grief-protection:
+    enabled: false
+    block-tnt-explosion: true
+    block-crystal-explosion: true
+    block-anchor-explosion: true

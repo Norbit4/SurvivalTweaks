@@ -209,6 +209,8 @@ public class Config {
 
     @Getter
     private static boolean blockBoneMealEnabled;
+    @Getter
+    private static boolean blockBoneMealDispenserEnabled;
 
     @Getter
     private static String blockBoneMealMessage;
@@ -265,6 +267,17 @@ public class Config {
     @Getter
     private static boolean anvilTooExpensive;
 
+    @Getter
+    private static boolean griefProtectionEnabled;
+
+    @Getter
+    private static boolean griefProtectionTntEnabled;
+
+    @Getter
+    private static boolean griefProtectionCrystalEnabled;
+
+    @Getter
+    private static boolean griefProtectionAnchorEnabled;
 
     private Config() {
         throw new IllegalStateException("Utility class");
@@ -391,6 +404,7 @@ public class Config {
         enderPearlDespawnEnabled = config.getBoolean("mechanics.blocker.ender-pearl-despawn.enabled", false);
 
         blockBoneMealEnabled = config.getBoolean("mechanics.blocker.block-bone-meal.enabled", false);
+        blockBoneMealDispenserEnabled = config.getBoolean("mechanics.blocker.block-bone-meal.block-dispenser", false);
 
         elytraBlockGenerateEnabled = config.getBoolean("mechanics.blocker.elytra.block-generate", false);
         elytraBlockMendingEnabled = config.getBoolean("mechanics.blocker.elytra.block-mending", false);
@@ -419,6 +433,7 @@ public class Config {
         //mace nerf
         maceNerfEnabled = config.getBoolean("mechanics.mace-nerf.enabled");
         maceNerfPercentage = config.getDouble("mechanics.mace-nerf.percentage");
+        maceNerfDisabledWorlds = config.getStringList("mechanics.mace-nerf.disabled-world");
 
         //happy ghost
         happyGhostBoostEnabled = config.getBoolean("mechanics.happy-ghost-boost.enabled");
@@ -427,6 +442,12 @@ public class Config {
 
         //anvil too expensive
         anvilTooExpensive = config.getBoolean("mechanics.anvil-too-expensive.enabled");
+
+        //grief protection
+        griefProtectionEnabled = config.getBoolean("mechanics.grief-protection.enabled");
+        griefProtectionTntEnabled = config.getBoolean("mechanics.grief-protection.block-tnt-explosion");
+        griefProtectionCrystalEnabled = config.getBoolean("mechanics.grief-protection.block-crystal-explosion");
+        griefProtectionAnchorEnabled = config.getBoolean("mechanics.grief-protection.block-anchor-explosion");
     }
 
     private static void loadBlocked(SurvivalTweaks instance, FileConfiguration config) {

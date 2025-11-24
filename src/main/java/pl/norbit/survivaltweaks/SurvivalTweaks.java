@@ -15,6 +15,7 @@ import pl.norbit.survivaltweaks.mechanics.listeners.block.SpawnerBreakListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.elytra.ElytraMendingPrepare;
 import pl.norbit.survivaltweaks.mechanics.listeners.elytra.ElytraGenarateListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.entity.*;
+import pl.norbit.survivaltweaks.mechanics.listeners.explode.ExplodeListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.player.*;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
@@ -72,5 +73,6 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new MaceNerfListener(), this);
 
         pluginManager.registerEvents(new AnvilTooExpensiveListener(), this);
+        pluginManager.registerEvents(new ExplodeListener(), this);
     }
 }

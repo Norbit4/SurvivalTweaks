@@ -15,6 +15,7 @@ block-bone-meal:
     - 'SWEET_BERRY_BUSH'
     - 'BAMBOO_SAPLING'
     - 'GLOW_BERRIES'
+    - 'CAVE_VINES_PLANT'
 
 fireball:
   blocked-blocks:

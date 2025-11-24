@@ -64,6 +64,7 @@ public class MechanicsLoader {
             case HAPPY_GHOST_BOOST -> Config.isHappyGhostBoostEnabled();
             case ANVIL_TOO_EXPENSIVE -> Config.isAnvilTooExpensive();
             case MACE_NERF -> Config.isMaceNerfEnabled();
+            case GRIEF_PROTECTION -> Config.isGriefProtectionEnabled();
         };
     }
 
