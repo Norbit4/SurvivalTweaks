@@ -441,7 +441,7 @@ public class Config {
         happyGhostHp = config.getDouble("mechanics.happy-ghost-boost.hp");
 
         //anvil too expensive
-        anvilTooExpensive = config.getBoolean("mechanics.anvil-too-expensive.enabled");
+        anvilTooExpensive = config.getBoolean("mechanics.anvil-too-expensive-fix.enabled");
 
         //grief protection
         griefProtectionEnabled = config.getBoolean("mechanics.grief-protection.enabled");
