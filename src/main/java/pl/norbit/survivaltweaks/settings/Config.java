@@ -451,7 +451,7 @@ public class Config {
     }
 
     private static void loadBlocked(SurvivalTweaks instance, FileConfiguration config) {
-        blockedBoneMeal = config.getStringList("blocker.block-bone-meal.blocked")
+        blockedBoneMeal = config.getStringList("block-bone-meal.blocked")
                 .stream()
                 .map(s -> {
                     try {
@@ -503,7 +503,7 @@ public class Config {
         villagerProfessionCooldownTimeSeconds = config.getString("villager-profession-cooldown.time.seconds");
 
         //block bone meal
-        blockBoneMealMessage = config.getString("blocker.block-bone-meal.messages");
+        blockBoneMealMessage = config.getString("block-bone-meal.messages");
 
         //keep items
         respawnTitle = config.getString("keep-items.messages.title", "&c&l☠ You died!");
