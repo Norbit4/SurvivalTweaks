@@ -34,8 +34,6 @@ Command | Permission | Info |
 - [Compass](#compass)
 - [Size](#size)
 - [Recovery compass](#recovery-compass)
-- [Spyglass](#spyglass)
-- [Campfire](#campfire)
 - [Turtle helmet](#turtle-helmet)
 - [Fireball](#fireball)
 - [Clock](#clock)
@@ -75,27 +73,6 @@ Display last **death location** when player **holds recovery compass**.
 
   <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
   <img src="https://github.com/user-attachments/assets/4c40ac91-0b7a-4bf8-af5f-334afac2604f" width=600 alt="img"/></a>
-
-
-<h2 align="left" id="spyglass">Spyglass</h2>
-
-**Mark entities** when player look at them.
-
-  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
-  <img src="https://github.com/user-attachments/assets/05970d43-c6b5-4507-95ba-a17517483d91" width=600 alt="img"/></a>
-
-  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
-  <img src="https://github.com/user-attachments/assets/7ed6ee7f-8c3c-41ff-9897-a40d567690bf" width=600 alt="img"/></a>
-
-
-<h2 align="left" id="campfire">Campfire</h2>
-
-_Add:_
-  - **Regeneration effect** when player is near campfire _(2 blocks)_.
-  - **Fire resistance effect** when player is near soul campfire _(2 blocks)_.
-
-  <a href="https://github.com/Norbit4/SurvivalTweaks/" target="_blank" rel="noreferrer"> 
-  <img src="https://github.com/user-attachments/assets/e7eca386-4766-4a20-a907-079c7f5bbb83" width=600 alt="img"/></a>
 
 <h2 align="left" id="turtle-helmet">Turtle helmet</h2>
 
