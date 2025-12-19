@@ -41,7 +41,6 @@ public class MechanicsLoader {
             case CLOCK -> Config.isClockEnabled();
             case SPYGLASS -> Config.isSpyglassEnabled();
             case SIZE -> Config.isSizeEnabled();
-            case CAMPFIRE -> Config.isCampfireEnabled();
             case TURTLE_HELMET -> Config.isTurtleHelmetEnabled();
             case FIREBALL -> Config.isFireballEnabled();
             case PLAYER_HEAD -> Config.isPlayerHeadEnabled();

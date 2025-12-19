@@ -57,6 +57,14 @@ public class BoneMealListener implements Listener {
 
     @EventHandler
     public void onDispenserUse(BlockDispenseEvent e) {
+        if(MechanicsLoader.isDisabled(Mechanic.BLOCK_BONE_MEAL)){
+            return;
+        }
+
+        if(!Config.isBlockBoneMealDispenserEnabled()){
+            return;
+        }
+
         ItemStack item = e.getItem();
         Block block = e.getBlock();
 
