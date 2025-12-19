@@ -8,6 +8,7 @@ description: 'This plugin is created to add some useful mechanics for useless it
 softdepend:
   - PlaceholderAPI
   - PremiumVanish
+  - MythicMobs
   - SuperVanish
 commands:
   survivaltweaks:

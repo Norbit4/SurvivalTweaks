@@ -22,7 +22,22 @@ public class DeathMessagesUtils {
         String entityName;
 
         if(causingEntity != null){
-            entityName = Config.getMobNameOrDefault(causingEntity.getType(), causingEntity.getName());
+            String mobName = null;
+            if(Config.isMythicMobsEnabled()){
+                MythicResponse response = MythicUtils.getMobName(causingEntity);
+
+                if(response.getType() == MythicResponseType.WRONG_NAME){
+                    message = Config.getDeathMessageOther();
+                }else {
+                    mobName = response.getName();
+                }
+            }
+
+            if(mobName != null){
+                entityName = mobName;
+            }else {
+                entityName = Config.getMobNameOrDefault(causingEntity.getType(), causingEntity.getName());
+            }
         }else {
             entityName = "";
         }

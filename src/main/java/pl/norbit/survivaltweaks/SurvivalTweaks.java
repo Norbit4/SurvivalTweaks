@@ -17,6 +17,8 @@ import pl.norbit.survivaltweaks.mechanics.listeners.elytra.ElytraGenarateListene
 import pl.norbit.survivaltweaks.mechanics.listeners.entity.*;
 import pl.norbit.survivaltweaks.mechanics.listeners.explode.ExplodeListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.player.*;
+import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.utils.MythicUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
 
@@ -39,12 +41,34 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         getCommand("survivaltweaks").setExecutor(new MainCommand());
         getCommand("track").setExecutor(new TrackCommand());
+
+        checkPlugins();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
         MechanicsLoader.unload();
+    }
+
+    private void checkPlugins(){
+        if(checkPlugin("MythicMobs")){
+            Config.setMythicMobsEnabled(true);
+            MythicUtils.init();
+        }
+    }
+
+    private boolean checkPlugin(String pluginName) {
+        var pM = getServer().getPluginManager();
+        var plugin = pM.getPlugin(pluginName);
+
+        if(plugin != null && plugin.isEnabled()){
+            var logger = getServer().getLogger();
+            String message = "Hooked to: " + pluginName;
+
+            logger.info(message);
+            return true;
+        }
+        return false;
     }
 
     private void loadListeners(){

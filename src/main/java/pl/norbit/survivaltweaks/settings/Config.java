@@ -1,6 +1,7 @@
 package pl.norbit.survivaltweaks.settings;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -279,6 +280,10 @@ public class Config {
     @Getter
     private static boolean griefProtectionAnchorEnabled;
 
+    @Getter
+    @Setter
+    private static boolean mythicMobsEnabled;
+
     private Config() {
         throw new IllegalStateException("Utility class");
     }
@@ -296,6 +301,10 @@ public class Config {
     }
 
     public static String getMobNameOrDefault(EntityType mobType, String defaultName) {
+        if(mobType == null || mobType == EntityType.ARMOR_STAND) {
+            return defaultName;
+        }
+
         return mobNames.getOrDefault(mobType.name().toUpperCase(), defaultName);
     }
 
