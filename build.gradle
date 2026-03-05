@@ -26,6 +26,10 @@ repositories {
         name "nexomcReleases"
         url "https://repo.nexomc.com/releases"
     }
+    maven {
+        name = "matteodev"
+        url = "https://maven.devs.beer/"
+    }
 }
 
 shadowJar {
@@ -47,6 +51,7 @@ dependencies {
     compileOnly files('libs/MythicMobs-5.10.0.jar')
 
     compileOnly("com.nexomc:nexo:1.8.0")
+    compileOnly("dev.lone:api-itemsadder:4.0.10")
 }
 
 def targetJavaVersion = 21
