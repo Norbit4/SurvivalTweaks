@@ -41,7 +41,6 @@ public class MechanicsLoader {
             case VOID_TOTEM -> ConfigManager.getMechanicsConfig().isVoidTotemEnabled();
             case CUSTOM_DEATH_MESSAGES -> ConfigManager.getMechanicsConfig().isCustomDeathMessageEnabled();
             case MINE_SPAWNERS -> ConfigManager.getMechanicsConfig().isMineSpawnersEnabled();
-            case HORSE_TP -> true;
             case AMETHYST -> ConfigManager.getMechanicsConfig().isAmethystEnabled();
             case ENTITY_HP -> ConfigManager.getMechanicsConfig().isEntityHpEnabled();
             case BLAZE_DROP -> ConfigManager.getMechanicsConfig().isBlazeWaterDropEnabled();

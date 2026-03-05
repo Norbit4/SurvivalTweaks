@@ -12,7 +12,6 @@ public enum Mechanic {
     VOID_TOTEM,
     CUSTOM_DEATH_MESSAGES,
     MINE_SPAWNERS,
-    HORSE_TP,
     AMETHYST,
     ENTITY_HP,
     BLAZE_DROP,
