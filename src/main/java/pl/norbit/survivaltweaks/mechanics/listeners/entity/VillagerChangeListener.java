@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.VillagerCareerChangeEvent;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class VillagerChangeListener implements Listener {
 
     @EventHandler
     public void onVillagerProfessionChange(VillagerCareerChangeEvent e) {
-        if (MechanicsLoader.isDisabled(Mechanic.VIILAGER_PROFESSION_CHANGE)) {
+        if (MechanicsLoader.isDisabled(Mechanic.VILLAGER_PROFESSION_CHANGE)) {
             return;
         }
 
@@ -49,11 +49,11 @@ public class VillagerChangeListener implements Listener {
 
                 e.setCancelled(true);
 
-                String minutesFormat = minutes + " " + Config.getVillagerProfessionCooldownTimeMinutes();
-                String secondsFormat = seconds + " " + Config.getVillagerProfessionCooldownTimeSeconds();
+                String minutesFormat = minutes + " " + ConfigManager.getMessagesConfig().getVillagerProfessionCooldownTimeMinutes();
+                String secondsFormat = seconds + " " + ConfigManager.getMessagesConfig().getVillagerProfessionCooldownTimeSeconds();
                 String time = minutesFormat + " " + secondsFormat;
 
-                String message = Config.getVillagerProfessionCooldownMessage()
+                String message = ConfigManager.getMessagesConfig().getVillagerProfessionCooldownMessage()
                         .replace("{TIME}", time);
 
                 String finalMessage = ChatUtils.format(message, null);

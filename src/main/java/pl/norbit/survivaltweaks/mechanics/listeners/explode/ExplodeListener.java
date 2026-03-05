@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 
 public class ExplodeListener implements Listener {
 
@@ -22,13 +22,13 @@ public class ExplodeListener implements Listener {
             return;
         }
 
-        if(Config.isGriefProtectionCrystalEnabled()){
+        if(ConfigManager.getMechanicsConfig().isGriefProtectionCrystalEnabled()){
             if (e.getEntity() instanceof EnderCrystal) {
                 e.blockList().clear();
             }
         }
 
-        if(Config.isGriefProtectionTntEnabled()){
+        if(ConfigManager.getMechanicsConfig().isGriefProtectionTntEnabled()){
             if (e.getEntity() instanceof TNTPrimed) {
                 e.blockList().clear();
             }
@@ -41,7 +41,7 @@ public class ExplodeListener implements Listener {
             return;
         }
 
-        if(!Config.isGriefProtectionAnchorEnabled()){
+        if(!ConfigManager.getMechanicsConfig().isGriefProtectionAnchorEnabled()){
             return;
         }
 
@@ -59,7 +59,7 @@ public class ExplodeListener implements Listener {
             return;
         }
 
-        if(!Config.isGriefProtectionAnchorEnabled()){
+        if(!ConfigManager.getMechanicsConfig().isGriefProtectionAnchorEnabled()){
             return;
         }
 
@@ -82,13 +82,13 @@ public class ExplodeListener implements Listener {
             return;
         }
 
-        if(Config.isGriefProtectionCrystalEnabled()){
+        if(ConfigManager.getMechanicsConfig().isGriefProtectionCrystalEnabled()){
             if (e.getDamager() instanceof EnderCrystal){
                 e.setCancelled(true);
             }
         }
 
-        if(Config.isGriefProtectionTntEnabled()){
+        if(ConfigManager.getMechanicsConfig().isGriefProtectionTntEnabled()){
             if (e.getDamager() instanceof TNTPrimed) {
                 e.setCancelled(true);
             }

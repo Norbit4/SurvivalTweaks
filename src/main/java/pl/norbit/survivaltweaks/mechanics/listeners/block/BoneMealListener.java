@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
 public class BoneMealListener implements Listener {
@@ -49,8 +49,8 @@ public class BoneMealListener implements Listener {
 
         Material type = clickedBlock.getType();
 
-        if (item.getType() == Material.BONE_MEAL && Config.isBlockedBoneMeal(type)) {
-            e.getPlayer().sendMessage(ChatUtils.format(Config.getBlockBoneMealMessage()));
+        if (item.getType() == Material.BONE_MEAL && ConfigManager.getBlockerConfig().isBlockedBoneMeal(type)) {
+            e.getPlayer().sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getBlockBoneMealMessage()));
             e.setCancelled(true);
         }
     }
@@ -61,7 +61,7 @@ public class BoneMealListener implements Listener {
             return;
         }
 
-        if(!Config.isBlockBoneMealDispenserEnabled()){
+        if(!ConfigManager.getBlockerConfig().isBlockBoneMealDispenserEnabled()){
             return;
         }
 

@@ -1,0 +1,40 @@
+blocker:
+  # block sh
+  armadillo-brush-cooldown:
+    enabled: false
+    cooldown: 30
+  # despawn ender perls after 20 sec, this block player teleports with "freeze" ender pearl in long distances
+  ender-pearl-despawn:
+    enabled: false
+  #block bone-meal usage
+  #bypass: survivaltweaks.bonemeal.bypass
+  elytra:
+    # Block elytra natural generate in end cities
+    block-generate: false
+    # Block elytra mending enchantment
+    block-mending: false
+  # Block items generate in loot chests
+  block-loot:
+    enabled: false
+    items:
+    - 'NETHERITE_UPGRADE_SMITHING_TEMPLATE'
+  block-bone-meal:
+    enabled: false
+    block-dispenser: true
+    blocked:
+      - 'CARROTS'
+      - 'POTATOES'
+      - 'WHEAT'
+      - 'BEETROOTS'
+      - 'MELON'
+      - 'PUMPKIN'
+      - 'COCOA'
+      - 'BAMBOO'
+      - 'KELP'
+      - 'MELON_STEM'
+      - 'PUMPKIN_STEM'
+      - 'CAVE_VINES'
+      - 'SWEET_BERRY_BUSH'
+      - 'BAMBOO_SAPLING'
+      - 'GLOW_BERRIES'
+      - 'CAVE_VINES_PLANT'

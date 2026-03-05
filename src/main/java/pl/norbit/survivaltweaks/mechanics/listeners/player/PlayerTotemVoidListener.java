@@ -1,8 +1,6 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
-import org.bukkit.EntityEffect;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -61,6 +59,7 @@ public class PlayerTotemVoidListener implements Listener {
     }
 
     private void sendAnimation(Player p){
+        p.damage(0);
         p.getWorld().playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, 1.0F, 1.0F);
         p.playEffect(EntityEffect.TOTEM_RESURRECT);
     }

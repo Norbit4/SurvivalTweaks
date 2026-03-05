@@ -5,7 +5,8 @@ import org.bukkit.damage.DamageSource;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.SurvivalTweaks;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 
 public class DeathMessagesUtils {
 
@@ -23,11 +24,11 @@ public class DeathMessagesUtils {
 
         if(causingEntity != null){
             String mobName = null;
-            if(Config.isMythicMobsEnabled()){
+            if(SurvivalTweaks.isMythicMobsEnabled()){
                 MythicResponse response = MythicUtils.getMobName(causingEntity);
 
                 if(response.getType() == MythicResponseType.WRONG_NAME){
-                    message = Config.getDeathMessageOther();
+                    message = ConfigManager.getMessagesConfig().getDeathMessageOther();
                 }else {
                     mobName = response.getName();
                 }
@@ -36,7 +37,7 @@ public class DeathMessagesUtils {
             if(mobName != null){
                 entityName = mobName;
             }else {
-                entityName = Config.getMobNameOrDefault(causingEntity.getType(), causingEntity.getName());
+                entityName = ConfigManager.getMessagesConfig().getMobNameOrDefault(causingEntity.getType(), causingEntity.getName());
             }
         }else {
             entityName = "";
@@ -44,7 +45,7 @@ public class DeathMessagesUtils {
 
         int deaths = p.getStatistic(Statistic.DEATHS);
 
-        String prefix = Config.getDeathMessagePrefix();
+        String prefix = ConfigManager.getMessagesConfig().getDeathMessagePrefix();
 
         return message
                 .replace("{PREFIX}", prefix)
@@ -55,24 +56,24 @@ public class DeathMessagesUtils {
 
     private static String getMessage(EntityDamageEvent damageCause){
         return switch (damageCause.getCause()) {
-            case DROWNING -> Config.getDeathMessageDrowning();
-            case FALL -> Config.getDeathMessageFall();
-            case LAVA -> Config.getDeathMessageLava();
-            case SUFFOCATION -> Config.getDeathMessageSuffocation();
-            case VOID -> Config.getDeathMessageVoid();
-            case FIRE, FIRE_TICK -> Config.getDeathMessageFire();
-            case LIGHTNING -> Config.getDeathMessageLightning();
-            case ENTITY_ATTACK -> Config.getDeathMessageEntityAttack();
-            case ENTITY_EXPLOSION -> Config.getDeathMessageEntityExplosion();
-            case PROJECTILE ->  Config.getDeathMessageProjectile();
-            case MAGIC -> Config.getDeathMessageMagic();
-            case WITHER -> Config.getDeathMessageWither();
-            case STARVATION -> Config.getDeathMessageStarvation();
-            case POISON -> Config.getDeathMessagePoison();
-            case THORNS ->  Config.getDeathMessageThorns();
-            case DRAGON_BREATH -> Config.getDeathMessageDragon();
-            case HOT_FLOOR -> Config.getDeathMessageHotFloor();
-            default -> Config.getDeathMessageOther();
+            case DROWNING -> ConfigManager.getMessagesConfig().getDeathMessageDrowning();
+            case FALL -> ConfigManager.getMessagesConfig().getDeathMessageFall();
+            case LAVA -> ConfigManager.getMessagesConfig().getDeathMessageLava();
+            case SUFFOCATION -> ConfigManager.getMessagesConfig().getDeathMessageSuffocation();
+            case VOID -> ConfigManager.getMessagesConfig().getDeathMessageVoid();
+            case FIRE, FIRE_TICK -> ConfigManager.getMessagesConfig().getDeathMessageFire();
+            case LIGHTNING -> ConfigManager.getMessagesConfig().getDeathMessageLightning();
+            case ENTITY_ATTACK -> ConfigManager.getMessagesConfig().getDeathMessageEntityAttack();
+            case ENTITY_EXPLOSION -> ConfigManager.getMessagesConfig().getDeathMessageEntityExplosion();
+            case PROJECTILE ->  ConfigManager.getMessagesConfig().getDeathMessageProjectile();
+            case MAGIC -> ConfigManager.getMessagesConfig().getDeathMessageMagic();
+            case WITHER -> ConfigManager.getMessagesConfig().getDeathMessageWither();
+            case STARVATION -> ConfigManager.getMessagesConfig().getDeathMessageStarvation();
+            case POISON -> ConfigManager.getMessagesConfig().getDeathMessagePoison();
+            case THORNS ->  ConfigManager.getMessagesConfig().getDeathMessageThorns();
+            case DRAGON_BREATH -> ConfigManager.getMessagesConfig().getDeathMessageDragon();
+            case HOT_FLOOR -> ConfigManager.getMessagesConfig().getDeathMessageHotFloor();
+            default -> ConfigManager.getMessagesConfig().getDeathMessageOther();
         };
     }
 }

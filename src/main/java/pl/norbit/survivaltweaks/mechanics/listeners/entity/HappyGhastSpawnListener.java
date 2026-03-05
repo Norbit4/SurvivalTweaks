@@ -14,7 +14,7 @@ import org.bukkit.persistence.PersistentDataType;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 
 public class HappyGhastSpawnListener implements Listener {
 
@@ -29,7 +29,7 @@ public class HappyGhastSpawnListener implements Listener {
         Entity entity = e.getEntity();
 
         EntityType type = entity.getType();
-        double speedMultiplier = Config.getHappyGhostSpeedMultiplier();
+        double speedMultiplier = ConfigManager.getMechanicsConfig().getHappyGhostSpeedMultiplier();
 
         if (type != EntityType.HAPPY_GHAST) {
             return;
@@ -56,7 +56,7 @@ public class HappyGhastSpawnListener implements Listener {
 
         AttributeInstance attrHp = living.getAttribute(Attribute.MAX_HEALTH);
         if (attrHp != null) {
-            double hp = Config.getHappyGhostHp();
+            double hp = ConfigManager.getMechanicsConfig().getHappyGhostHp();
             attrHp.setBaseValue(hp);
             living.setHealth(hp);
         }

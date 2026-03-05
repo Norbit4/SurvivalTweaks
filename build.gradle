@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'pl.norbit'
-version = 'v1.6.2'
+version = 'v1.7.0'
 
 repositories {
     mavenCentral()
@@ -22,6 +22,10 @@ repositories {
     maven {
         url = 'https://jitpack.io'
     }
+    maven {
+        name "nexomcReleases"
+        url "https://repo.nexomc.com/releases"
+    }
 }
 
 shadowJar {
@@ -29,7 +33,7 @@ shadowJar {
 }
 
 dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT"
+    compileOnly "io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT"
 
     //placeholderapi
     compileOnly 'me.clip:placeholderapi:2.11.6'
@@ -41,6 +45,8 @@ dependencies {
     //SuperVanish
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.18-3'
     compileOnly files('libs/MythicMobs-5.10.0.jar')
+
+    compileOnly("com.nexomc:nexo:1.8.0")
 }
 
 def targetJavaVersion = 21

@@ -1,0 +1,10 @@
+#fuel blacklist
+blacklist:
+  - 'LAVA_BUCKET'
+  - 'DRIED_KELP_BLOCK'
+
+#override fuel burn time
+fuels:
+  COAL: 800
+  BLAZE_ROD: 1000
+  COAL_BLOCk: 8000

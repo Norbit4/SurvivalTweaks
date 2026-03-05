@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.DurabilityUtils;
 
 import java.util.Random;
@@ -38,7 +38,7 @@ public class TurtleHelmetMechanic {
         sync(() -> {
             p.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 50, 0));
 
-            if(!Config.isTurtleHelmetDurabilityEnabled()){
+            if(!ConfigManager.getMechanicsConfig().isTurtleHelmetDurabilityEnabled()){
                 return;
             }
             //30% chance to reduce durability

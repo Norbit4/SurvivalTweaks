@@ -8,7 +8,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 import pl.norbit.survivaltweaks.utils.DeathMessagesUtils;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
@@ -26,7 +26,7 @@ public class PlayerDeadListener implements Listener {
             return;
         }
 
-        double playerHeadDropChance = Config.getPlayerHeadDropChance();
+        double playerHeadDropChance = ConfigManager.getMechanicsConfig().getPlayerHeadDropChance();
 
         if (random.nextDouble() > playerHeadDropChance) {
             return;

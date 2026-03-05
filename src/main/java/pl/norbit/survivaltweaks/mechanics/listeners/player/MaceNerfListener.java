@@ -11,7 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 
 public class MaceNerfListener implements Listener {
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
@@ -23,7 +23,7 @@ public class MaceNerfListener implements Listener {
         Entity damager = event.getDamager();
         String name = damager.getWorld().getName();
 
-        if(Config.isDisabledMaceNerfWorld(name)){
+        if(ConfigManager.getMechanicsConfig().isDisabledMaceNerfWorld(name)){
             return;
         }
 
@@ -36,7 +36,7 @@ public class MaceNerfListener implements Listener {
             return;
         }
 
-        double nerfPercent = Config.getMaceNerfPercentage();
+        double nerfPercent = ConfigManager.getMechanicsConfig().getMaceNerfPercentage();
 
         ItemStack item = player.getInventory().getItemInMainHand();
 

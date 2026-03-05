@@ -1,0 +1,94 @@
+mechanics:
+  # display cords when the player holds compass
+  compass:
+    enabled: true
+  # display time when player holds a clock
+  clock:
+    enabled: true
+  # display last death location when player holds recovery_compass
+  recovery-compass:
+    enabled: true
+  # entity health and distance when a player uses spyglass
+  spyglass:
+    enabled: true
+    cooldown: 3
+  # change your size when eat
+  size:
+    enabled: true
+    small: GLOW_BERRIES
+    normal: GOLDEN_CARROT
+  # add dolphin's grace effect when a player is in water and has a turtle helmet in the head
+  turtle-helmet:
+    enabled: true
+    # 30% chance to set -1 durability when player is in water (every 2 sec)
+    durability: true
+  # fireball likes a ghost when player right-click with fire charge
+  fireball:
+    enabled: true
+    cooldown: 40
+    # fireball break scale, high value = more explosion
+    yield: 2
+  # drop player head when player dies
+  player-head:
+    enabled: true
+    # chance to drop player head, 1 = 100%
+    chance: 0.2
+  # activate totem of undying when player dies in void, apply levitation effect
+  void-totem:
+    enabled: true
+  # mine spawners with silk touch
+  mine-spawners:
+    enabled: true
+  # mine budding amethyst with silk touch
+  mine-budding-amethyst:
+    enabled: true
+  #show mob hp:
+  entity-hp:
+    enabled: true
+  # chance to drop blaze rod when a blaze dies on water, 50% chance - 1 rod, 10% chance - 2 rods
+  blaze-water-drop:
+    enabled: true
+  # villager profession cooldown, 5 sec
+  villager-profession-cooldown:
+    enabled: false
+    # cooldown time in minutes
+    cooldown: 5
+  # Shift + right click to hide/unhide item frame
+  invisible-item-frames:
+    enabled: true
+  # keep 50% items when player dies
+  keep-items:
+    enabled: false
+    # worlds where keep-items are disabled
+    disabled-worlds:
+      - 'example_world'
+  #nerf mace damage
+  mace-nerf:
+    enabled: true
+    #nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
+    percentage: 50
+    disable-world:
+      - 'example_world'
+  #boost happy ghost speed and hp
+  happy-ghost-boost:
+    enabled: true
+    speed-multiplier: 1.5
+    hp: 100
+  #remove the anvil too expensive limit, change too expensive to mas possible level (39) in anvil
+  anvil-too-expensive-fix:
+    enabled: true
+  # add custom dead messages
+  dead-messages:
+    enabled: true
+  #protections from grief explosions, like tnt, end crystal, respawn anchor
+  grief-protection:
+    enabled: false
+    block-tnt-explosion: true
+    block-crystal-explosion: true
+    block-anchor-explosion: true
+  #nerf furnace fuels, values: furnace.yml
+  furnace-fuel-nerf:
+    enabled: false
+  #wither work only in nether
+  nether-wither:
+    enabled: false

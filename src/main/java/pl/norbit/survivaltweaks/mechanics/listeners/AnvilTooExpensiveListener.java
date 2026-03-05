@@ -1,6 +1,5 @@
 package pl.norbit.survivaltweaks.mechanics.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

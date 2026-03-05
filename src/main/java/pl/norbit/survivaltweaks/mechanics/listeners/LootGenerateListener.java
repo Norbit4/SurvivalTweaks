@@ -6,7 +6,7 @@ import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ public class LootGenerateListener implements Listener {
 
         List<ItemStack> loot = e.getLoot();
 
-        Config.getBlockLootItems().forEach(item -> loot.removeIf(lootItem -> lootItem.getType() == item));
+        ConfigManager.getBlockerConfig()
+                .getBlockLootItems().forEach(item -> loot.removeIf(lootItem -> lootItem.getType() == item));
     }
 }

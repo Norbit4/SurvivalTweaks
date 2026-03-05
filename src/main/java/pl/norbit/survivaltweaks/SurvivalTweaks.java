@@ -17,7 +17,7 @@ import pl.norbit.survivaltweaks.mechanics.listeners.elytra.ElytraGenarateListene
 import pl.norbit.survivaltweaks.mechanics.listeners.entity.*;
 import pl.norbit.survivaltweaks.mechanics.listeners.explode.ExplodeListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.player.*;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.MythicUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
@@ -26,12 +26,16 @@ public final class SurvivalTweaks extends JavaPlugin {
     @Getter
     @Setter(AccessLevel.PRIVATE)
     private static SurvivalTweaks instance;
+    @Getter
+    @Setter
+    private static boolean mythicMobsEnabled;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         setInstance(this);
 
+        ConfigManager.load();
         MechanicsLoader.load(false);
 
         PlaceholderUtils.load();
@@ -45,14 +49,9 @@ public final class SurvivalTweaks extends JavaPlugin {
         checkPlugins();
     }
 
-    @Override
-    public void onDisable() {
-        MechanicsLoader.unload();
-    }
-
     private void checkPlugins(){
         if(checkPlugin("MythicMobs")){
-            Config.setMythicMobsEnabled(true);
+            setMythicMobsEnabled(true);
             MythicUtils.init();
         }
     }
@@ -98,5 +97,8 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         pluginManager.registerEvents(new AnvilTooExpensiveListener(), this);
         pluginManager.registerEvents(new ExplodeListener(), this);
+
+        pluginManager.registerEvents(new WitherSpawnListener(), this);
+        pluginManager.registerEvents(new FurnaceNerfListener(), this);
     }
 }

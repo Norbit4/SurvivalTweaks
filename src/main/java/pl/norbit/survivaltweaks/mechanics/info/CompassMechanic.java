@@ -1,6 +1,5 @@
 package pl.norbit.survivaltweaks.mechanics.info;
 
-import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -9,35 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.DoubleFormatter;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
-import pl.norbit.survivaltweaks.utils.WorldUtils;
-
-import java.util.List;
 
 public class CompassMechanic {
 
     private CompassMechanic() {
         throw new IllegalStateException("Utility class");
-    }
-
-    public static void load(){
-        if(MechanicsLoader.isDisabled(Mechanic.COMPASS)){
-            unload();
-            return;
-        }
-
-        updateGameRules(Config.isBlockF3());
-    }
-
-    public static void unload(){
-        updateGameRules(false);
-    }
-
-    private static void updateGameRules(boolean value){
-        List<World> worlds = WorldUtils.getWorlds();
-        worlds.forEach(w -> w.setGameRule(GameRule.REDUCED_DEBUG_INFO, value));
     }
 
     public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
@@ -60,7 +38,7 @@ public class CompassMechanic {
         World w = loc.getWorld();
         Block b = loc.getBlock();
 
-        String message = Config.getCompass()
+        String message = ConfigManager.getMessagesConfig().getCompass()
                 .replace("{X}", x)
                 .replace("{Y}", y)
                 .replace("{Z}", z)

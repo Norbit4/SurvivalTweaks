@@ -13,7 +13,6 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
-import pl.norbit.survivaltweaks.settings.Config;
 
 import java.util.ArrayList;
 import java.util.List;

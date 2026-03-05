@@ -7,7 +7,7 @@ import org.bukkit.potion.PotionEffectType;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 import static pl.norbit.survivaltweaks.utils.TaskUtils.sync;
@@ -76,10 +76,10 @@ public class ActionHealthMechanic {
 
             String displayName = customName != null
                     ? customName
-                    : Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
+                    : ConfigManager.getMessagesConfig().getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
 
 
-            String message = Config.getEntityHpDisplay()
+            String message = ConfigManager.getMessagesConfig().getEntityHpDisplay()
                     .replace("{ENTITY}", displayName)
                     .replace("{HEALTH}", Integer.toString((int) livingEntity.getHealth()));
 

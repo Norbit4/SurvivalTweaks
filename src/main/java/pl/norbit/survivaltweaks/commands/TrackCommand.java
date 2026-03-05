@@ -13,7 +13,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.CompassMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
 import java.util.List;
@@ -23,12 +23,12 @@ public class TrackCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
 
         if(args.length < 2){
-            commandSender.sendMessage(ChatUtils.format(Config.getMessageTrackUsage(), null));
+            commandSender.sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getMessageTrackUsage(), null));
             return true;
         }
 
         if(!(commandSender instanceof Player p)){
-            commandSender.sendMessage(ChatUtils.format(Config.getMessageOnlyPlayer(), null));
+            commandSender.sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getMessageOnlyPlayer(), null));
             return true;
         }
 
@@ -38,7 +38,7 @@ public class TrackCommand implements CommandExecutor, TabCompleter {
         Material type = itemInMainHand.getType();
 
         if(type != Material.COMPASS){
-            p.sendMessage(ChatUtils.format(Config.getMessageInvalidMaterial(), p));
+            p.sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getMessageInvalidMaterial(), p));
             return true;
         }
 
@@ -58,7 +58,7 @@ public class TrackCommand implements CommandExecutor, TabCompleter {
 
             compassMeta.setLodestone(loc);
 
-            String displayName = Config.getMessageTrackItem()
+            String displayName = ConfigManager.getMessagesConfig().getMessageTrackItem()
                     .replace("{X}", x)
                     .replace("{Z}", z);
 
@@ -66,13 +66,13 @@ public class TrackCommand implements CommandExecutor, TabCompleter {
 
             itemInMainHand.setItemMeta(compassMeta);
 
-            String successMessage = Config.getMessageTrackSuccess()
+            String successMessage = ConfigManager.getMessagesConfig().getMessageTrackSuccess()
                     .replace("{X}", x)
                     .replace("{Z}", z);
 
             p.sendMessage(ChatUtils.format(successMessage, p));
         } catch (NumberFormatException e){
-            commandSender.sendMessage(ChatUtils.format(Config.getMessageInvalidNumber(), p));
+            commandSender.sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getMessageInvalidNumber(), p));
             return true;
         }
 

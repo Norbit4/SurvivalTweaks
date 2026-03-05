@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class PlayerSpyGlassListener implements Listener {
@@ -70,16 +70,16 @@ public class PlayerSpyGlassListener implements Listener {
         int distance = (int) p.getLocation().distance(targetEntity.getLocation());
 
         //translate entity name
-        final String mobName = Config.getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
+        final String mobName = ConfigManager.getMessagesConfig().getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
 
-        String message = Config.getSpyglass()
+        String message = ConfigManager.getMessagesConfig().getSpyglass()
                 .replace("{ENTITY}", mobName)
                 .replace("{HEALTH}", String.valueOf((int) livingEntity.getHealth()))
                 .replace("{DISTANCE}", String.valueOf(distance));
 
         PlayerUtils.sendActionBar(p, message);
 
-        int spyglassCooldown = Config.getSpyglassCooldown();
+        int spyglassCooldown = ConfigManager.getMechanicsConfig().getSpyglassCooldown();
         p.setCooldown(Material.SPYGLASS, 20 * spyglassCooldown);
     }
 }

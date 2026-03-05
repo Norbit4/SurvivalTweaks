@@ -20,26 +20,25 @@
 # If you have any suggestions, write to me on discord: n0rbit
 # or join to my discord server: https://discord.com/invite/bA2kamGNyH
 
-# Plugin supports Minecraft 1.21.8+ with engine Paper or forks.
+# The Plugin supports Minecraft 1.21.8+ with engine Paper or forks.
 # Spigot and Bukkit are not supported.
 #---------------------------------------#
 #               [Config]                #
 #---------------------------------------#
 
 mechanics:
-  # display cords when player holds compass
+  # display cords when the player holds compass
   compass:
     enabled: true
     # block cords in f3 screen
     block-f3: false
-
-  # display time when player holds clock
+  # display time when player holds a clock
   clock:
     enabled: true
   # display last death location when player holds recovery_compass
   recovery-compass:
     enabled: true
-  # entity health and distance when player use spyglass
+  # entity health and distance when a player uses spyglass
   spyglass:
     enabled: true
     cooldown: 3
@@ -48,23 +47,23 @@ mechanics:
     enabled: true
     small: GLOW_BERRIES
     normal: GOLDEN_CARROT
-  # add dolphin's grace effect when player is in water and has turtle helmet in head
+  # add dolphin's grace effect when a player is in water and has a turtle helmet in the head
   turtle-helmet:
     enabled: true
-    # 30% chance to set -1 durability when player is in water (every 2sec)
+    # 30% chance to set -1 durability when player is in water (every 2 sec)
     durability: true
-  # fireball like ghost when player right click with fire charge
+  # fireball likes a ghost when player right-click with fire charge
   fireball:
     enabled: true
     cooldown: 40
     # fireball break scale, high value = more explosion
     yield: 2
-  # drop player head when player die
+  # drop player head when player dies
   player-head:
     enabled: true
     # chance to drop player head, 1 = 100%
     chance: 0.2
-  # activate totem of undying when player die in void, apply levitation effect
+  # activate totem of undying when player dies in void, apply levitation effect
   void-totem:
     enabled: true
   # tp horse with when player sitting on it and ender pearl teleport
@@ -79,10 +78,10 @@ mechanics:
   #show mob hp:
   entity-hp:
     enabled: true
-  # chance to drop blaze rod when blaze die on water, 50% chance - 1 rod, 10% chance - 2 rods
+  # chance to drop blaze rod when a blaze dies on water, 50% chance - 1 rod, 10% chance - 2 rods
   blaze-water-drop:
     enabled: true
-  # villagers profession cooldown, 5sec
+  # villager profession cooldown, 5 sec
   villager-profession-cooldown:
     enabled: false
     # cooldown time in minutes
@@ -93,7 +92,7 @@ mechanics:
     armadillo-brush-cooldown:
       enabled: false
       cooldown: 30
-    # despawn ender perls after 20sec, this block player teleport with "freeze" ender pearl in long distances
+    # despawn ender perls after 20 sec, this block player teleports with "freeze" ender pearl in long distances
     ender-pearl-despawn:
       enabled: false
     #block bone-meal usage
@@ -114,16 +113,16 @@ mechanics:
   # Shift + right click to hide/unhide item frame
   invisible-item-frames:
     enabled: true
-  # keep 50% items when player die
+  # keep 50% items when player dies
   keep-items:
     enabled: false
-    # worlds where keep-items is disabled
+    # worlds where keep-items are disabled
     disabled-worlds:
       - 'example_world'
   #nerf mace damage
   mace-nerf:
     enabled: true
-    #nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal 10 damage
+    #nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
     percentage: 50
     disable-world:
       - 'example_world'
@@ -144,3 +143,9 @@ mechanics:
     block-tnt-explosion: true
     block-crystal-explosion: true
     block-anchor-explosion: true
+  #nerf furnace fuels, values: furnace.yml
+  furnace-fuel-nerf:
+    enabled: false
+  #wither work only in nether
+  nether-wither:
+    enabled: false

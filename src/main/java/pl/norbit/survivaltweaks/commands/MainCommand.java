@@ -7,7 +7,7 @@ import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
 
         if(arg.equalsIgnoreCase("reload")){
             MechanicsLoader.load(true);
-            commandSender.sendMessage(ChatUtils.format(Config.getReloadMessage(), null));
+            commandSender.sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getReloadMessage(), null));
         }
         return true;
     }

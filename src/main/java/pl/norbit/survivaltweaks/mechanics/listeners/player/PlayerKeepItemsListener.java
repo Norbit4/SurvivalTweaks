@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
-import pl.norbit.survivaltweaks.settings.Config;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
 import java.util.*;
@@ -28,14 +28,32 @@ public class PlayerKeepItemsListener implements Listener {
 
         String worldName = p.getWorld().getName();
 
-        if(Config.isWorldDisabledForKeepItems(worldName)){
+        if(ConfigManager.getMechanicsConfig().isWorldDisabledForKeepItems(worldName)){
             return;
         }
 
-        List<ItemStack> drops = new ArrayList<>(e.getDrops());
         List<ItemStack> savedItems = new ArrayList<>();
 
+        //armor
+        List<ItemStack> armor = new ArrayList<>();
+        for (ItemStack item : p.getInventory().getArmorContents()) {
+            if (item != null) {
+                armor.add(item);
+            }
+        }
+
+        Collections.shuffle(armor);
+        int armorToKeep = armor.size() / 2;
+
+        for (int i = 0; i < armorToKeep; i++) {
+            ItemStack piece = armor.get(i);
+            savedItems.add(piece);
+        }
+
+        //all items
+        List<ItemStack> drops = new ArrayList<>(e.getDrops());
         Collections.shuffle(drops);
+        drops.removeAll(armor);
 
         for (int i = 0; i < drops.size() / 2; i++) {
             ItemStack item = drops.get(i);
@@ -63,8 +81,8 @@ public class PlayerKeepItemsListener implements Listener {
             p.getInventory().addItem(item);
         }
 
-        String title = ChatUtils.format(Config.getRespawnTitle());
-        String subtitle = ChatUtils.format(Config.getRespawnSubtitle());
+        String title = ChatUtils.format(ConfigManager.getMessagesConfig().getRespawnTitle());
+        String subtitle = ChatUtils.format(ConfigManager.getMessagesConfig().getRespawnSubtitle());
 
         p.sendTitle(title, subtitle, 10, 70, 20);
     }
