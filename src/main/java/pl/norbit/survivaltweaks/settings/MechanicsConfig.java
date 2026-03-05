@@ -29,10 +29,10 @@ public class MechanicsConfig extends ConfigFile {
 
     //size
     @Getter
-    private Material smallSizeItem;
+    private String smallSizeItem;
 
     @Getter
-    private Material normalSizeItem;
+    private String normalSizeItem;
 
     @Getter
     private boolean sizeEnabled;
@@ -165,18 +165,9 @@ public class MechanicsConfig extends ConfigFile {
         spyglassEnabled = config.getBoolean("mechanics.spyglass.enabled");
 
         //size
-        String small = config.getString("mechanics.size.small");
-        String normal = config.getString("mechanics.size.normal");
-
-        if(small == null || normal == null) {
-            warn("Size items are not set in the config file!");
-            return;
-        }
-
-        smallSizeItem = Material.getMaterial(small.toUpperCase());
-        normalSizeItem = Material.getMaterial(normal.toUpperCase());
-
         sizeEnabled = config.getBoolean("mechanics.size.enabled");
+        smallSizeItem  = config.getString("mechanics.size.small");
+        normalSizeItem = config.getString("mechanics.size.normal");
 
         //turtleHelmet
         turtleHelmetEnabled = config.getBoolean("mechanics.turtle-helmet.enabled");

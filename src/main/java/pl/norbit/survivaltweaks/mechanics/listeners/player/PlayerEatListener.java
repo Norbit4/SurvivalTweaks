@@ -1,6 +1,5 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +9,9 @@ import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.mechanics.model.PlayerSize;
 import pl.norbit.survivaltweaks.mechanics.SizeMechanic;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
+import pl.norbit.survivaltweaks.settings.MechanicsConfig;
+import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
 public class PlayerEatListener implements Listener {
 
@@ -21,12 +23,14 @@ public class PlayerEatListener implements Listener {
 
         Player p = e.getPlayer();
         ItemStack item = e.getItem();
+        MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
 
-        Material type = item.getType();
+        String smallSizeItem = mechanicsConfig.getSmallSizeItem();
+        String normalSizeItem = mechanicsConfig.getNormalSizeItem();
 
-        if(type == Material.GLOW_BERRIES){
+        if(ItemsUtils.isValidItem(item, smallSizeItem)){
             SizeMechanic.setSize(p, PlayerSize.SMALL);
-        }else if(type == Material.GOLDEN_CARROT) {
+        }else if(ItemsUtils.isValidItem(item, normalSizeItem)){
             SizeMechanic.setSize(p, PlayerSize.NORMAL);
         }
     }
