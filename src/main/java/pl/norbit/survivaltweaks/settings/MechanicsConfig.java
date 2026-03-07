@@ -250,7 +250,7 @@ public class MechanicsConfig extends ConfigFile {
         griefProtectionCrystalEnabled = config.getBoolean("mechanics.grief-protection.block-crystal-explosion");
         griefProtectionAnchorEnabled = config.getBoolean("mechanics.grief-protection.block-anchor-explosion");
 
-        furnaceFuelNerfEnabled = config.getBoolean("mechanics.furnace-fuel.nerf-enabled");
+        furnaceFuelNerfEnabled = config.getBoolean("mechanics.furnace-fuel-nerf.enabled");
         netherWitherEnabled = config.getBoolean("mechanics.nether-wither.enabled");
     }
     private  List<SpawnerType> loadSpawnerTypes(FileConfiguration config) {
