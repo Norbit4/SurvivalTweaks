@@ -13,6 +13,7 @@ mechanics:
     enabled: true
     cooldown: 3
   # change your size when eat
+  # ItemsAdder - ia:<id> Nexo - nexo:<id>
   size:
     enabled: true
     small: GLOW_BERRIES
@@ -36,9 +37,25 @@ mechanics:
   # activate totem of undying when player dies in void, apply levitation effect
   void-totem:
     enabled: true
-  # mine spawners with silk touch
+  # mine spawners with silk touch/special items
   mine-spawners:
     enabled: true
+    types:
+      normal:
+        silk-touch: true
+        chance: 0.9
+        tools:
+          - 'DIAMOND_PICKAXE'
+        worlds:
+          - 'world'
+      nether:
+        silk-touch: false
+        chance: 0.9
+        tools:
+          - 'NETHERITE_PICKAXE'
+        worlds:
+          - 'world_nether'
+
   # mine budding amethyst with silk touch
   mine-budding-amethyst:
     enabled: true
@@ -51,8 +68,8 @@ mechanics:
   # villager profession cooldown, 5 sec
   villager-profession-cooldown:
     enabled: false
-    # cooldown time in minutes
-    cooldown: 5
+    # cooldown time in seconds
+    cooldown: 90
   # Shift + right click to hide/unhide item frame
   invisible-item-frames:
     enabled: true
