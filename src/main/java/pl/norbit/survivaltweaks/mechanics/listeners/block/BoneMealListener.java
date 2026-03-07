@@ -50,8 +50,8 @@ public class BoneMealListener implements Listener {
         Material type = clickedBlock.getType();
 
         if (item.getType() == Material.BONE_MEAL && ConfigManager.getBlockerConfig().isBlockedBoneMeal(type)) {
-            e.getPlayer().sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getBlockBoneMealMessage()));
             e.setCancelled(true);
+            e.getPlayer().sendMessage(ChatUtils.format(ConfigManager.getMessagesConfig().getBlockBoneMealMessage()));
         }
     }
 

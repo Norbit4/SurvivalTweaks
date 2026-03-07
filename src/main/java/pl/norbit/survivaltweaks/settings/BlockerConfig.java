@@ -75,7 +75,7 @@ public class BlockerConfig extends ConfigFile {
     }
 
     private void loadBlocked(FileConfiguration config) {
-        blockedBoneMeal = config.getStringList("block-bone-meal.blocked")
+        blockedBoneMeal = config.getStringList("blocker.block-bone-meal.blocked")
                 .stream()
                 .map(s -> {
                     try {
