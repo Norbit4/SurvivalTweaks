@@ -5,6 +5,9 @@ import pl.norbit.survivaltweaks.SurvivalTweaks;
 
 public class ConfigManager {
     @Getter
+    private static Config config;
+
+    @Getter
     private static BlockerConfig blockerConfig;
 
     @Getter
@@ -25,5 +28,14 @@ public class ConfigManager {
         mechanicsConfig = new MechanicsConfig(instance);
         messagesConfig = new MessagesConfig(instance);
         furnaceConfig = new FurnaceConfig(instance);
+        config = new Config();
+    }
+
+    public static void reload(){
+        blockerConfig.reload();
+        mechanicsConfig.reload();
+        messagesConfig.reload();
+        furnaceConfig.reload();
+        config.reload();
     }
 }
