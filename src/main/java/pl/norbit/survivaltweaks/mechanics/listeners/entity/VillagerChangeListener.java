@@ -10,6 +10,7 @@ import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
+import pl.norbit.survivaltweaks.utils.TaskUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,12 +36,12 @@ public class VillagerChangeListener implements Listener {
         Villager villager = e.getEntity();
         UUID villagerUUID = villager.getUniqueId();
         long currentTime = System.currentTimeMillis();
+        Long lastChangeTime = villagerCooldowns.get(villagerUUID);
 
-        if (villagerCooldowns.containsKey(villagerUUID)) {
-            long lastChangeTime = villagerCooldowns.get(villagerUUID);
+        if (lastChangeTime != null) {
             long timePassed = currentTime - lastChangeTime;
 
-            long cooldown = 5 * 60 * 1000L;
+            long cooldown = ConfigManager.getMechanicsConfig().getVillagerProfessionCooldown() * 1000L;
             if (timePassed < cooldown) {
                 long timeRemaining = cooldown - timePassed;
 
@@ -58,12 +59,14 @@ public class VillagerChangeListener implements Listener {
 
                 String finalMessage = ChatUtils.format(message, null);
 
-                List<Player> playersAroundVillager = getPlayersAroundVillager(villager, 6);
+                List<Player> playersAroundVillager = getPlayersAroundVillager(villager, 8);
                 playersAroundVillager.forEach(player -> player.sendMessage(finalMessage));
                 return;
             }
         }
-        villagerCooldowns.put(villagerUUID, currentTime);
+        if (e.getProfession() != Villager.Profession.NONE) {
+            TaskUtils.syncLater(() -> villagerCooldowns.put(villagerUUID, currentTime), 30L);
+        }
     }
     public List<Player> getPlayersAroundVillager(Villager villager, double radius) {
         List<Entity> nearbyEntities = villager.getNearbyEntities(radius, radius, radius);
