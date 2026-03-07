@@ -9,18 +9,19 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.log.PluginDebug;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 
 public class MaceNerfListener implements Listener {
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
         if(MechanicsLoader.isDisabled(Mechanic.MACE_NERF)){
             return;
         }
 
-        Entity damager = event.getDamager();
+        Entity damager = e.getDamager();
         String name = damager.getWorld().getName();
 
         if(ConfigManager.getMechanicsConfig().isDisabledMaceNerfWorld(name)){
@@ -28,7 +29,7 @@ public class MaceNerfListener implements Listener {
         }
 
         if (damager instanceof Projectile proj) {
-            Entity shooter = proj.getShooter() instanceof Entity e ? e : null;
+            Entity shooter = proj.getShooter() instanceof Entity entity ? entity : null;
             if (shooter != null) damager = shooter;
         }
 
@@ -44,11 +45,13 @@ public class MaceNerfListener implements Listener {
             return;
         }
 
-        double original = event.getDamage();
+        double original = e.getDamage();
 
         double multiplier = (100.0 - nerfPercent) / 100.0;
         double newDamage = original * multiplier;
 
-        event.setDamage(newDamage);
+        PluginDebug.debug("Mace nerf: " + original + " -> " + newDamage);
+
+        e.setDamage(newDamage);
     }
 }

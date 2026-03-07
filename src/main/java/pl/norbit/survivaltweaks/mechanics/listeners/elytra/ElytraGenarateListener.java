@@ -7,6 +7,7 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkPopulateEvent;
+import pl.norbit.survivaltweaks.log.PluginDebug;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 
@@ -21,6 +22,8 @@ public class ElytraGenarateListener implements Listener {
         if (e.getWorld().getEnvironment() == World.Environment.THE_END) {
             for (Entity entity : e.getChunk().getEntities()) {
                 if (entity instanceof ItemFrame frame && frame.getItem().getType() == Material.ELYTRA) {
+                    PluginDebug.debug("ElytraGenarateListener: Removed elytra frame"
+                            + frame.getX() + " " + frame.getY() + " " + frame.getZ());
                     frame.remove();
                 }
             }
