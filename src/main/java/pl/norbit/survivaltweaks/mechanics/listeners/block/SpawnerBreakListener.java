@@ -4,11 +4,9 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -16,10 +14,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
+import pl.norbit.survivaltweaks.settings.ConfigManager;
+import pl.norbit.survivaltweaks.utils.RandomUtils;
+import pl.norbit.survivaltweaks.settings.model.SpawnerType;
 
 public class SpawnerBreakListener implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         if(e.isCancelled()) {
             return;
@@ -37,11 +38,18 @@ public class SpawnerBreakListener implements Listener {
 
         Player p = e.getPlayer();
         ItemStack tool = p.getInventory().getItemInMainHand();
+        World w = b.getWorld();
+        String worldName = w.getName();
 
-        if (!tool.containsEnchantment(Enchantment.SILK_TOUCH)) {
+        SpawnerType type = ConfigManager.getMechanicsConfig().getSpawnerType(worldName, tool);
+
+        if (type == null) {
             return;
         }
-        World w = b.getWorld();
+
+        if (!RandomUtils.chance(type.getChance())) {
+            return;
+        }
 
         CreatureSpawner spawner = (CreatureSpawner) b.getState();
         EntityType entityType = spawner.getSpawnedType();
@@ -49,9 +57,9 @@ public class SpawnerBreakListener implements Listener {
         ItemStack spawnerItem = getSpawnerItem(entityType);
 
         w.dropItemNaturally(b.getLocation(), spawnerItem);
-        b.setType(Material.AIR);
 
-        e.setCancelled(true);
+        e.setDropItems(false);
+        e.setExpToDrop(0);
     }
 
     @EventHandler
