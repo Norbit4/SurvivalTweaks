@@ -1,5 +1,5 @@
 blocker:
-  # block sh
+  # cooldown for using the brush on armadillo
   armadillo-brush-cooldown:
     enabled: false
     cooldown: 30
