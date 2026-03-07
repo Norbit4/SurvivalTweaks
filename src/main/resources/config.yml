@@ -1,0 +1,26 @@
+#---------------------------------------------------------------------------------#
+#                                                                                 #
+#      _____                    _            _ _______                 _          #
+#    / ____|                  (_)          | |__   __|               | |          #
+#   | (___  _   _ _ ____   __  ___   ____ _| |  | |_      _____  __ _| | _____    #
+#   \___ \| | | | '__\ \ / / | \ \ / / _` | |  | \ \ /\ / / _ \/ _` | |/ / __|    #
+#    ____) | |_| | |   \ V /  | |\ V / (_| | |  | |\ V  V /  __/ (_| |   <\__ \   #
+#   |_____/ \__,_|_|    \_/   |_| \_/ \__,_|_|  |_| \_/\_/ \___|\__,_|_|\_\___/   #
+#                                                                                 #
+#---------------------------------------------------------------------------------#
+
+# SurvivalTweaks by Norbit4
+
+# github: https://github.com/Norbit4
+# wiki: https://github.com/Norbit4/SurvivalTweaks/
+
+# This plugin is created to add some useful mechanics for useless items in Minecraft.
+# If you like the plugin, support me with a positive opinion, thanks! <3
+#
+# If you have any suggestions, write to me on discord: n0rbit
+# or join to my discord server: https://discord.com/invite/bA2kamGNyH
+
+# The Plugin supports Minecraft 1.21.11+ with engine Paper or forks.
+# Spigot and Bukkit are not supported.
+
+debug: false
