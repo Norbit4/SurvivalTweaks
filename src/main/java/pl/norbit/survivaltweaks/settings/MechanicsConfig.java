@@ -2,9 +2,14 @@ package pl.norbit.survivaltweaks.settings;
 
 import lombok.Getter;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.norbit.survivaltweaks.settings.model.SpawnerType;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class MechanicsConfig extends ConfigFile {
@@ -68,6 +73,8 @@ public class MechanicsConfig extends ConfigFile {
     //spawners
     @Getter
     private boolean mineSpawnersEnabled;
+    @Getter
+    private List<SpawnerType> spawnerTypes;
 
     //amethyst
     @Getter
@@ -92,7 +99,7 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean invisibleItemFramesEnabled;
 
-    //jeep items
+    //keep items
     @Getter
     private boolean keepItemsEnabled;
 
@@ -150,6 +157,21 @@ public class MechanicsConfig extends ConfigFile {
         super(plugin, "mechanics.yml");
     }
 
+    public SpawnerType getSpawnerType(String world, ItemStack tool) {
+        for (SpawnerType type : spawnerTypes) {
+            if (!type.isCorrectWorld(world)) {
+                continue;
+            }
+
+            if (!type.isCorrectTool(tool)) {
+                continue;
+            }
+
+            return type;
+        }
+        return null;
+    }
+
     public void load(FileConfiguration config) {
         //compass
         compassEnabled = config.getBoolean("mechanics.compass.enabled");
@@ -187,6 +209,7 @@ public class MechanicsConfig extends ConfigFile {
 
         //mine spawner
         mineSpawnersEnabled = config.getBoolean("mechanics.mine-spawners.enabled");
+        spawnerTypes = loadSpawnerTypes(config);
 
         //amethyst
         amethystEnabled = config.getBoolean("mechanics.mine-budding-amethyst.enabled");
@@ -229,6 +252,32 @@ public class MechanicsConfig extends ConfigFile {
 
         furnaceFuelNerfEnabled = config.getBoolean("mechanics.furnace-fuel.nerf-enabled");
         netherWitherEnabled = config.getBoolean("mechanics.nether-wither.enabled");
+    }
+    private  List<SpawnerType> loadSpawnerTypes(FileConfiguration config) {
+        List<SpawnerType> spawners = new ArrayList<>();
+
+        ConfigurationSection section = config.getConfigurationSection("mechanics.mine-spawners.types");
+        if (section == null) {
+            warn("spawner-types section not found");
+            return spawners;
+        }
+
+        for (String key : section.getKeys(false)) {
+
+            ConfigurationSection typeSection = section.getConfigurationSection(key);
+            if (typeSection == null) {
+                continue;
+            }
+
+            SpawnerType spawnerType = new SpawnerType();
+            spawnerType.setSilkTouch(typeSection.getBoolean("silk-touch"));
+            spawnerType.setChance(typeSection.getDouble("chance"));
+            spawnerType.setTools(typeSection.getStringList("tools"));
+            spawnerType.setWorlds(new HashSet<>(typeSection.getStringList("worlds")));
+
+            spawners.add(spawnerType);
+        }
+        return spawners;
     }
 
     public boolean isDisabledMaceNerfWorld(String worldName) {
