@@ -111,10 +111,25 @@ public class MechanicsConfig extends ConfigFile {
     private boolean maceNerfEnabled;
 
     @Getter
+    private double maceMaxDamage;
+    @Getter
     private double maceNerfPercentage;
 
     @Getter
     private List<String> maceNerfDisabledWorlds;
+
+    //nerf spear
+    @Getter
+    private boolean spearNerfEnabled;
+
+    @Getter
+    private double spearNerfPercentage;
+
+    @Getter
+    private double spearMaxDamage;
+
+    @Getter
+    private List<String> spearNerfDisabledWorlds;
 
     //happy ghost speed
     @Getter
@@ -233,8 +248,15 @@ public class MechanicsConfig extends ConfigFile {
 
         //mace nerf
         maceNerfEnabled = config.getBoolean("mechanics.mace-nerf.enabled");
+        maceMaxDamage = config.getDouble("mechanics.mace-nerf.max-damage");
         maceNerfPercentage = config.getDouble("mechanics.mace-nerf.percentage");
         maceNerfDisabledWorlds = config.getStringList("mechanics.mace-nerf.disabled-world");
+
+        //spear nerf
+        spearNerfEnabled = config.getBoolean("mechanics.spear-nerf.enabled");
+        spearMaxDamage = config.getDouble("mechanics.spear-nerf.max-damage");
+        spearNerfPercentage = config.getDouble("mechanics.spear-nerf.percentage");
+        spearNerfDisabledWorlds = config.getStringList("mechanics.spear-nerf.disabled-world");
 
         //happy ghost
         happyGhostBoostEnabled = config.getBoolean("mechanics.happy-ghost-boost.enabled");
@@ -282,6 +304,10 @@ public class MechanicsConfig extends ConfigFile {
 
     public boolean isDisabledMaceNerfWorld(String worldName) {
         return maceNerfDisabledWorlds.stream().anyMatch(s -> s.equals(worldName));
+    }
+
+    public boolean isDisabledSpearNerfWorld(String worldName) {
+        return spearNerfDisabledWorlds.stream().anyMatch(s -> s.equals(worldName));
     }
 
     public boolean isWorldDisabledForKeepItems(String worldName) {

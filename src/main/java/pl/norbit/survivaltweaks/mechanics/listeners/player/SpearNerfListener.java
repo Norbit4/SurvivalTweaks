@@ -1,9 +1,7 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -15,51 +13,46 @@ import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.settings.MechanicsConfig;
 
-public class MaceNerfListener implements Listener {
+public class SpearNerfListener implements Listener {
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
-        if(MechanicsLoader.isDisabled(Mechanic.MACE_NERF)){
+
+        if (MechanicsLoader.isDisabled(Mechanic.SPEAR_NERF)) {
             return;
         }
 
         Entity damager = e.getDamager();
-        String name = damager.getWorld().getName();
+        String world = damager.getWorld().getName();
 
         MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
 
-        if(mechanicsConfig.isDisabledMaceNerfWorld(name)){
+        if (mechanicsConfig.isDisabledSpearNerfWorld(world)) {
             return;
         }
 
-        if (damager instanceof Projectile proj) {
-            Entity shooter = proj.getShooter() instanceof Entity entity ? entity : null;
-            if (shooter != null) damager = shooter;
-        }
-
-        if (!(damager instanceof Player player)){
+        if (!(damager instanceof Player player)) {
             return;
         }
-
-        double nerfPercent = mechanicsConfig.getMaceNerfPercentage();
 
         ItemStack item = player.getInventory().getItemInMainHand();
 
-        if(item.getType() != Material.MACE){
+        if (!item.getType().name().contains("SPEAR")) {
             return;
         }
 
-        double original = e.getDamage();
+        double nerfPercent = mechanicsConfig.getSpearNerfPercentage();
 
+        double original = e.getDamage();
         double multiplier = (100.0 - nerfPercent) / 100.0;
         double newDamage = original * multiplier;
 
-        double maceMaxDamage = mechanicsConfig.getMaceMaxDamage();
+        double spearMaxDamage = mechanicsConfig.getSpearMaxDamage();
 
-        if(newDamage > maceMaxDamage){
-            newDamage = maceMaxDamage;
+        if(newDamage > spearMaxDamage){
+            newDamage = spearMaxDamage;
         }
 
-        PluginDebug.debug("Mace nerf: " + original + " -> " + newDamage);
+        PluginDebug.debug("Spear nerf: " + original + " -> " + newDamage);
 
         e.setDamage(newDamage);
     }

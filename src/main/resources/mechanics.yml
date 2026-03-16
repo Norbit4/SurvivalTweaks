@@ -79,13 +79,23 @@ mechanics:
     # worlds where keep-items are disabled
     disabled-worlds:
       - 'example_world'
-  #nerf mace damage
+  #Nerf mace damage
   mace-nerf:
     enabled: true
-    #nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
-    percentage: 50
+    #Nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
+    percentage: 40
+    max-damage: 35
     disable-world:
       - 'example_world'
+
+  spear-nerf:
+    enabled: true
+    #Nerf spear damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
+    percentage: 40
+    max-damage: 35
+    disable-world:
+      - 'example_world'
+
   #boost happy ghost speed and hp
   happy-ghost-boost:
     enabled: true
