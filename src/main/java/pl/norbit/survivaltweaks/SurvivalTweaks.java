@@ -99,5 +99,6 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         pluginManager.registerEvents(new WitherSpawnListener(), this);
         pluginManager.registerEvents(new FurnaceNerfListener(), this);
+        pluginManager.registerEvents(new SpearNerfListener(), this);
     }
 }
