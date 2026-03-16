@@ -6,7 +6,9 @@ import pl.norbit.survivaltweaks.mechanics.info.ClockMechanic;
 import pl.norbit.survivaltweaks.mechanics.info.CompassMechanic;
 import pl.norbit.survivaltweaks.mechanics.info.RecoveryCompassMechanic;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
+import pl.norbit.survivaltweaks.settings.BlockerConfig;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
+import pl.norbit.survivaltweaks.settings.MechanicsConfig;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 import static pl.norbit.survivaltweaks.utils.TaskUtils.asyncTimer;
@@ -29,36 +31,40 @@ public class MechanicsLoader {
     }
 
     public static boolean isEnabled(Mechanic mechanic) {
+        MechanicsConfig mechanicsConfig =  ConfigManager.getMechanicsConfig();
+        BlockerConfig blockerConfig = ConfigManager.getBlockerConfig();
+
         return switch (mechanic) {
-            case COMPASS -> ConfigManager.getMechanicsConfig().isCompassEnabled();
-            case RECOVERY_COMPASS -> ConfigManager.getMechanicsConfig().isRecoveryCompassEnabled();
-            case CLOCK -> ConfigManager.getMechanicsConfig().isClockEnabled();
-            case SPYGLASS -> ConfigManager.getMechanicsConfig().isSpyglassEnabled();
-            case SIZE -> ConfigManager.getMechanicsConfig().isSizeEnabled();
-            case TURTLE_HELMET -> ConfigManager.getMechanicsConfig().isTurtleHelmetEnabled();
-            case FIREBALL -> ConfigManager.getMechanicsConfig().isFireballEnabled();
-            case PLAYER_HEAD -> ConfigManager.getMechanicsConfig().isPlayerHeadEnabled();
-            case VOID_TOTEM -> ConfigManager.getMechanicsConfig().isVoidTotemEnabled();
-            case CUSTOM_DEATH_MESSAGES -> ConfigManager.getMechanicsConfig().isCustomDeathMessageEnabled();
-            case MINE_SPAWNERS -> ConfigManager.getMechanicsConfig().isMineSpawnersEnabled();
-            case AMETHYST -> ConfigManager.getMechanicsConfig().isAmethystEnabled();
-            case ENTITY_HP -> ConfigManager.getMechanicsConfig().isEntityHpEnabled();
-            case BLAZE_DROP -> ConfigManager.getMechanicsConfig().isBlazeWaterDropEnabled();
-            case VILLAGER_PROFESSION_CHANGE -> ConfigManager.getMechanicsConfig().isVillagerProfessionCooldownEnabled();
-            case ARMADILLO_BRUSH_COOLDOWN -> ConfigManager.getBlockerConfig().isArmadilloBrushCooldownEnabled();
-            case ENDER_PEARL_DESPAWN -> ConfigManager.getBlockerConfig().isEnderPearlDespawnEnabled();
-            case BLOCK_BONE_MEAL ->  ConfigManager.getBlockerConfig().isBlockBoneMealEnabled();
-            case ELYTRA_GENERATE_DISABLED ->  ConfigManager.getBlockerConfig().isElytraBlockGenerateEnabled();
-            case ELYTRA_MENDING_DISABLED ->  ConfigManager.getBlockerConfig().isElytraBlockMendingEnabled();
-            case BLOCK_LOOT ->  ConfigManager.getBlockerConfig().isBlockLootEnabled();
-            case KEEP_ITEMS -> ConfigManager.getMechanicsConfig().isKeepItemsEnabled();
-            case INVISIBLE_ITEM_FRAMES -> ConfigManager.getMechanicsConfig().isInvisibleItemFramesEnabled();
-            case HAPPY_GHOST_BOOST -> ConfigManager.getMechanicsConfig().isHappyGhostBoostEnabled();
-            case ANVIL_TOO_EXPENSIVE -> ConfigManager.getMechanicsConfig().isAnvilTooExpensive();
-            case MACE_NERF -> ConfigManager.getMechanicsConfig().isMaceNerfEnabled();
-            case GRIEF_PROTECTION -> ConfigManager.getMechanicsConfig().isGriefProtectionEnabled();
-            case NETHER_WITHER -> ConfigManager.getMechanicsConfig().isNetherWitherEnabled();
-            case FURNACE_FUEL_NERF -> ConfigManager.getMechanicsConfig().isFurnaceFuelNerfEnabled();
+            case COMPASS -> mechanicsConfig.isCompassEnabled();
+            case RECOVERY_COMPASS -> mechanicsConfig.isRecoveryCompassEnabled();
+            case CLOCK -> mechanicsConfig.isClockEnabled();
+            case SPYGLASS -> mechanicsConfig.isSpyglassEnabled();
+            case SIZE -> mechanicsConfig.isSizeEnabled();
+            case TURTLE_HELMET -> mechanicsConfig.isTurtleHelmetEnabled();
+            case FIREBALL -> mechanicsConfig.isFireballEnabled();
+            case PLAYER_HEAD -> mechanicsConfig.isPlayerHeadEnabled();
+            case VOID_TOTEM -> mechanicsConfig.isVoidTotemEnabled();
+            case CUSTOM_DEATH_MESSAGES -> mechanicsConfig.isCustomDeathMessageEnabled();
+            case MINE_SPAWNERS -> mechanicsConfig.isMineSpawnersEnabled();
+            case AMETHYST -> mechanicsConfig.isAmethystEnabled();
+            case ENTITY_HP -> mechanicsConfig.isEntityHpEnabled();
+            case BLAZE_DROP -> mechanicsConfig.isBlazeWaterDropEnabled();
+            case VILLAGER_PROFESSION_CHANGE -> mechanicsConfig.isVillagerProfessionCooldownEnabled();
+            case ARMADILLO_BRUSH_COOLDOWN -> blockerConfig.isArmadilloBrushCooldownEnabled();
+            case ENDER_PEARL_DESPAWN -> blockerConfig.isEnderPearlDespawnEnabled();
+            case BLOCK_BONE_MEAL ->  blockerConfig.isBlockBoneMealEnabled();
+            case ELYTRA_GENERATE_DISABLED ->  blockerConfig.isElytraBlockGenerateEnabled();
+            case ELYTRA_MENDING_DISABLED ->  blockerConfig.isElytraBlockMendingEnabled();
+            case BLOCK_LOOT -> blockerConfig.isBlockLootEnabled();
+            case KEEP_ITEMS -> mechanicsConfig.isKeepItemsEnabled();
+            case INVISIBLE_ITEM_FRAMES -> mechanicsConfig.isInvisibleItemFramesEnabled();
+            case HAPPY_GHOST_BOOST -> mechanicsConfig.isHappyGhostBoostEnabled();
+            case ANVIL_TOO_EXPENSIVE -> mechanicsConfig.isAnvilTooExpensive();
+            case MACE_NERF -> mechanicsConfig.isMaceNerfEnabled();
+            case GRIEF_PROTECTION -> mechanicsConfig.isGriefProtectionEnabled();
+            case NETHER_WITHER -> mechanicsConfig.isNetherWitherEnabled();
+            case FURNACE_FUEL_NERF -> mechanicsConfig.isFurnaceFuelNerfEnabled();
+            case SPEAR_NERF -> mechanicsConfig.isSpearNerfEnabled();
         };
     }
 
