@@ -79,19 +79,21 @@ mechanics:
     # worlds where keep-items are disabled
     disabled-worlds:
       - 'example_world'
-  #Nerf mace damage
+  #nerf mace damage
   mace-nerf:
     enabled: true
-    #Nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
+    #nerf mace damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
     percentage: 40
+    #maximum damage that a mace hit can deal after all calculations (prevents extremely high smash damage)
     max-damage: 35
     disable-world:
       - 'example_world'
 
   spear-nerf:
     enabled: true
-    #Nerf spear damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
+    #nerf spear damage by percentage, example 50 = 50% damage when hit with mace 20, deal damage 10
     percentage: 40
+    #maximum damage a spear hit can deal
     max-damage: 35
     disable-world:
       - 'example_world'
