@@ -27,10 +27,10 @@ public class BlockerConfig extends ConfigFile {
     private boolean blockSpawnEggChangeEnabled;
 
     @Getter
-    private boolean blockSpawnNearSpawnerEnabled;
+    private boolean blockSpawnerNearSpawnerEnabled;
 
     @Getter
-    private int blockSpawnNearSpawnerDistance;
+    private int blockSpawnerNearSpawnerDistance;
 
     @Getter
     private List<Material> blockedBoneMeal;
@@ -65,8 +65,8 @@ public class BlockerConfig extends ConfigFile {
 
         blockSpawnEggChangeEnabled = config.getBoolean("blocker.block-spawn-egg-change.enabled");
 
-        blockSpawnNearSpawnerEnabled = config.getBoolean("blocker.block-spawn-near-spawner.enabled");
-        blockSpawnNearSpawnerDistance = config.getInt("blocker.block-spawn-near-spawner.distance");
+        blockSpawnerNearSpawnerEnabled = config.getBoolean("blocker.block-place-spawner-near-spawner.enabled");
+        blockSpawnerNearSpawnerDistance = config.getInt("blocker.block-place-spawner-near-spawner.distance");
 
         blockLootEnabled = config.getBoolean("blocker.block-loot.enabled", false);
         blockLootItems = config.getStringList("blocker.block-loot.items")

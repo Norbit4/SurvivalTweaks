@@ -42,7 +42,7 @@ public class SpawnerInteractListener implements Listener {
             return;
         }
 
-        if (p.hasPermission("survivaltweaks.spawner-type") || p.isOp()) {
+        if (p.hasPermission("survivaltweaks.spawner-use.bypass") || p.isOp()) {
             return;
         }
 

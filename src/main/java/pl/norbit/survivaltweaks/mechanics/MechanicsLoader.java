@@ -65,7 +65,7 @@ public class MechanicsLoader {
             case NETHER_WITHER -> mechanicsConfig.isNetherWitherEnabled();
             case FURNACE_FUEL_NERF -> mechanicsConfig.isFurnaceFuelNerfEnabled();
             case SPEAR_NERF -> mechanicsConfig.isSpearNerfEnabled();
-            case SPAWNER_NEAR_SPAWNER -> blockerConfig.isBlockSpawnNearSpawnerEnabled();
+            case SPAWNER_NEAR_SPAWNER -> blockerConfig.isBlockSpawnerNearSpawnerEnabled();
             case SPAWNER_EGG_CHANGE -> blockerConfig.isBlockSpawnEggChangeEnabled();
         };
     }

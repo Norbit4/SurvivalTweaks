@@ -25,7 +25,7 @@ public class SpawnerPlaceListener implements Listener {
             return;
         }
 
-        int radius = ConfigManager.getBlockerConfig().getBlockSpawnNearSpawnerDistance();
+        int radius = ConfigManager.getBlockerConfig().getBlockSpawnerNearSpawnerDistance();
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
