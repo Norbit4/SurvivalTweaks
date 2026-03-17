@@ -11,12 +11,14 @@ import pl.norbit.survivaltweaks.mechanics.listeners.*;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.listeners.block.AmethystBreakListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.block.BoneMealListener;
-import pl.norbit.survivaltweaks.mechanics.listeners.block.SpawnerBreakListener;
+import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerPlaceListener;
+import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerDropListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.elytra.ElytraMendingPrepare;
 import pl.norbit.survivaltweaks.mechanics.listeners.elytra.ElytraGenarateListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.entity.*;
 import pl.norbit.survivaltweaks.mechanics.listeners.explode.ExplodeListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.player.*;
+import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerInteractListener;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.MythicUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
@@ -78,7 +80,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new PlayerDeadListener(), this);
         pluginManager.registerEvents(new PlayerFireballListener(), this);
         pluginManager.registerEvents(new PlayerTotemVoidListener(), this);
-        pluginManager.registerEvents(new SpawnerBreakListener(), this);
+        pluginManager.registerEvents(new SpawnerDropListener(), this);
         pluginManager.registerEvents(new AmethystBreakListener(), this);
         pluginManager.registerEvents(new BlazeWaterDeathListener(), this);
         pluginManager.registerEvents(new VillagerChangeListener(), this);
@@ -99,6 +101,10 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         pluginManager.registerEvents(new WitherSpawnListener(), this);
         pluginManager.registerEvents(new FurnaceNerfListener(), this);
+
         pluginManager.registerEvents(new SpearNerfListener(), this);
+
+        pluginManager.registerEvents(new SpawnerPlaceListener(), this);
+        pluginManager.registerEvents(new SpawnerInteractListener(), this);
     }
 }

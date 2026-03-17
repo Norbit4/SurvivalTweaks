@@ -1,8 +1,10 @@
-package pl.norbit.survivaltweaks.mechanics.listeners.block;
+package pl.norbit.survivaltweaks.mechanics.listeners.spawner;
 
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -12,13 +14,18 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
+import pl.norbit.survivaltweaks.log.PluginDebug;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
+import pl.norbit.survivaltweaks.settings.MechanicsConfig;
 import pl.norbit.survivaltweaks.utils.RandomUtils;
 import pl.norbit.survivaltweaks.settings.model.SpawnerType;
 
-public class SpawnerBreakListener implements Listener {
+public class SpawnerDropListener implements Listener {
+    private final NamespacedKey spawnerKey = new NamespacedKey("survtweaks", "spawner");
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
@@ -31,29 +38,39 @@ public class SpawnerBreakListener implements Listener {
         }
 
         Block b = e.getBlock();
+        BlockState state = b.getState();
 
-        if(b.getType() != Material.SPAWNER){
+        if (!(state instanceof CreatureSpawner spawner)) {
             return;
         }
-
         Player p = e.getPlayer();
         ItemStack tool = p.getInventory().getItemInMainHand();
         World w = b.getWorld();
         String worldName = w.getName();
 
-        SpawnerType type = ConfigManager.getMechanicsConfig().getSpawnerType(worldName, tool);
+        MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
+        SpawnerType type = mechanicsConfig.getSpawnerType(worldName, tool);
 
         if (type == null) {
             return;
         }
 
-        if (!RandomUtils.chance(type.getChance())) {
+        double chance = type.getChance();
+        PersistentDataContainer container = spawner.getPersistentDataContainer();
+
+        //placed by player
+        if(mechanicsConfig.isMineSpawnersAlwaysDropPlacedByPlayer()
+                && !container.has(spawnerKey, PersistentDataType.BYTE)) {
+            PluginDebug.debug("Spawner placed by player - 100% drop");
+            chance = 1.0;
+        }
+
+
+        if (!RandomUtils.chance(chance)) {
             return;
         }
 
-        CreatureSpawner spawner = (CreatureSpawner) b.getState();
         EntityType entityType = spawner.getSpawnedType();
-
         ItemStack spawnerItem = getSpawnerItem(entityType);
 
         w.dropItemNaturally(b.getLocation(), spawnerItem);
@@ -69,8 +86,9 @@ public class SpawnerBreakListener implements Listener {
         }
 
         Block b = e.getBlock();
+        BlockState state = b.getState();
 
-        if(b.getType() != Material.SPAWNER){
+        if (!(state instanceof CreatureSpawner placedSpawner)) {
             return;
         }
 
@@ -83,7 +101,8 @@ public class SpawnerBreakListener implements Listener {
             return;
         }
 
-        CreatureSpawner placedSpawner = (CreatureSpawner) b.getState();
+        PersistentDataContainer container = placedSpawner.getPersistentDataContainer();
+        container.set(spawnerKey, PersistentDataType.BYTE, (byte) 1);
         placedSpawner.setSpawnedType(entityType);
         placedSpawner.update();
     }

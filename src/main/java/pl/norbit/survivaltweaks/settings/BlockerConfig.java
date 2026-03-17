@@ -24,6 +24,15 @@ public class BlockerConfig extends ConfigFile {
     private boolean blockBoneMealDispenserEnabled;
 
     @Getter
+    private boolean blockSpawnEggChangeEnabled;
+
+    @Getter
+    private boolean blockSpawnNearSpawnerEnabled;
+
+    @Getter
+    private int blockSpawnNearSpawnerDistance;
+
+    @Getter
     private List<Material> blockedBoneMeal;
 
     @Getter
@@ -53,6 +62,11 @@ public class BlockerConfig extends ConfigFile {
 
         elytraBlockGenerateEnabled = config.getBoolean("blocker.elytra.block-generate", false);
         elytraBlockMendingEnabled = config.getBoolean("blocker.elytra.block-mending", false);
+
+        blockSpawnEggChangeEnabled = config.getBoolean("blocker.block-spawn-egg-change.enabled");
+
+        blockSpawnNearSpawnerEnabled = config.getBoolean("blocker.block-spawn-near-spawner.enabled");
+        blockSpawnNearSpawnerDistance = config.getInt("blocker.block-spawn-near-spawner.distance");
 
         blockLootEnabled = config.getBoolean("blocker.block-loot.enabled", false);
         blockLootItems = config.getStringList("blocker.block-loot.items")

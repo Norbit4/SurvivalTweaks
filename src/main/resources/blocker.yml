@@ -6,6 +6,11 @@ blocker:
   # despawn ender perls after 20 sec, this block player teleports with "freeze" ender pearl in long distances
   ender-pearl-despawn:
     enabled: false
+  block-spawn-egg-change:
+    enabled: false
+  block-spawn-near-spawner:
+    enabled: false
+    distance: 3
   #block bone-meal usage
   #bypass: survivaltweaks.bonemeal.bypass
   elytra:

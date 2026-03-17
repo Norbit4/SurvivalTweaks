@@ -37,13 +37,16 @@ mechanics:
   # activate totem of undying when player dies in void, apply levitation effect
   void-totem:
     enabled: true
-  # mine spawners with silk touch/special items
+  # allows players to mine spawners using Silk Touch or special items
   mine-spawners:
     enabled: true
+    # if true, spawners placed by players will always drop
+    always-drop-placed-by-players: true
     types:
       normal:
         silk-touch: true
         chance: 0.9
+        # ItemsAdder - ia:<id> Nexo - nexo:<id>
         tools:
           - 'DIAMOND_PICKAXE'
         worlds:

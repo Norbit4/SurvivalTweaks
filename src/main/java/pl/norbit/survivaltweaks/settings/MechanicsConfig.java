@@ -74,6 +74,8 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean mineSpawnersEnabled;
     @Getter
+    private boolean mineSpawnersAlwaysDropPlacedByPlayer;
+    @Getter
     private List<SpawnerType> spawnerTypes;
 
     //amethyst
@@ -224,6 +226,7 @@ public class MechanicsConfig extends ConfigFile {
 
         //mine spawner
         mineSpawnersEnabled = config.getBoolean("mechanics.mine-spawners.enabled");
+        mineSpawnersAlwaysDropPlacedByPlayer = config.getBoolean("mechanics.mine-spawners.always-drop-placed-by-players");
         spawnerTypes = loadSpawnerTypes(config);
 
         //amethyst

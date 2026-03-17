@@ -126,6 +126,12 @@ public class MessagesConfig extends ConfigFile {
     @Getter
     private String respawnSubtitle;
 
+    @Getter
+    private String blockSpawnEggChangeMessage;
+
+    @Getter
+    private String blockSpawnNearSpawnerMessage;
+
     public MessagesConfig(JavaPlugin plugin) {
         super(plugin, "messages.yml");
     }
@@ -167,6 +173,9 @@ public class MessagesConfig extends ConfigFile {
         //keep items
         respawnTitle = config.getString("keep-items.messages.title", "&c&l☠ You died!");
         respawnSubtitle = config.getString("keep-items.messages.subtitle", "&7You kept &a50% &7items!");
+
+        blockSpawnEggChangeMessage = config.getString("block-spawn-egg-change.message");
+        blockSpawnNearSpawnerMessage = config.getString("block-spawn-near-spawner.message");
 
         //custom death message
         deathMessagePrefix = config.getString("dead-messages.prefix");
