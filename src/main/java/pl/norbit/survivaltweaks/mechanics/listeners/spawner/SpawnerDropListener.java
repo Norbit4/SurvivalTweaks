@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import pl.norbit.survivaltweaks.SurvivalTweaks;
 import pl.norbit.survivaltweaks.log.PluginDebug;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
@@ -25,7 +26,7 @@ import pl.norbit.survivaltweaks.utils.RandomUtils;
 import pl.norbit.survivaltweaks.settings.model.SpawnerType;
 
 public class SpawnerDropListener implements Listener {
-    private final NamespacedKey spawnerKey = new NamespacedKey("survtweaks", "spawner");
+    private final NamespacedKey spawnerKey = new NamespacedKey(SurvivalTweaks.getInstance(), "spawner");
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
@@ -58,13 +59,14 @@ public class SpawnerDropListener implements Listener {
         double chance = type.getChance();
         PersistentDataContainer container = spawner.getPersistentDataContainer();
 
+        System.out.println(container.has(spawnerKey, PersistentDataType.BYTE));
+
         //placed by player
         if(mechanicsConfig.isMineSpawnersAlwaysDropPlacedByPlayer()
-                && !container.has(spawnerKey, PersistentDataType.BYTE)) {
+                && container.has(spawnerKey, PersistentDataType.BYTE)) {
             PluginDebug.debug("Spawner placed by player - 100% drop");
             chance = 1.0;
         }
-
 
         if (!RandomUtils.chance(chance)) {
             return;
@@ -101,10 +103,9 @@ public class SpawnerDropListener implements Listener {
             return;
         }
 
-        PersistentDataContainer container = placedSpawner.getPersistentDataContainer();
-        container.set(spawnerKey, PersistentDataType.BYTE, (byte) 1);
+        placedSpawner.getPersistentDataContainer().set(spawnerKey, PersistentDataType.BYTE, (byte) 1);
         placedSpawner.setSpawnedType(entityType);
-        placedSpawner.update();
+        placedSpawner.update(true);
     }
 
     private ItemStack getSpawnerItem(EntityType entityType){
