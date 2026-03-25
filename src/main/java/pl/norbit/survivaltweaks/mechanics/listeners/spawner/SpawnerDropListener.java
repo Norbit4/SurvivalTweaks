@@ -59,8 +59,6 @@ public class SpawnerDropListener implements Listener {
         double chance = type.getChance();
         PersistentDataContainer container = spawner.getPersistentDataContainer();
 
-        System.out.println(container.has(spawnerKey, PersistentDataType.BYTE));
-
         //placed by player
         if(mechanicsConfig.isMineSpawnersAlwaysDropPlacedByPlayer()
                 && container.has(spawnerKey, PersistentDataType.BYTE)) {
