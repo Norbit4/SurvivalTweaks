@@ -164,6 +164,8 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean griefProtectionAnchorEnabled;
     @Getter
+    private boolean griefProtectionTntMinecraftEnabled;
+    @Getter
     private boolean furnaceFuelNerfEnabled;
 
     //nether wither
@@ -274,6 +276,7 @@ public class MechanicsConfig extends ConfigFile {
         griefProtectionTntEnabled = config.getBoolean("mechanics.grief-protection.block-tnt-explosion");
         griefProtectionCrystalEnabled = config.getBoolean("mechanics.grief-protection.block-crystal-explosion");
         griefProtectionAnchorEnabled = config.getBoolean("mechanics.grief-protection.block-anchor-explosion");
+        griefProtectionTntMinecraftEnabled = config.getBoolean("mechanics.grief-protection.block-tnt-minecart");
 
         furnaceFuelNerfEnabled = config.getBoolean("mechanics.furnace-fuel-nerf.enabled");
         netherWitherEnabled = config.getBoolean("mechanics.nether-wither.enabled");

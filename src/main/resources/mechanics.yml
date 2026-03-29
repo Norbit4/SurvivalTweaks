@@ -123,6 +123,7 @@ mechanics:
     block-tnt-explosion: true
     block-crystal-explosion: true
     block-anchor-explosion: true
+    block-tnt-minecart: true
   #nerf furnace fuels, values: furnace.yml
   furnace-fuel-nerf:
     enabled: false

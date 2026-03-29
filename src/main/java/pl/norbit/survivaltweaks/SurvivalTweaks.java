@@ -98,6 +98,7 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         pluginManager.registerEvents(new AnvilTooExpensiveListener(), this);
         pluginManager.registerEvents(new ExplodeListener(), this);
+        pluginManager.registerEvents(new TntMinecartListener(), this);
 
         pluginManager.registerEvents(new WitherSpawnListener(), this);
         pluginManager.registerEvents(new FurnaceNerfListener(), this);
