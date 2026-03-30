@@ -11,8 +11,10 @@ import pl.norbit.survivaltweaks.settings.model.SpawnerType;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
 public class MechanicsConfig extends ConfigFile {
+    private final Random random = new Random();
     //compass
     @Getter
     private boolean compassEnabled;
@@ -172,6 +174,11 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean netherWitherEnabled;
 
+    @Getter
+    private boolean villagersRandomNamesEnabled;
+    @Getter
+    private List<String> villagersRandomNames;
+
     public MechanicsConfig(JavaPlugin plugin) {
         super(plugin, "mechanics.yml");
     }
@@ -280,6 +287,9 @@ public class MechanicsConfig extends ConfigFile {
 
         furnaceFuelNerfEnabled = config.getBoolean("mechanics.furnace-fuel-nerf.enabled");
         netherWitherEnabled = config.getBoolean("mechanics.nether-wither.enabled");
+
+        villagersRandomNamesEnabled = config.getBoolean("mechanics.villagers-random-names.enabled");
+        villagersRandomNames = config.getStringList("mechanics.villagers-random-names.names");
     }
     private  List<SpawnerType> loadSpawnerTypes(FileConfiguration config) {
         List<SpawnerType> spawners = new ArrayList<>();
@@ -306,6 +316,10 @@ public class MechanicsConfig extends ConfigFile {
             spawners.add(spawnerType);
         }
         return spawners;
+    }
+
+    public String getRandomVillagerName() {
+        return villagersRandomNames.get(random.nextInt(villagersRandomNames.size()));
     }
 
     public boolean isDisabledMaceNerfWorld(String worldName) {

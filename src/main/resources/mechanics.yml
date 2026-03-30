@@ -130,3 +130,10 @@ mechanics:
   #wither work only in nether
   nether-wither:
     enabled: false
+  # random names to villagers, making each one unique.
+  villagers-random-names:
+    enabled: true
+    names:
+      - 'Steve'
+      - 'Alex'
+      - 'Notch'

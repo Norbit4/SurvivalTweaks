@@ -67,6 +67,7 @@ public class MechanicsLoader {
             case SPEAR_NERF -> mechanicsConfig.isSpearNerfEnabled();
             case SPAWNER_NEAR_SPAWNER -> blockerConfig.isBlockSpawnerNearSpawnerEnabled();
             case SPAWNER_EGG_CHANGE -> blockerConfig.isBlockSpawnEggChangeEnabled();
+            case VILLAGERS_RANDOM_NAMES -> mechanicsConfig.isVillagersRandomNamesEnabled();
         };
     }
 
