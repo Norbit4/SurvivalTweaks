@@ -32,6 +32,7 @@ mechanics:
   # drop player head when player dies
   player-head:
     enabled: true
+    anti-abuse: true
     # chance to drop player head, 1 = 100%
     chance: 0.2
   # activate totem of undying when player dies in void, apply levitation effect
@@ -42,6 +43,15 @@ mechanics:
     enabled: true
     # if true, spawners placed by players will always drop
     always-drop-placed-by-players: true
+    # drop settings when spawner mining fails
+    failure-drop:
+      enabled: true
+      # If enabled, this item will drop when:
+      # - player uses a wrong tool
+      # - silk touch requirement is not met
+      # - drop chance check fails
+      item: 'IRON_INGOT'
+      amount: 1
     types:
       normal:
         silk-touch: true
@@ -91,7 +101,7 @@ mechanics:
     percentage: 40
     #maximum damage that a mace hit can deal after all calculations (prevents extremely high smash damage)
     max-damage: 35
-    disable-world:
+    disabled-worlds:
       - 'example_world'
 
   spear-nerf:
@@ -103,7 +113,9 @@ mechanics:
     percentage: 40
     #maximum damage a spear hit can deal
     max-damage: 35
-    disable-world:
+    #spear with lunge cooldown (in ticks)
+    cooldown: 60
+    disabled-worlds:
       - 'example_world'
 
   #boost happy ghost speed and hp
@@ -117,6 +129,7 @@ mechanics:
   # add custom dead messages
   dead-messages:
     enabled: true
+    anti-abuse: true
   #protections from grief explosions, like tnt, end crystal, respawn anchor
   grief-protection:
     enabled: false

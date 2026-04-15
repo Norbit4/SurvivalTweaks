@@ -6,6 +6,33 @@ import org.bukkit.inventory.ItemStack;
 public class ItemsUtils {
     private ItemsUtils() {}
 
+    public static ItemStack getItem(String id){
+        ItemResult result = getItemType(id);
+
+        ItemType itemType = result.itemType();
+        String finalId = result.finalId();
+
+        if(itemType == ItemType.NEXO){
+            return NexoUtils.getItem(finalId);
+        }
+
+        if(itemType == ItemType.IA){
+            return ItemsAdderUtils.getItem(finalId);
+        }
+
+        try {
+            Material mat = Material.matchMaterial(finalId);
+
+            if(mat == null){
+                return null;
+            }
+
+            return new ItemStack(mat);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
     public static boolean isValidItem(ItemStack is, String id) {
         ItemResult result = getItemType(id);
 
