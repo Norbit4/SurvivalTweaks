@@ -1,5 +1,6 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.spawner;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
@@ -24,6 +25,7 @@ import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.settings.MechanicsConfig;
 import pl.norbit.survivaltweaks.utils.RandomUtils;
 import pl.norbit.survivaltweaks.settings.model.SpawnerType;
+import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
 public class SpawnerDropListener implements Listener {
     private final NamespacedKey spawnerKey = new NamespacedKey(SurvivalTweaks.getInstance(), "spawner");
@@ -51,8 +53,10 @@ public class SpawnerDropListener implements Listener {
 
         MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
         SpawnerType type = mechanicsConfig.getSpawnerType(worldName, tool);
+        Location loc = b.getLocation();
 
         if (type == null) {
+            onFailureDrop(mechanicsConfig, w, loc);
             return;
         }
 
@@ -67,16 +71,36 @@ public class SpawnerDropListener implements Listener {
         }
 
         if (!RandomUtils.chance(chance)) {
+            onFailureDrop(mechanicsConfig, w, loc);
             return;
         }
 
         EntityType entityType = spawner.getSpawnedType();
         ItemStack spawnerItem = getSpawnerItem(entityType);
 
-        w.dropItemNaturally(b.getLocation(), spawnerItem);
+        w.dropItemNaturally(loc, spawnerItem);
 
         e.setDropItems(false);
         e.setExpToDrop(0);
+    }
+
+    private void onFailureDrop(MechanicsConfig mechanicsConfig, World w, Location loc){
+        if(!mechanicsConfig.isFailureDropEnabled()){
+            return;
+        }
+
+        int failureDropAmount = mechanicsConfig.getFailureDropAmount();
+        String failureDropItem = mechanicsConfig.getFailureDropItem();
+
+        ItemStack item = ItemsUtils.getItem(failureDropItem);
+
+        if(item == null){
+            return;
+        }
+
+        item.setAmount(failureDropAmount);
+
+        w.dropItemNaturally(loc, item);
     }
 
     @EventHandler
