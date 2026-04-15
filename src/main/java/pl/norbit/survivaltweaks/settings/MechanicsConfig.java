@@ -1,7 +1,6 @@
 package pl.norbit.survivaltweaks.settings;
 
 import lombok.Getter;
-import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -66,6 +65,10 @@ public class MechanicsConfig extends ConfigFile {
     private boolean playerHeadEnabled;
 
     @Getter
+    private boolean playerHeadAntiAbuse;
+
+
+    @Getter
     private double playerHeadDropChance;
 
     //void totem
@@ -79,6 +82,15 @@ public class MechanicsConfig extends ConfigFile {
     private boolean mineSpawnersAlwaysDropPlacedByPlayer;
     @Getter
     private List<SpawnerType> spawnerTypes;
+
+    @Getter
+    private boolean failureDropEnabled;
+
+    @Getter
+    private String failureDropItem;
+
+    @Getter
+    private int failureDropAmount;
 
     //amethyst
     @Getter
@@ -133,6 +145,9 @@ public class MechanicsConfig extends ConfigFile {
     private double spearMaxDamage;
 
     @Getter
+    private int spearCooldown;
+
+    @Getter
     private List<String> spearNerfDisabledWorlds;
 
     //happy ghost speed
@@ -152,6 +167,8 @@ public class MechanicsConfig extends ConfigFile {
     //custom dead messages
     @Getter
     private boolean customDeathMessageEnabled;
+    @Getter
+    private boolean customDeathMessageAntiAbuse;
 
     //grief
     @Getter
@@ -229,6 +246,7 @@ public class MechanicsConfig extends ConfigFile {
         //playerHead
         playerHeadEnabled = config.getBoolean("mechanics.player-head.enabled");
         playerHeadDropChance = config.getDouble("mechanics.player-head.chance");
+        playerHeadAntiAbuse = config.getBoolean("mechanics.player-head.anti-abuse");
 
         //void totem
         voidTotemEnabled = config.getBoolean("mechanics.void-totem.enabled");
@@ -237,6 +255,10 @@ public class MechanicsConfig extends ConfigFile {
         mineSpawnersEnabled = config.getBoolean("mechanics.mine-spawners.enabled");
         mineSpawnersAlwaysDropPlacedByPlayer = config.getBoolean("mechanics.mine-spawners.always-drop-placed-by-players");
         spawnerTypes = loadSpawnerTypes(config);
+
+        failureDropEnabled = config.getBoolean("mechanics.mine-spawners.failure-drop.enabled");
+        failureDropItem = config.getString("mechanics.mine-spawners.failure-drop.item");
+        failureDropAmount  = config.getInt("mechanics.mine-spawners.failure-drop.amount");
 
         //amethyst
         amethystEnabled = config.getBoolean("mechanics.mine-budding-amethyst.enabled");
@@ -257,18 +279,20 @@ public class MechanicsConfig extends ConfigFile {
         disableKeepItemsWorlds = config.getStringList("mechanics.keep-items.disabled-worlds");
 
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
+        customDeathMessageAntiAbuse = config.getBoolean("mechanics.dead-messages.anti-abuse");
 
         //mace nerf
         maceNerfEnabled = config.getBoolean("mechanics.mace-nerf.enabled");
         maceMaxDamage = config.getDouble("mechanics.mace-nerf.max-damage");
         maceNerfPercentage = config.getDouble("mechanics.mace-nerf.percentage");
-        maceNerfDisabledWorlds = config.getStringList("mechanics.mace-nerf.disabled-world");
+        maceNerfDisabledWorlds = config.getStringList("mechanics.mace-nerf.disabled-worlds");
 
         //spear nerf
         spearNerfEnabled = config.getBoolean("mechanics.spear-nerf.enabled");
         spearMaxDamage = config.getDouble("mechanics.spear-nerf.max-damage");
         spearNerfPercentage = config.getDouble("mechanics.spear-nerf.percentage");
-        spearNerfDisabledWorlds = config.getStringList("mechanics.spear-nerf.disabled-world");
+        spearCooldown = config.getInt("mechanics.spear-nerf.cooldown");
+        spearNerfDisabledWorlds = config.getStringList("mechanics.spear-nerf.disabled-worlds");
 
         //happy ghost
         happyGhostBoostEnabled = config.getBoolean("mechanics.happy-ghost-boost.enabled");
