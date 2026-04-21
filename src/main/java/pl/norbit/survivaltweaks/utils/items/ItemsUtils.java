@@ -1,10 +1,21 @@
 package pl.norbit.survivaltweaks.utils.items;
 
+import com.nexomc.nexo.api.NexoItems;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemsUtils {
     private ItemsUtils() {}
+
+    public static String getId(ItemStack itemStack){
+        String id = NexoItems.idFromItem(itemStack);
+
+        if(id != null){
+            return id;
+        }
+        return itemStack.getType().toString().toUpperCase();
+    }
+
 
     public static ItemStack getItem(String id){
         ItemResult result = getItemType(id);

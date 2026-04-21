@@ -3,20 +3,20 @@ package pl.norbit.survivaltweaks.settings;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class FurnaceConfig extends ConfigFile {
-    private Map<Material, Integer> fuelsMap;
+    private Map<String, Integer> fuelsMap;
 
     private List<Material> fuelsBlacklist;
 
-    public Integer getBurnTime(Material material) {
-        return fuelsMap.get(material);
+    public Integer getBurnTime(ItemStack stack) {
+        String id = ItemsUtils.getId(stack);
+        return fuelsMap.get(id);
     }
 
     public boolean isFuelBlocked(Material mat) {
@@ -32,7 +32,7 @@ public class FurnaceConfig extends ConfigFile {
     }
 
     private void loadFuels(FileConfiguration config) {
-        fuelsMap = new EnumMap<>(Material.class);
+        fuelsMap = new HashMap<>();
 
         ConfigurationSection section = config.getConfigurationSection("fuels");
         if (section == null) {
@@ -41,14 +41,8 @@ public class FurnaceConfig extends ConfigFile {
         }
 
         for (String key : section.getKeys(false)) {
-            Material material = Material.matchMaterial(key);
-            if (material == null) {
-                warn("Material " + key + " not found");
-                continue;
-            }
-
             int value = section.getInt(key);
-            fuelsMap.put(material, value);
+            fuelsMap.put(key, value);
         }
 
         fuelsBlacklist = config.getStringList("blacklist")

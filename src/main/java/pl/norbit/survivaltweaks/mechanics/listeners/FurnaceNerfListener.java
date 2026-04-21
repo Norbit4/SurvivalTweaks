@@ -17,7 +17,7 @@ public class FurnaceNerfListener implements Listener {
         }
 
         ItemStack fuel = e.getFuel();
-        Integer burnTime = ConfigManager.getFurnaceConfig().getBurnTime(fuel.getType());
+        Integer burnTime = ConfigManager.getFurnaceConfig().getBurnTime(fuel);
 
         if (burnTime != null) {
             e.setBurnTime(burnTime);
