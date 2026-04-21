@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.norbit.survivaltweaks.settings.model.SpawnerType;
+import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -121,6 +122,18 @@ public class MechanicsConfig extends ConfigFile {
 
     @Getter
     private List<String> disableKeepItemsWorlds;
+
+    @Getter
+    private List<String> keepItemsAlwaysKeep;
+
+    public boolean isAlwaysKeepItem(ItemStack itemStack){
+        for (String id : keepItemsAlwaysKeep) {
+            if(ItemsUtils.isValidItem(itemStack, id)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     //mace nerf
     @Getter
@@ -277,6 +290,7 @@ public class MechanicsConfig extends ConfigFile {
 
         keepItemsEnabled = config.getBoolean("mechanics.keep-items.enabled", false);
         disableKeepItemsWorlds = config.getStringList("mechanics.keep-items.disabled-worlds");
+        keepItemsAlwaysKeep = config.getStringList("mechanics.keep-items.always-keep");
 
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
         customDeathMessageAntiAbuse = config.getBoolean("mechanics.dead-messages.anti-abuse");

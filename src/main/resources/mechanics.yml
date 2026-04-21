@@ -92,6 +92,9 @@ mechanics:
     # worlds where keep-items are disabled
     disabled-worlds:
       - 'example_world'
+    # ItemsAdder - ia:<id> Nexo - nexo:<id>
+    always-keep:
+      - 'example_item'
   mace-nerf:
     enabled: true
     # Reduces mace damage by a percentage.

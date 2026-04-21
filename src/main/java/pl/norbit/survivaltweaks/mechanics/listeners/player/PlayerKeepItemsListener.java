@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
+import pl.norbit.survivaltweaks.settings.MechanicsConfig;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
 import java.util.*;
@@ -20,48 +21,57 @@ public class PlayerKeepItemsListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
-        if(MechanicsLoader.isDisabled(Mechanic.KEEP_ITEMS)){
+        if (MechanicsLoader.isDisabled(Mechanic.KEEP_ITEMS)) {
             return;
         }
 
         Player p = e.getEntity();
-
         String worldName = p.getWorld().getName();
+        MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
 
-        if(ConfigManager.getMechanicsConfig().isWorldDisabledForKeepItems(worldName)){
+        if (mechanicsConfig.isWorldDisabledForKeepItems(worldName)) {
             return;
         }
 
-        List<ItemStack> savedItems = new ArrayList<>();
+        Set<ItemStack> savedItems = new HashSet<>();
 
-        //armor
+        Iterator<ItemStack> iterator = e.getDrops().iterator();
+        while (iterator.hasNext()) {
+            ItemStack item = iterator.next();
+
+            if (item != null && mechanicsConfig.isAlwaysKeepItem(item)) {
+                savedItems.add(item);
+                iterator.remove();
+            }
+        }
+
         List<ItemStack> armor = new ArrayList<>();
         for (ItemStack item : p.getInventory().getArmorContents()) {
             if (item != null) {
-                armor.add(item);
+                if (mechanicsConfig.isAlwaysKeepItem(item)) {
+                    savedItems.add(item);
+                } else {
+                    armor.add(item);
+                }
             }
         }
 
         Collections.shuffle(armor);
-        int armorToKeep = armor.size() / 2;
-
-        for (int i = 0; i < armorToKeep; i++) {
-            ItemStack piece = armor.get(i);
-            savedItems.add(piece);
+        for (int i = 0; i < armor.size() / 2; i++) {
+            savedItems.add(armor.get(i));
         }
 
-        //all items
         List<ItemStack> drops = new ArrayList<>(e.getDrops());
         Collections.shuffle(drops);
-        drops.removeAll(armor);
 
         for (int i = 0; i < drops.size() / 2; i++) {
-            ItemStack item = drops.get(i);
-            savedItems.add(item);
+            savedItems.add(drops.get(i));
         }
 
-        savedItemsMap.put(p.getUniqueId(), savedItems);
-        e.getDrops().removeAll(savedItems);
+        savedItemsMap.put(p.getUniqueId(), new ArrayList<>(savedItems));
+        for (ItemStack item : savedItems) {
+            e.getDrops().remove(item);
+        }
     }
 
     @EventHandler
