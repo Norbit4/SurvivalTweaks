@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
@@ -63,9 +64,10 @@ public class SpawnerDropListener implements Listener {
         double chance = type.getChance();
         PersistentDataContainer container = spawner.getPersistentDataContainer();
 
+        boolean placedByPlayer = container.has(spawnerKey, PersistentDataType.BYTE);
+
         //placed by player
-        if(mechanicsConfig.isMineSpawnersAlwaysDropPlacedByPlayer()
-                && container.has(spawnerKey, PersistentDataType.BYTE)) {
+        if(mechanicsConfig.isMineSpawnersAlwaysDropPlacedByPlayer() && placedByPlayer) {
             PluginDebug.debug("Spawner placed by player - 100% drop");
             chance = 1.0;
         }
@@ -82,6 +84,22 @@ public class SpawnerDropListener implements Listener {
 
         e.setDropItems(false);
         e.setExpToDrop(0);
+
+        if (placedByPlayer) {
+            refundDurability(tool);
+        }
+    }
+
+    private void refundDurability(ItemStack tool) {
+        if (tool == null || tool.getType().getMaxDurability() <= 0) return;
+
+        if (tool.getItemMeta() instanceof Damageable damageable) {
+            int dmg = damageable.getDamage();
+            if (dmg > 0) {
+                damageable.setDamage(dmg - 1);
+                tool.setItemMeta(damageable);
+            }
+        }
     }
 
     private void onFailureDrop(MechanicsConfig mechanicsConfig, World w, Location loc){
