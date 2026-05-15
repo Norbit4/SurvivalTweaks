@@ -59,8 +59,14 @@ public class PlayerDeadListener implements Listener {
 
         Player p = e.getEntity();
         MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
+        String worldName = p.getWorld().getName();
 
         if(mechanicsConfig.isCustomDeathMessageAntiAbuse() && deadAntiAbuse.isBlocked(p.getUniqueId())){
+            e.setDeathMessage(null);
+            return;
+        }
+
+        if(mechanicsConfig.isDisabledDeathMessageWorld(worldName)){
             e.setDeathMessage(null);
             return;
         }
