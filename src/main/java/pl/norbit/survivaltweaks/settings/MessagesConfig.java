@@ -132,6 +132,9 @@ public class MessagesConfig extends ConfigFile {
     @Getter
     private String blockSpawnNearSpawnerMessage;
 
+    @Getter
+    private String infinityFoodCooldownMessage;
+
     public MessagesConfig(JavaPlugin plugin) {
         super(plugin, "messages.yml");
     }
@@ -176,6 +179,8 @@ public class MessagesConfig extends ConfigFile {
 
         blockSpawnEggChangeMessage = config.getString("block-spawn-egg-change.message");
         blockSpawnNearSpawnerMessage = config.getString("block-spawn-near-spawner.message");
+
+        infinityFoodCooldownMessage = config.getString("infinity-food.cooldown");
 
         //custom death message
         deathMessagePrefix = config.getString("dead-messages.prefix");

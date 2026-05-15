@@ -21,54 +21,55 @@ public class PlayerKeepItemsListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onPlayerDeath(PlayerDeathEvent e) {
-        if (MechanicsLoader.isDisabled(Mechanic.KEEP_ITEMS)) {
-            return;
-        }
+        if (MechanicsLoader.isDisabled(Mechanic.KEEP_ITEMS)) return;
 
         Player p = e.getEntity();
-        String worldName = p.getWorld().getName();
-        MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
+        MechanicsConfig config = ConfigManager.getMechanicsConfig();
 
-        if (mechanicsConfig.isWorldDisabledForKeepItems(worldName)) {
-            return;
+        if (config.isWorldDisabledForKeepItems(p.getWorld().getName())) return;
+
+        List<ItemStack> savedItems = new ArrayList<>();
+        List<ItemStack> armorToProcess = new ArrayList<>();
+
+        for (ItemStack item : p.getInventory().getArmorContents()) {
+            if (item == null) continue;
+
+            if (!config.isAlwaysKeepItem(item)) {
+                armorToProcess.add(item);
+            }
         }
-
-        Set<ItemStack> savedItems = new HashSet<>();
 
         Iterator<ItemStack> iterator = e.getDrops().iterator();
         while (iterator.hasNext()) {
             ItemStack item = iterator.next();
 
-            if (item != null && mechanicsConfig.isAlwaysKeepItem(item)) {
+            if (item != null && config.isAlwaysKeepItem(item)) {
                 savedItems.add(item);
                 iterator.remove();
             }
         }
 
-        List<ItemStack> armor = new ArrayList<>();
-        for (ItemStack item : p.getInventory().getArmorContents()) {
-            if (item != null) {
-                if (mechanicsConfig.isAlwaysKeepItem(item)) {
-                    savedItems.add(item);
-                } else {
-                    armor.add(item);
-                }
-            }
-        }
+        Collections.shuffle(armorToProcess);
+        int armorToKeep = armorToProcess.size() / 2;
 
-        Collections.shuffle(armor);
-        for (int i = 0; i < armor.size() / 2; i++) {
-            savedItems.add(armor.get(i));
+        for (int i = 0; i < armorToKeep; i++) {
+            savedItems.add(armorToProcess.get(i));
         }
 
         List<ItemStack> drops = new ArrayList<>(e.getDrops());
+        drops.removeAll(armorToProcess);
+
         Collections.shuffle(drops);
 
-        for (int i = 0; i < drops.size() / 2; i++) {
-            savedItems.add(drops.get(i));
+        int toKeep = drops.size() / 2;
+
+        for (int i = 0; i < toKeep; i++) {
+            ItemStack item = drops.get(i);
+            savedItems.add(item);
         }
 
-        savedItemsMap.put(p.getUniqueId(), new ArrayList<>(savedItems));
+        savedItemsMap.put(p.getUniqueId(), savedItems);
+
         for (ItemStack item : savedItems) {
             e.getDrops().remove(item);
         }

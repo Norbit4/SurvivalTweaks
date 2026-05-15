@@ -78,6 +78,8 @@ keep-items:
     title: '&c&l☠ You died!'
     subtitle: '&7You kept &a50% &7items!'
 
+infinity-food:
+  cooldown: '&cCooldown: {cooldown}'
 block-spawn-egg-change:
   message: '&cYou cannot change the spawner type using a spawn egg!'
 block-spawn-near-spawner:

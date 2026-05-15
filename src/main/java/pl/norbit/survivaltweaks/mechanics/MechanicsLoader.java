@@ -68,6 +68,8 @@ public class MechanicsLoader {
             case SPAWNER_NEAR_SPAWNER -> blockerConfig.isBlockSpawnerNearSpawnerEnabled();
             case SPAWNER_EGG_CHANGE -> blockerConfig.isBlockSpawnEggChangeEnabled();
             case VILLAGERS_RANDOM_NAMES -> mechanicsConfig.isVillagersRandomNamesEnabled();
+            case INFINITY_FOOD -> mechanicsConfig.isInfinityFoodEnabled();
+            case SPAWNER_MOBS_BLOCKED_EQ_DROPS -> mechanicsConfig.isDisableEqDropsForSpawnerMobs();
         };
     }
 

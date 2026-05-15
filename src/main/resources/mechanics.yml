@@ -133,6 +133,9 @@ mechanics:
   dead-messages:
     enabled: true
     anti-abuse: true
+    # Worlds where death messages are disabled
+    disabled-worlds:
+      - 'example_world'
   #protections from grief explosions, like tnt, end crystal, respawn anchor
   grief-protection:
     enabled: false
@@ -146,7 +149,16 @@ mechanics:
   #wither work only in nether
   nether-wither:
     enabled: false
-  # random names to villagers, making each one unique.
+  # prevents mobs spawned from spawners from dropping equipment
+  disable-equipment-drops-from-spawner-mobs:
+    enabled: false
+  #infinity food
+  infinity-food:
+    enabled: false
+    items:
+      white_monster:
+        id: 'white_monster'
+        cooldown: 30
   villagers-random-names:
     enabled: true
     names:

@@ -5,13 +5,11 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.norbit.survivaltweaks.settings.model.InfinityFood;
 import pl.norbit.survivaltweaks.settings.model.SpawnerType;
 import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class MechanicsConfig extends ConfigFile {
     private final Random random = new Random();
@@ -116,6 +114,13 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean invisibleItemFramesEnabled;
 
+    //infinity food
+    @Getter
+    private boolean infinityFoodEnabled;
+
+    @Getter
+    private Map<String, InfinityFood> itemsFoodMap;
+
     //keep items
     @Getter
     private boolean keepItemsEnabled;
@@ -183,6 +188,9 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean customDeathMessageAntiAbuse;
 
+    @Getter
+    private List<String> customDeathMessageDisabledWorlds;
+
     //grief
     @Getter
     private boolean griefProtectionEnabled;
@@ -209,8 +217,19 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private List<String> villagersRandomNames;
 
+    @Getter
+    private boolean disableEqDropsForSpawnerMobs;
+
     public MechanicsConfig(JavaPlugin plugin) {
         super(plugin, "mechanics.yml");
+    }
+
+    public boolean isDisabledDeathMessageWorld(String worldName){
+        return customDeathMessageDisabledWorlds.contains(worldName);
+    }
+
+    public InfinityFood getInfinityFood(String id){
+        return itemsFoodMap.get(id);
     }
 
     public SpawnerType getSpawnerType(String world, ItemStack tool) {
@@ -294,6 +313,7 @@ public class MechanicsConfig extends ConfigFile {
 
         customDeathMessageEnabled = config.getBoolean("mechanics.dead-messages.enabled");
         customDeathMessageAntiAbuse = config.getBoolean("mechanics.dead-messages.anti-abuse");
+        customDeathMessageDisabledWorlds = config.getStringList("mechanics.dead-messages.disabled-worlds");
 
         //mace nerf
         maceNerfEnabled = config.getBoolean("mechanics.mace-nerf.enabled");
@@ -326,10 +346,45 @@ public class MechanicsConfig extends ConfigFile {
         furnaceFuelNerfEnabled = config.getBoolean("mechanics.furnace-fuel-nerf.enabled");
         netherWitherEnabled = config.getBoolean("mechanics.nether-wither.enabled");
 
+        disableEqDropsForSpawnerMobs = config.getBoolean("mechanics.disable-equipment-drops-from-spawner-mobs.enabled");
+
+        infinityFoodEnabled = config.getBoolean("mechanics.infinity-food.enabled");
+        itemsFoodMap = loadInfinityFood(config);
+
         villagersRandomNamesEnabled = config.getBoolean("mechanics.villagers-random-names.enabled");
         villagersRandomNames = config.getStringList("mechanics.villagers-random-names.names");
     }
-    private  List<SpawnerType> loadSpawnerTypes(FileConfiguration config) {
+    private Map<String, InfinityFood> loadInfinityFood(FileConfiguration config) {
+        Map<String, InfinityFood> infinityFoodsMap = new HashMap<>();
+
+        ConfigurationSection section = config.getConfigurationSection("mechanics.infinity-food.items");
+
+        if(section == null){
+            warn("infinity-food section not found");
+            return infinityFoodsMap;
+        }
+
+        for (String key : section.getKeys(false)) {
+            ConfigurationSection typeSection = section.getConfigurationSection(key);
+
+            if (typeSection == null) {
+                continue;
+            }
+
+            InfinityFood infinityFood = new InfinityFood();
+
+            String id = typeSection.getString("id");
+
+            infinityFood.setId(id);
+            infinityFood.setCooldown(typeSection.getInt("cooldown"));
+
+            infinityFoodsMap.put(id, infinityFood);
+        }
+
+        return infinityFoodsMap;
+    }
+
+    private List<SpawnerType> loadSpawnerTypes(FileConfiguration config) {
         List<SpawnerType> spawners = new ArrayList<>();
 
         ConfigurationSection section = config.getConfigurationSection("mechanics.mine-spawners.types");
@@ -339,7 +394,6 @@ public class MechanicsConfig extends ConfigFile {
         }
 
         for (String key : section.getKeys(false)) {
-
             ConfigurationSection typeSection = section.getConfigurationSection(key);
             if (typeSection == null) {
                 continue;
