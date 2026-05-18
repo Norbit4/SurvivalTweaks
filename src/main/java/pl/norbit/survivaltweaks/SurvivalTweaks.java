@@ -11,6 +11,7 @@ import pl.norbit.survivaltweaks.mechanics.listeners.*;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.listeners.block.AmethystBreakListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.block.BoneMealListener;
+import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerMobDeath;
 import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerPlaceListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerDropListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.elytra.ElytraMendingPrepare;
@@ -109,5 +110,6 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new SpawnerInteractListener(), this);
 
         pluginManager.registerEvents(new VillagerRandomNamesListener(), this);
+        pluginManager.registerEvents(new SpawnerMobDeath(), this);
     }
 }
