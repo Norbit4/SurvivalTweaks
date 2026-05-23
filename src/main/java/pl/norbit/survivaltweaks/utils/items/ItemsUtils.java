@@ -1,18 +1,27 @@
 package pl.norbit.survivaltweaks.utils.items;
 
-import com.nexomc.nexo.api.NexoItems;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.SurvivalTweaks;
 
 public class ItemsUtils {
     private ItemsUtils() {}
 
     public static String getId(ItemStack itemStack){
-        String id = NexoItems.idFromItem(itemStack);
+        if(SurvivalTweaks.isNexoEnabled()){
+            String id = NexoUtils.getId(itemStack);
 
-        if(id != null){
-            return id;
+            if(id != null){
+                return id;
+            }
+        } else if (SurvivalTweaks.isItemsAdderEnabled()) {
+            String id = ItemsAdderUtils.getId(itemStack);
+
+            if(id != null){
+                return id;
+            }
         }
+
         return itemStack.getType().toString().toUpperCase();
     }
 
@@ -24,10 +33,16 @@ public class ItemsUtils {
         String finalId = result.finalId();
 
         if(itemType == ItemType.NEXO){
+            if(!SurvivalTweaks.isNexoEnabled()){
+                return null;
+            }
             return NexoUtils.getItem(finalId);
         }
 
         if(itemType == ItemType.IA){
+            if(!SurvivalTweaks.isItemsAdderEnabled()){
+                return null;
+            }
             return ItemsAdderUtils.getItem(finalId);
         }
 
@@ -50,12 +65,17 @@ public class ItemsUtils {
         ItemType itemType = result.itemType();
         String finalId = result.finalId();
 
-
         if(itemType == ItemType.NEXO){
+            if(!SurvivalTweaks.isNexoEnabled()){
+                return false;
+            }
             return NexoUtils.isItem(is, finalId);
         }
 
         if(itemType == ItemType.IA){
+            if(!SurvivalTweaks.isItemsAdderEnabled()){
+                return false;
+            }
             return ItemsAdderUtils.isItem(is, finalId);
         }
 

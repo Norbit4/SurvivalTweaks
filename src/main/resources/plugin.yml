@@ -9,6 +9,8 @@ softdepend:
   - PlaceholderAPI
   - PremiumVanish
   - MythicMobs
+  - ItemsAdder
+  - Nexo
   - SuperVanish
 commands:
   survivaltweaks:

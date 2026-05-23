@@ -32,6 +32,12 @@ public final class SurvivalTweaks extends JavaPlugin {
     @Getter
     @Setter
     private static boolean mythicMobsEnabled;
+    @Getter
+    @Setter
+    private static boolean nexoEnabled;
+    @Getter
+    @Setter
+    private static boolean itemsAdderEnabled;
 
     @Override
     public void onEnable() {
@@ -56,6 +62,13 @@ public final class SurvivalTweaks extends JavaPlugin {
         if(checkPlugin("MythicMobs")){
             setMythicMobsEnabled(true);
             MythicUtils.init();
+        }
+        if(checkPlugin("Nexo")){
+            setNexoEnabled(true);
+        }
+
+        if(checkPlugin("ItemsAdder")){
+            setItemsAdderEnabled(true);
         }
     }
 

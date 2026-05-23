@@ -6,8 +6,14 @@ import org.bukkit.inventory.ItemStack;
 
 public class NexoUtils {
 
-    private NexoUtils() {
-        throw new IllegalStateException("Utility class");
+    private NexoUtils() {}
+
+    public static String getId(ItemStack itemStack){
+        if (itemStack == null) {
+            return null;
+        }
+
+        return NexoItems.idFromItem(itemStack);
     }
 
     public static ItemStack getItem(String id) {

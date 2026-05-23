@@ -1,14 +1,23 @@
 package pl.norbit.survivaltweaks.utils.items;
 
-import com.nexomc.nexo.api.NexoItems;
-import com.nexomc.nexo.items.ItemBuilder;
 import dev.lone.itemsadder.api.CustomStack;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemsAdderUtils {
 
-    private ItemsAdderUtils() {
-        throw new IllegalStateException("Utility class");
+    private ItemsAdderUtils() {}
+
+    public static String getId(ItemStack itemStack){
+        if (itemStack == null) {
+            return null;
+        }
+        CustomStack customStack = CustomStack.byItemStack(itemStack);
+
+        if(customStack == null){
+            return null;
+        }
+
+        return customStack.getId();
     }
 
     public static ItemStack getItem(String id) {

@@ -157,8 +157,11 @@ mechanics:
     enabled: false
     items:
       white_monster:
-        id: 'white_monster'
+        id: 'white_monster' #example id from nexo or itemsadder
         cooldown: 30
+      golden_apple:
+        id: 'GOLDEN_APPLE'
+        cooldown: 15
   villagers-random-names:
     enabled: true
     names:
