@@ -213,6 +213,9 @@ public class MechanicsConfig extends ConfigFile {
     private boolean netherWitherEnabled;
 
     @Getter
+    private boolean dispenserBerryHarvestEnabled;
+
+    @Getter
     private boolean villagersRandomNamesEnabled;
     @Getter
     private List<String> villagersRandomNames;
@@ -345,6 +348,7 @@ public class MechanicsConfig extends ConfigFile {
 
         furnaceFuelNerfEnabled = config.getBoolean("mechanics.furnace-fuel-nerf.enabled");
         netherWitherEnabled = config.getBoolean("mechanics.nether-wither.enabled");
+        dispenserBerryHarvestEnabled = config.getBoolean("mechanics.dispenser-berry-harvest.enabled");
 
         disableEqDropsForSpawnerMobs = config.getBoolean("mechanics.disable-equipment-drops-from-spawner-mobs.enabled");
 

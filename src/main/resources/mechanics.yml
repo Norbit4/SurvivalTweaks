@@ -149,6 +149,9 @@ mechanics:
   #wither work only in nether
   nether-wither:
     enabled: false
+  # dispenser with shears can harvest sweet berries and glow berries
+  dispenser-berry-harvest:
+    enabled: true
   # prevents mobs spawned from spawners from dropping equipment
   disable-equipment-drops-from-spawner-mobs:
     enabled: false
@@ -164,7 +167,37 @@ mechanics:
         cooldown: 15
   villagers-random-names:
     enabled: true
-    names:
-      - 'Steve'
-      - 'Alex'
-      - 'Notch'
+  names:
+    - 'Oliver'
+    - 'Jack'
+    - 'Henry'
+    - 'Thomas'
+    - 'William'
+    - 'Arthur'
+    - 'George'
+    - 'Edward'
+    - 'Samuel'
+    - 'James'
+    - 'Benjamin'
+    - 'Lucas'
+    - 'Oscar'
+    - 'Leo'
+    - 'Nathan'
+    - 'Ethan'
+    - 'Finn'
+    - 'Noah'
+    - 'Elijah'
+    - 'Charlie'
+    - 'Farmer Joe'
+    - 'Old Tom'
+    - 'Billy'
+    - 'Greg'
+    - 'Bob'
+    - 'Harold'
+    - 'Walter'
+    - 'Fred'
+    - 'Jerry'
+    - 'Larry'
+    - 'Steve'
+    - 'Alex'
+    - 'Notch'
