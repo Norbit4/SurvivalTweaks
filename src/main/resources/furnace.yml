@@ -7,4 +7,4 @@ blacklist:
 fuels:
   COAL: 800
   BLAZE_ROD: 1000
-  COAL_BLOCk: 8000
+  COAL_BLOCK: 8000
