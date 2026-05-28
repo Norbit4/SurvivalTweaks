@@ -40,6 +40,9 @@ public class MechanicsConfig extends ConfigFile {
     private String normalSizeItem;
 
     @Getter
+    private String bigSizeItem;
+
+    @Getter
     private boolean sizeEnabled;
 
     //turtle helmet
@@ -268,6 +271,7 @@ public class MechanicsConfig extends ConfigFile {
         sizeEnabled = config.getBoolean("mechanics.size.enabled");
         smallSizeItem  = config.getString("mechanics.size.small");
         normalSizeItem = config.getString("mechanics.size.normal");
+        bigSizeItem = config.getString("mechanics.size.big");
 
         //turtleHelmet
         turtleHelmetEnabled = config.getBoolean("mechanics.turtle-helmet.enabled");

@@ -67,11 +67,14 @@ public class PlayerEatListener implements Listener {
 
         String smallSizeItem = mechanicsConfig.getSmallSizeItem();
         String normalSizeItem = mechanicsConfig.getNormalSizeItem();
+        String bigSizeItem = mechanicsConfig.getBigSizeItem();
 
         if(ItemsUtils.isValidItem(item, smallSizeItem)){
             SizeMechanic.setSize(p, PlayerSize.SMALL);
         }else if(ItemsUtils.isValidItem(item, normalSizeItem)){
             SizeMechanic.setSize(p, PlayerSize.NORMAL);
+        }else if(ItemsUtils.isValidItem(item, bigSizeItem)){
+            SizeMechanic.setSize(p, PlayerSize.BIG);
         }
     }
 }

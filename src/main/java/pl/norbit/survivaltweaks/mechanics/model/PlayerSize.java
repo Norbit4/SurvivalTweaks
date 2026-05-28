@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public enum PlayerSize {
     NORMAL(1.0, 0.4, 0.5, 20),
+    BIG(1.25, 0.5, 0.5, 26),
     SMALL(0.5, 0.4, 0.5, 14),;
 
     private final double size;
