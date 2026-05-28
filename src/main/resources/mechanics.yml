@@ -12,8 +12,21 @@ mechanics:
   spyglass:
     enabled: true
     cooldown: 3
-  # change your size when eat
-  # ItemsAdder - ia:<id> Nexo - nexo:<id>
+  # Change your size when eating specific items
+  # ItemsAdder - ia:<id>
+  # Nexo - nexo:<id>
+  # Vanilla Minecraft items use normal material names
+  #
+  # Small size:
+  # - Less health
+  # - Smaller hitbox
+  #
+  # Big size:
+  # - More health
+  # - Higher jump
+  # - Bigger hitbox
+  # - 2x food consumption
+  #
   size:
     enabled: true
     small: GLOW_BERRIES
