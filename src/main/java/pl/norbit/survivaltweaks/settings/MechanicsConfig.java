@@ -218,10 +218,29 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean dispenserBerryHarvestEnabled;
 
+    //villager random names
     @Getter
     private boolean villagersRandomNamesEnabled;
     @Getter
+    private String villagersRandomNamesColor;
+    @Getter
     private List<String> villagersRandomNames;
+
+    //dogs random names
+    @Getter
+    private boolean dogsRandomNamesEnabled;
+    @Getter
+    private String dogsRandomNamesColor;
+    @Getter
+    private List<String> dogsRandomNames;
+
+    //cats random names
+    @Getter
+    private boolean catsRandomNamesEnabled;
+    @Getter
+    private String catsRandomNamesColor;
+    @Getter
+    private List<String> catsRandomNames;
 
     @Getter
     private boolean disableEqDropsForSpawnerMobs;
@@ -359,8 +378,18 @@ public class MechanicsConfig extends ConfigFile {
         infinityFoodEnabled = config.getBoolean("mechanics.infinity-food.enabled");
         itemsFoodMap = loadInfinityFood(config);
 
+        //random names
         villagersRandomNamesEnabled = config.getBoolean("mechanics.villagers-random-names.enabled");
+        villagersRandomNamesColor = config.getString("mechanics.villagers-random-names.color");
         villagersRandomNames = config.getStringList("mechanics.villagers-random-names.names");
+
+        dogsRandomNamesEnabled = config.getBoolean("mechanics.dogs-random-names.enabled");
+        dogsRandomNamesColor = config.getString("mechanics.dogs-random-names.color");
+        dogsRandomNames = config.getStringList("mechanics.dogs-random-names.names");
+
+        catsRandomNamesEnabled = config.getBoolean("mechanics.cats-random-names.enabled");
+        catsRandomNamesColor = config.getString("mechanics.cats-random-names.color");
+        catsRandomNames = config.getStringList("mechanics.cats-random-names.names");
     }
     private Map<String, InfinityFood> loadInfinityFood(FileConfiguration config) {
         Map<String, InfinityFood> infinityFoodsMap = new HashMap<>();
@@ -420,6 +449,14 @@ public class MechanicsConfig extends ConfigFile {
 
     public String getRandomVillagerName() {
         return villagersRandomNames.get(random.nextInt(villagersRandomNames.size()));
+    }
+
+    public String getRandomCatName() {
+        return catsRandomNames.get(random.nextInt(catsRandomNames.size()));
+    }
+
+    public String getRandomDogName() {
+        return dogsRandomNames.get(random.nextInt(dogsRandomNames.size()));
     }
 
     public boolean isDisabledMaceNerfWorld(String worldName) {

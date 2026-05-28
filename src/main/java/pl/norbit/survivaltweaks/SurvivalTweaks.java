@@ -122,7 +122,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new SpawnerPlaceListener(), this);
         pluginManager.registerEvents(new SpawnerInteractListener(), this);
 
-        pluginManager.registerEvents(new VillagerRandomNamesListener(), this);
+        pluginManager.registerEvents(new MobsRandomNamesListener(), this);
         pluginManager.registerEvents(new SpawnerMobDeath(), this);
 
         pluginManager.registerEvents(new DispenserShearsListener(), this);

@@ -182,6 +182,7 @@ mechanics:
   # Random names for villagers assigned on natural spawn
   villagers-random-names:
     enabled: true
+    color: '&#9c4321'
     names:
       - 'Oliver'
       - 'Jack'
@@ -211,6 +212,7 @@ mechanics:
   # Random names for dogs assigned when tamed
   dogs-random-names:
     enabled: true
+    color: '&#dff2f0'
     names:
       - 'Buddy'
       - 'Max'
@@ -220,6 +222,7 @@ mechanics:
   # Random names for cats assigned when tamed
   cats-random-names:
     enabled: true
+    color: '&#dff2f0'
     names:
       - 'Luna'
       - 'Milo'

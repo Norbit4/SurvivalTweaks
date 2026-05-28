@@ -71,6 +71,8 @@ public class MechanicsLoader {
             case INFINITY_FOOD -> mechanicsConfig.isInfinityFoodEnabled();
             case SPAWNER_MOBS_BLOCKED_EQ_DROPS -> mechanicsConfig.isDisableEqDropsForSpawnerMobs();
             case DISPENSER_BERRY_HARVEST -> mechanicsConfig.isDispenserBerryHarvestEnabled();
+            case CATS_RANDOM_NAMES -> mechanicsConfig.isCatsRandomNamesEnabled();
+            case DOGS_RANDOM_NAMES -> mechanicsConfig.isDogsRandomNamesEnabled();
         };
     }
 
