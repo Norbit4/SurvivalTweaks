@@ -32,6 +32,14 @@ public class PlayerUtils {
         return SurvivalTweaks.getInstance().getServer().getPlayer(playerName);
     }
 
+    public static boolean hasPermission(Player p, String permission) {
+        if(p.isOp()){
+            return true;
+        }
+
+        return p.hasPermission(permission);
+    }
+
     public static ItemStack getCustomSkull(OfflinePlayer offlinePlayer) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 

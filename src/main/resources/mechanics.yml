@@ -143,11 +143,15 @@ mechanics:
   #remove the anvil too expensive limit, change too expensive to mas possible level (39) in anvil
   anvil-too-expensive-fix:
     enabled: true
-  # add custom dead messages
+  # Custom dead messages
   dead-messages:
     enabled: true
+    # Prevents abuse by repeatedly dying in a short period of time.
+    # When a player is blocked by the anti-abuse system:
+    # - death messages are not displayed,
+    # - death statistics are not increased,
     anti-abuse: true
-    # Worlds where death messages are disabled
+    # Worlds where death messages and death/kill statistics are disabled.
     disabled-worlds:
       - 'example_world'
   #protections from grief explosions, like tnt, end crystal, respawn anchor

@@ -1,5 +1,6 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -7,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import pl.norbit.survivaltweaks.log.PluginDebug;
 import pl.norbit.survivaltweaks.mechanics.model.DeadAntiAbuse;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
@@ -63,11 +65,13 @@ public class PlayerDeadListener implements Listener {
 
         if(mechanicsConfig.isCustomDeathMessageAntiAbuse() && deadAntiAbuse.isBlocked(p.getUniqueId())){
             e.setDeathMessage(null);
+            removeDeathStats(p);
             return;
         }
 
         if(mechanicsConfig.isDisabledDeathMessageWorld(worldName)){
             e.setDeathMessage(null);
+            removeDeathStats(p);
             return;
         }
 
@@ -80,6 +84,22 @@ public class PlayerDeadListener implements Listener {
         String message = DeathMessagesUtils.getMessage(p, lastDamageCause);
 
         e.setDeathMessage(ChatUtils.format(message, p));
+    }
+
+    public static void removeDeathStats(Player victim) {
+        Player killer = victim.getKiller();
+
+        if (victim.getStatistic(Statistic.DEATHS) > 0) {
+            victim.decrementStatistic(Statistic.DEATHS);
+            PluginDebug.debug("Block deaths increment");
+        }
+
+        if (killer != null && killer.getStatistic(Statistic.PLAYER_KILLS) > 0) {
+            killer.decrementStatistic(Statistic.PLAYER_KILLS);
+            PluginDebug.debug("Block kills increment");
+        } else {
+            PluginDebug.debug("No killer found");
+        }
     }
 }
 
