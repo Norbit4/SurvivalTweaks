@@ -7,6 +7,8 @@ import pl.norbit.survivaltweaks.SurvivalTweaks;
 public class Config {
     @Getter
     private boolean debug;
+    @Getter
+    private String signatureCmd;
 
     public Config() {
         load(false);
@@ -23,6 +25,7 @@ public class Config {
         FileConfiguration config = instance.getConfig();
 
         debug = config.getBoolean("debug");
+        signatureCmd = config.getString("commands.sign");
     }
 
     public void reload() {

@@ -6,6 +6,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -115,6 +116,28 @@ public class MessagesConfig extends ConfigFile {
     @Getter
     private String entityHpDisplay;
 
+
+    @Getter
+    private String globalPermission;
+
+    @Getter
+    private String globalCooldown;
+
+    @Getter
+    private String itemSignatureUsage;
+
+    @Getter
+    private String itemSignaturePermission;
+
+    @Getter
+    private String itemSignatureSuccess;
+
+    @Getter
+    private String itemSignatureError;
+
+    @Getter
+    private List<String> itemSignatureLore;
+
     private Map<String, String> mobNames;
 
     @Getter
@@ -181,6 +204,17 @@ public class MessagesConfig extends ConfigFile {
         blockSpawnNearSpawnerMessage = config.getString("block-spawn-near-spawner.message");
 
         infinityFoodCooldownMessage = config.getString("infinity-food.cooldown");
+
+        globalPermission = config.getString("global.no-permission");
+
+        globalCooldown = config.getString("global.cooldown");
+
+        //item signature cmd
+        itemSignatureUsage = config.getString("item-signature.usage");
+        itemSignaturePermission = config.getString("item-signature.permission");
+        itemSignatureSuccess = config.getString("item-signature.success");
+        itemSignatureError = config.getString("item-signature.error");
+        itemSignatureLore = config.getStringList("item-signature.lore");
 
         //custom death message
         deathMessagePrefix = config.getString("dead-messages.prefix");

@@ -24,3 +24,6 @@
 # Spigot and Bukkit are not supported.
 
 debug: false
+
+commands:
+  sign: 'sign'

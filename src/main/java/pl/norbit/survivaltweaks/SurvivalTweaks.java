@@ -1,10 +1,13 @@
 package pl.norbit.survivaltweaks;
 
+import com.mojang.brigadier.arguments.StringArgumentType;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.norbit.survivaltweaks.commands.ItemSignatureCommand;
 import pl.norbit.survivaltweaks.commands.MainCommand;
 import pl.norbit.survivaltweaks.commands.TrackCommand;
 import pl.norbit.survivaltweaks.mechanics.listeners.*;
@@ -24,6 +27,8 @@ import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.MythicUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
+import static io.papermc.paper.command.brigadier.Commands.argument;
+import static io.papermc.paper.command.brigadier.Commands.literal;
 
 public final class SurvivalTweaks extends JavaPlugin {
     @Getter
@@ -54,7 +59,12 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         getCommand("survivaltweaks").setExecutor(new MainCommand());
         getCommand("track").setExecutor(new TrackCommand());
-
+        getLifecycleManager().registerEventHandler(
+                LifecycleEvents.COMMANDS,
+                event -> {
+                    ItemSignatureCommand.register(event.registrar());
+                }
+        );
         checkPlugins();
     }
 

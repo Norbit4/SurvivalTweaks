@@ -84,6 +84,19 @@ block-spawn-egg-change:
   message: '&cYou cannot change the spawner type using a spawn egg!'
 block-spawn-near-spawner:
   message: '&cYou cannot place a spawner this close to another spawner!'
+
+global:
+  no-permission: '&cYou do not have permission to use this command.'
+  cooldown: '&cYou must wait &e{time}s &cbefore using this command again.'
+
+item-signature:
+  usage: '&cUsage: /signature <name>'
+  permission: 'survivaltweaks.sign'
+  success: '&aItem signed successfully!'
+  error: '&cYou must hold an item in your hand!'
+  lore:
+    - ' &#f5e898{player} &8({date})'
+
 #add mobs to change their names
 mob-names:
   #entity_type 'new name'
