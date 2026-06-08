@@ -73,6 +73,7 @@ public final class SurvivalTweaks extends JavaPlugin {
         }
         if(checkPlugin("Nexo")){
             setNexoEnabled(true);
+            getServer().getPluginManager().registerEvents(new NexoItemUpdateListener(), this);
         }
 
         if(checkPlugin("ItemsAdder")){
