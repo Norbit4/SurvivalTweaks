@@ -27,8 +27,6 @@ import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.MythicUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
-import static io.papermc.paper.command.brigadier.Commands.argument;
-import static io.papermc.paper.command.brigadier.Commands.literal;
 
 public final class SurvivalTweaks extends JavaPlugin {
     @Getter
