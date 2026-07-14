@@ -4,7 +4,9 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
@@ -19,13 +21,22 @@ import pl.norbit.survivaltweaks.utils.ChatUtils;
 import pl.norbit.survivaltweaks.utils.TaskUtils;
 import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class PlayerEatListener implements Listener {
+    private final Set<UUID> eatingPlayers = ConcurrentHashMap.newKeySet();
+
     @EventHandler
     public void onEat(PlayerItemConsumeEvent e) {
+        if (MechanicsLoader.isDisabled(Mechanic.INFINITY_FOOD)) {
+            return;
+        }
+
         Player p = e.getPlayer();
 
         ItemStack item = e.getItem().clone();
-        int slot = p.getInventory().getHeldItemSlot();
 
         String id = ItemsUtils.getId(item);
         NamespacedKey key = new NamespacedKey(SurvivalTweaks.getInstance(), id);
@@ -50,9 +61,32 @@ public class PlayerEatListener implements Listener {
             e.setCancelled(true);
             return;
         }
+        eatingPlayers.add(p.getUniqueId());
         p.setCooldown(key, 20 * infinityFood.getCooldown());
 
-        TaskUtils.asyncLater(() -> p.getInventory().setItem(slot, item), 1);
+        EquipmentSlot hand = e.getHand();
+
+        TaskUtils.syncLater(() -> {
+            if (hand == EquipmentSlot.HAND) {
+                p.getInventory().setItemInMainHand(item);
+            } else {
+                p.getInventory().setItemInOffHand(item);
+                // Paper doesn't update the off-hand stack amount visually without this.
+                p.updateInventory();
+            }
+            eatingPlayers.remove(p.getUniqueId());
+        }, 1);
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onDrop(PlayerDropItemEvent e) {
+        if (MechanicsLoader.isDisabled(Mechanic.INFINITY_FOOD)) {
+            return;
+        }
+
+        if (eatingPlayers.contains(e.getPlayer().getUniqueId())) {
+            e.setCancelled(true);
+        }
     }
 
     @EventHandler
