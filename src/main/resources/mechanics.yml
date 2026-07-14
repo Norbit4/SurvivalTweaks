@@ -173,7 +173,9 @@ mechanics:
   # prevents mobs spawned from spawners from dropping equipment
   disable-equipment-drops-from-spawner-mobs:
     enabled: false
-  #infinity food
+  # Infinite food system.
+  # Listed items are returned to the player's hand after being consumed instead of being used up.
+  # Each item has its own cooldown before it can be consumed again.
   infinity-food:
     enabled: false
     items:

@@ -3,7 +3,7 @@ blocker:
   armadillo-brush-cooldown:
     enabled: false
     cooldown: 30
-  # despawn ender perls after 20 sec, this block player teleports with "freeze" ender pearl in long distances
+  # despawn ender pearls after 20 sec, this block player teleports with "freeze" ender pearl in long distances
   ender-pearl-despawn:
     enabled: false
   # prevents changing the type of spawner using spawn eggs
@@ -30,7 +30,9 @@ blocker:
     - 'NETHERITE_UPGRADE_SMITHING_TEMPLATE'
   block-bone-meal:
     enabled: false
+    # If enabled, dispensers will be unable to use bone meal on any block.
     block-dispenser: true
+    # List of blocks/crops affected by this restriction.
     blocked:
       - 'CARROTS'
       - 'POTATOES'
