@@ -150,6 +150,9 @@ public class MessagesConfig extends ConfigFile {
     private String respawnSubtitle;
 
     @Getter
+    private String enchantmentExtractionBookLore;
+
+    @Getter
     private String blockSpawnEggChangeMessage;
 
     @Getter
@@ -215,6 +218,8 @@ public class MessagesConfig extends ConfigFile {
         itemSignatureSuccess = config.getString("item-signature.success");
         itemSignatureError = config.getString("item-signature.error");
         itemSignatureLore = config.getStringList("item-signature.lore");
+
+        enchantmentExtractionBookLore = config.getString("enchantment-extraction.book-lore");
 
         //custom death message
         deathMessagePrefix = config.getString("dead-messages.prefix");

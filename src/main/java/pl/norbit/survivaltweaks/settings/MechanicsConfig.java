@@ -218,6 +218,14 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private boolean dispenserBerryHarvestEnabled;
 
+    //enchantment extraction
+    @Getter
+    private boolean enchantmentExtractionEnabled;
+    @Getter
+    private double enchantmentExtractionChance;
+    @Getter
+    private String enchantmentExtractionItem;
+
     //villager random names
     @Getter
     private boolean villagersRandomNamesEnabled;
@@ -377,6 +385,10 @@ public class MechanicsConfig extends ConfigFile {
 
         infinityFoodEnabled = config.getBoolean("mechanics.infinity-food.enabled");
         itemsFoodMap = loadInfinityFood(config);
+
+        enchantmentExtractionEnabled = config.getBoolean("mechanics.enchantment-extraction.enabled");
+        enchantmentExtractionChance = config.getDouble("mechanics.enchantment-extraction.success-chance");
+        enchantmentExtractionItem = config.getString("mechanics.enchantment-extraction.required-item");
 
         //random names
         villagersRandomNamesEnabled = config.getBoolean("mechanics.villagers-random-names.enabled");

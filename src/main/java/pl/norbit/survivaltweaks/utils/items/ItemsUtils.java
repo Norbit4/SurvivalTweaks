@@ -60,6 +60,10 @@ public class ItemsUtils {
     }
 
     public static boolean isValidItem(ItemStack is, String id) {
+        if(is == null){
+            return false;
+        }
+
         ItemResult result = getItemType(id);
 
         ItemType itemType = result.itemType();

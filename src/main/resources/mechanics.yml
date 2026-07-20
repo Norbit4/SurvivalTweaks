@@ -1,69 +1,70 @@
 mechanics:
-  # display cords when the player holds compass
+  # Displays the player's coordinates while holding a compass.
   compass:
     enabled: true
-  # display time when player holds a clock
+  # Displays the current world time while holding a clock.
   clock:
     enabled: true
-  # display last death location when player holds recovery_compass
+  # Displays the player's last death location while holding a recovery compass.
   recovery-compass:
     enabled: true
-  # entity health and distance when a player uses spyglass
+  # Displays the targeted entity's health and distance while using a spyglass.
   spyglass:
     enabled: true
     cooldown: 3
-  # Change your size when eating specific items
+  # Allows players to change their size by eating specific items.
   # ItemsAdder - ia:<id>
   # Nexo - nexo:<id>
-  # Vanilla Minecraft items use normal material names
+  # Vanilla Minecraft items use Material names.
   #
   # Small size:
-  # - Less health
+  # - Reduced health
   # - Smaller hitbox
   #
   # Big size:
-  # - More health
+  # - Increased health
   # - Higher jump
-  # - Bigger hitbox
-  # - 2x food consumption
-  #
+  # - Larger hitbox
+  # - Double food consumption
   size:
     enabled: true
     small: GLOW_BERRIES
     normal: GOLDEN_CARROT
     big: SWEET_BERRIES
-  # add dolphin's grace effect when a player is in water and has a turtle helmet in the head
+  # Grants Dolphin's Grace while wearing a turtle helmet underwater.
   turtle-helmet:
     enabled: true
-    # 30% chance to set -1 durability when player is in water (every 2 sec)
+    # 30% chance to reduce helmet durability by 1 every 2 seconds while underwater.
     durability: true
-  # fireball likes a ghost when player right-click with fire charge
+  # Launches a fireball when right-clicking with a Fire Charge.
   fireball:
     enabled: true
     cooldown: 40
-    # fireball break scale, high value = more explosion
+    # Explosion power. Higher values create larger explosions.
     yield: 2
-  # drop player head when player dies
+  # Makes players drop their head on death.
   player-head:
     enabled: true
+    # Prevents farming player heads through repeated kills.
     anti-abuse: true
-    # chance to drop player head, 1 = 100%
+    # Chance for the head to drop. 1.0 = 100%.
     chance: 0.2
-  # activate totem of undying when player dies in void, apply levitation effect
+  # Allows Totems of Undying to activate when dying in the void.
+  # Applies Levitation to help the player escape.
   void-totem:
     enabled: true
-  # allows players to mine spawners using Silk Touch or special items
+  # Allows players to mine spawners using Silk Touch or configured tools.
   mine-spawners:
     enabled: true
-    # if true, spawners placed by players will always drop
+    # If enabled, player-placed spawners always drop.
     always-drop-placed-by-players: true
-    # drop settings when spawner mining fails
     failure-drop:
       enabled: true
-      # If enabled, this item will drop when:
-      # - player uses a wrong tool
-      # - silk touch requirement is not met
-      # - drop chance check fails
+      # Item dropped when spawner mining fails.
+      # This happens if:
+      # - the wrong tool is used,
+      # - Silk Touch is required but missing,
+      # - the drop chance check fails.
       item: 'IRON_INGOT'
       amount: 1
     types:
@@ -83,27 +84,28 @@ mechanics:
         worlds:
           - 'world_nether'
 
-  # mine budding amethyst with silk touch
+  # Allows budding amethyst blocks to be mined with Silk Touch.
   mine-budding-amethyst:
     enabled: true
-  #show mob hp:
+  # Displays the targeted entity's health in the action bar.
   entity-hp:
     enabled: true
-  # chance to drop blaze rod when a blaze dies on water, 50% chance - 1 rod, 10% chance - 2 rods
+  # Blaze killed by water have a chance to drop Blaze Rods (50% chance - 1 rod, 10% chance - 2 rods)
+  # Vanilla Minecraft does not drop Blaze Rods in this case.
   blaze-water-drop:
     enabled: true
-  # villager profession cooldown, 5 sec
+  # Prevents villagers from changing professions too quickly.
   villager-profession-cooldown:
     enabled: false
-    # cooldown time in seconds
+    # Cooldown time in seconds
     cooldown: 90
-  # Shift + right click to hide/unhide item frame
+  # Allows players to hide or reveal item frames with Shift + Right Click.
   invisible-item-frames:
     enabled: true
-  # keep 50% items when player dies
+  # Keeps 50% of the player's inventory after death.
   keep-items:
     enabled: false
-    # worlds where keep-items are disabled
+    # Worlds where keep-items are disabled
     disabled-worlds:
       - 'example_world'
     # ItemsAdder - ia:<id> Nexo - nexo:<id>
@@ -114,9 +116,9 @@ mechanics:
     # Reduces mace damage by a percentage.
     # Example: 60 = damage is reduced by 60%, so only 40% remains.
     # If the original damage is 20, the final damage will be 8.
-    # Final damage is also capped by maceMaxDamage.
+    # Final damage is also capped by mace MaxDamage.
     percentage: 40
-    #maximum damage that a mace hit can deal after all calculations (prevents extremely high smash damage)
+    # Maximum damage that a mace hit can deal after all calculations (prevents extremely high smash damage)
     max-damage: 35
     disabled-worlds:
       - 'example_world'
@@ -126,24 +128,25 @@ mechanics:
     # Reduces spear damage by a percentage.
     # Example: 60 = damage is reduced by 60%, so only 40% remains.
     # If the original damage is 20, the final damage will be 8.
-    # Final damage is also capped by spearMaxDamage.
+    # Final damage is also capped by spear MaxDamage.
     percentage: 40
-    #maximum damage a spear hit can deal
+    # Maximum damage a spear hit can deal
     max-damage: 35
-    #spear with lunge cooldown (in ticks)
+    # Spear with lunge cooldown (in ticks)
     cooldown: 60
     disabled-worlds:
       - 'example_world'
 
-  #boost happy ghost speed and hp
+  # Increases Happy Ghast health and movement speed.
   happy-ghost-boost:
     enabled: true
     speed-multiplier: 1.5
     hp: 100
-  #remove the anvil too expensive limit, change too expensive to mas possible level (39) in anvil
+  # Removes the "Too Expensive!" limit in anvils.
+  # Replaces it with the maximum possible level cost (39).
   anvil-too-expensive-fix:
     enabled: true
-  # Custom dead messages
+  # Custom death messages and statistics.
   dead-messages:
     enabled: true
     # Prevents abuse by repeatedly dying in a short period of time.
@@ -154,23 +157,25 @@ mechanics:
     # Worlds where death messages and death/kill statistics are disabled.
     disabled-worlds:
       - 'example_world'
-  #protections from grief explosions, like tnt, end crystal, respawn anchor
+  # Protects against grief caused by explosions.
+  # Includes TNT, End Crystals, Respawn Anchors and TNT Minecarts.
   grief-protection:
     enabled: false
     block-tnt-explosion: true
     block-crystal-explosion: true
     block-anchor-explosion: true
     block-tnt-minecart: true
-  #nerf furnace fuels, values: furnace.yml
+  # Overrides furnace fuel values.
+  # Fuel values are configured in furnace.yml.
   furnace-fuel-nerf:
     enabled: false
-  #wither work only in nether
+  # Restricts Wither spawning to the Nether.
   nether-wither:
     enabled: false
-  # dispenser with shears can harvest sweet berries and glow berries
+  # Allows dispensers with shears to harvest Sweet Berry and Glow Berry bushes.
   dispenser-berry-harvest:
     enabled: true
-  # prevents mobs spawned from spawners from dropping equipment
+  # Prevents mobs spawned from spawners from dropping equipped armor and weapons.
   disable-equipment-drops-from-spawner-mobs:
     enabled: false
   # Infinite food system.
@@ -185,6 +190,12 @@ mechanics:
       golden_apple:
         id: 'GOLDEN_APPLE'
         cooldown: 15
+  # Allows extracting a random enchantment from an item using a grindstone.
+  # The required item is consumed on each extraction attempt.
+  enchantment-extraction:
+    enabled: true
+    success-chance: 0.5
+    required-item: "LAPIS_LAZULI"
   # Random names for villagers assigned on natural spawn
   villagers-random-names:
     enabled: true

@@ -1,4 +1,4 @@
-# reload: /survivaltweaks reload, permission: survivaltweaks.command
+# Reload: /survivaltweaks reload, permission: survivaltweaks.command
 
 reload-message: '&aPlugin has been reloaded!'
 
@@ -97,7 +97,10 @@ item-signature:
   lore:
     - ' &#f5e898{player} &8({date})'
 
-#add mobs to change their names
+enchantment-extraction:
+  book-lore: '&cChance of failure: 50%'
+
+# Custom names for mob types.
 mob-names:
   #entity_type 'new name'
   allay: 'Allay'

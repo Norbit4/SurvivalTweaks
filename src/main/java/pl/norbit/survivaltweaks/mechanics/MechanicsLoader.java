@@ -73,6 +73,7 @@ public class MechanicsLoader {
             case DISPENSER_BERRY_HARVEST -> mechanicsConfig.isDispenserBerryHarvestEnabled();
             case CATS_RANDOM_NAMES -> mechanicsConfig.isCatsRandomNamesEnabled();
             case DOGS_RANDOM_NAMES -> mechanicsConfig.isDogsRandomNamesEnabled();
+            case ENCHANTMENT_EXTRACTION -> mechanicsConfig.isEnchantmentExtractionEnabled();
         };
     }
 

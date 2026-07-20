@@ -1,33 +1,37 @@
 blocker:
-  # cooldown for using the brush on armadillo
+  # Adds a cooldown after brushing an armadillo.
   armadillo-brush-cooldown:
     enabled: false
+    # Cooldown in seconds.
     cooldown: 30
-  # despawn ender pearls after 20 sec, this block player teleports with "freeze" ender pearl in long distances
+  # Despawns Ender Pearls after 20 seconds.
+  # Prevents long-distance teleports using frozen Ender Pearls.
   ender-pearl-despawn:
     enabled: false
-  # prevents changing the type of spawner using spawn eggs
-  # bypass perm: survivaltweaks.spawner-use.bypass
+
+  # Prevents changing spawner types using spawn eggs.
+  # Bypass permission: survivaltweaks.spawner-use.bypass
   block-spawn-egg-change:
     enabled: false
-  # prevents placing a spawner near another spawner
+  # Prevents placing a spawner too close to another spawner.
+  # Bypass permission: survivaltweaks.spawner.bypass
   block-place-spawner-near-spawner:
-    #bypass: survivaltweaks.spawner.bypass
     enabled: false
-    # minimum distance between spawners in blocks
+    # Minimum distance between spawners in blocks.
     distance: 3
-  #block bone-meal usage
-  #bypass: survivaltweaks.bonemeal.bypass
+
   elytra:
-    # Block elytra natural generate in end cities
+    # Prevents Elytra from generating in End Cities.
     block-generate: false
-    # Block elytra mending enchantment
+    # Prevents applying the Mending enchantment to Elytra.
     block-mending: false
-  # Block items generate in loot chests
+  # Prevents selected items from generating in loot chests.
   block-loot:
     enabled: false
     items:
     - 'NETHERITE_UPGRADE_SMITHING_TEMPLATE'
+  # Prevents using bone meal on selected blocks.
+  # Bypass permission: survivaltweaks.bonemeal.bypass
   block-bone-meal:
     enabled: false
     # If enabled, dispensers will be unable to use bone meal on any block.
