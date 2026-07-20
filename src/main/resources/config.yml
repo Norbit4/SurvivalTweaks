@@ -12,15 +12,16 @@
 # SurvivalTweaks by Norbit4
 
 # github: https://github.com/Norbit4
-# wiki: https://github.com/Norbit4/SurvivalTweaks/
+# source code: https://github.com/Norbit4/SurvivalTweaks
+# wiki: https://n0rbit.gitbook.io/wiki/resources/survivaltweaks
 
 # This plugin is created to add some useful mechanics for useless items in Minecraft.
 # If you like the plugin, support me with a positive opinion, thanks! <3
 #
 # If you have any suggestions, write to me on discord: n0rbit
-# or join to my discord server: https://discord.com/invite/bA2kamGNyH
+# or join to my discord server: https://discord.com/invite/DPXqQcDDTs
 
-# The Plugin supports Minecraft 1.21.11+ with engine Paper or forks.
+# The Plugin supports Minecraft 1.21.11 with Paper or forks.
 # Spigot and Bukkit are not supported.
 
 debug: false
