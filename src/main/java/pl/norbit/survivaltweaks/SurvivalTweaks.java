@@ -1,12 +1,9 @@
 package pl.norbit.survivaltweaks;
 
-import com.mojang.brigadier.arguments.StringArgumentType;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.norbit.survivaltweaks.commands.ItemSignatureCommand;
@@ -140,5 +137,6 @@ public final class SurvivalTweaks extends JavaPlugin {
         pluginManager.registerEvents(new PlayerFoodLossListener(), this);
 
         pluginManager.registerEvents(new GrindstoneListener(), this);
+        pluginManager.registerEvents(new PlayerWaypointListener(), this);
     }
 }

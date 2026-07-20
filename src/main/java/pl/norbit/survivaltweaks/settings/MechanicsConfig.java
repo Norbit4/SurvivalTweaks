@@ -226,6 +226,12 @@ public class MechanicsConfig extends ConfigFile {
     @Getter
     private String enchantmentExtractionItem;
 
+    //waypoints
+    @Getter
+    private boolean waypointsEnabled;
+    @Getter
+    private int waypointsRange;
+
     //villager random names
     @Getter
     private boolean villagersRandomNamesEnabled;
@@ -389,6 +395,10 @@ public class MechanicsConfig extends ConfigFile {
         enchantmentExtractionEnabled = config.getBoolean("mechanics.enchantment-extraction.enabled");
         enchantmentExtractionChance = config.getDouble("mechanics.enchantment-extraction.success-chance");
         enchantmentExtractionItem = config.getString("mechanics.enchantment-extraction.required-item");
+
+        //waypoint
+        waypointsEnabled = config.getBoolean("mechanics.waypoints.enabled");
+        waypointsRange = config.getInt("mechanics.waypoints.range");
 
         //random names
         villagersRandomNamesEnabled = config.getBoolean("mechanics.villagers-random-names.enabled");

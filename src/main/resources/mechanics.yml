@@ -196,6 +196,15 @@ mechanics:
     enabled: true
     success-chance: 0.5
     required-item: "LAPIS_LAZULI"
+  # This overrides Minecraft default waypoint attributes
+  # (waypoint_receive_range and waypoint_transmit_range).
+  #
+  # Note: After changing this option and reloading the plugin,
+  # players must rejoin the server for the new values to be applied.
+  waypoints:
+    enabled: false
+    # Maximum waypoint range in blocks.
+    range: 60
   # Random names for villagers assigned on natural spawn
   villagers-random-names:
     enabled: true
