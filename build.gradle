@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id("com.gradleup.shadow") version "8.3.6"
     id 'java'
 }
 
@@ -34,10 +34,17 @@ repositories {
 
 shadowJar {
     archiveClassifier.set("")
+
+    configurations = [project.configurations.runtimeClasspath]
+
+    relocate("org.bstats", "${project.group}.libs.bstats")
 }
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT"
+
+    //bstats
+    implementation("org.bstats:bstats-bukkit:3.2.1")
 
     //placeholderapi
     compileOnly 'me.clip:placeholderapi:2.11.6'
@@ -50,7 +57,10 @@ dependencies {
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.18-3'
     compileOnly files('libs/MythicMobs-5.10.0.jar')
 
+    //nexo
     compileOnly("com.nexomc:nexo:1.24.0")
+
+    //itemsadder
     compileOnly("dev.lone:api-itemsadder:4.0.10")
 }
 

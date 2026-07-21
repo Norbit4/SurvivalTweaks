@@ -4,11 +4,13 @@ import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.norbit.survivaltweaks.commands.ItemSignatureCommand;
 import pl.norbit.survivaltweaks.commands.MainCommand;
 import pl.norbit.survivaltweaks.commands.TrackCommand;
+import pl.norbit.survivaltweaks.hooks.SuperVanish;
 import pl.norbit.survivaltweaks.mechanics.listeners.*;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.listeners.block.AmethystBreakListener;
@@ -25,7 +27,6 @@ import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerInteractListe
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.MythicUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
-import pl.norbit.survivaltweaks.hooks.SuperVanish;
 
 public final class SurvivalTweaks extends JavaPlugin {
     @Getter
@@ -63,6 +64,7 @@ public final class SurvivalTweaks extends JavaPlugin {
                 }
         );
         checkPlugins();
+        loadBStats();
     }
 
     private void checkPlugins(){
@@ -92,6 +94,10 @@ public final class SurvivalTweaks extends JavaPlugin {
             return true;
         }
         return false;
+    }
+
+    private void loadBStats(){
+        new Metrics(this, 23151);
     }
 
     private void loadListeners(){
