@@ -1,5 +1,6 @@
 package pl.norbit.survivaltweaks.mechanics.info;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
@@ -53,6 +54,10 @@ public class ActionHealthMechanic {
                 String playerName = player.getName();
 
                 if(player.isInvisible()){
+                    return;
+                }
+
+                if(player.getGameMode() == GameMode.SPECTATOR){
                     return;
                 }
 
