@@ -1,3 +1,25 @@
+# Item identifier.
+# Supports vanilla Minecraft materials and custom items.
+#
+# Formats:
+# - <material>               (Vanilla Minecraft)
+# - nexo:<id>                (Nexo)
+# - ia:<id>                  (ItemsAdder)
+# - mmoitems:<category>:<id> (MMOItems)
+# - oraxen:<id>              (Oraxen)
+# - ce:<id>                  (CraftEngine)
+# - mm:<id>                  (MythicMobs)
+#
+# Examples:
+# - STONE
+# - DIAMOND_SWORD
+# - nexo:ruby
+# - ia:magic_ingot
+# - mmoitems:SWORD:LONG_SWORD
+# - oraxen:amethyst_hammer
+# - ce:topaz
+# - mm:BanditTunic
+
 mechanics:
   # Displays the player's coordinates while holding a compass.
   compass:
@@ -13,9 +35,6 @@ mechanics:
     enabled: true
     cooldown: 3
   # Allows players to change their size by eating specific items.
-  # ItemsAdder - ia:<id>
-  # Nexo - nexo:<id>
-  # Vanilla Minecraft items use Material names.
   #
   # Small size:
   # - Reduced health

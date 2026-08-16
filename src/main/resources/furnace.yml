@@ -1,9 +1,31 @@
-#fuel blacklist
+# Item identifier.
+# Supports vanilla Minecraft materials and custom items.
+#
+# Formats:
+# - <material>               (Vanilla Minecraft)
+# - nexo:<id>                (Nexo)
+# - ia:<id>                  (ItemsAdder)
+# - mmoitems:<category>:<id> (MMOItems)
+# - oraxen:<id>              (Oraxen)
+# - ce:<id>                  (CraftEngine)
+# - mm:<id>                  (MythicMobs)
+#
+# Examples:
+# - STONE
+# - DIAMOND_SWORD
+# - nexo:ruby
+# - ia:magic_ingot
+# - mmoitems:SWORD:LONG_SWORD
+# - oraxen:amethyst_hammer
+# - ce:topaz
+# - mm:BanditTunic
+
+# fuel blacklist
 blacklist:
   - 'LAVA_BUCKET'
   - 'DRIED_KELP_BLOCK'
 
-#override fuel burn time
+# override fuel burn time
 fuels:
   COAL: 800
   BLAZE_ROD: 1000
