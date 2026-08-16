@@ -24,9 +24,9 @@ import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.settings.MechanicsConfig;
+import pl.norbit.survivaltweaks.settings.custom.CustomItemsUtils;
 import pl.norbit.survivaltweaks.utils.RandomUtils;
 import pl.norbit.survivaltweaks.settings.model.SpawnerType;
-import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
 public class SpawnerDropListener implements Listener {
     private final NamespacedKey spawnerKey = new NamespacedKey(SurvivalTweaks.getInstance(), "spawner");
@@ -110,7 +110,7 @@ public class SpawnerDropListener implements Listener {
         int failureDropAmount = mechanicsConfig.getFailureDropAmount();
         String failureDropItem = mechanicsConfig.getFailureDropItem();
 
-        ItemStack item = ItemsUtils.getItem(failureDropItem);
+        ItemStack item = CustomItemsUtils.getItemStack(failureDropItem);
 
         if(item == null){
             return;

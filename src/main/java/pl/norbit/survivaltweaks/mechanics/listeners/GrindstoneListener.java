@@ -1,7 +1,6 @@
 package pl.norbit.survivaltweaks.mechanics.listeners;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,8 +19,8 @@ import org.jspecify.annotations.Nullable;
 import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
+import pl.norbit.survivaltweaks.settings.custom.CustomItemsUtils;
 import pl.norbit.survivaltweaks.utils.TaskUtils;
-import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -187,9 +186,9 @@ public class GrindstoneListener implements Listener {
     }
 
     private boolean isRequiredItem(ItemStack item) {
-        return ItemsUtils.isValidItem(
-                item,
-                ConfigManager.getMechanicsConfig().getEnchantmentExtractionItem()
+        return CustomItemsUtils.isEqual(
+                ConfigManager.getMechanicsConfig().getEnchantmentExtractionItem(),
+                item
         );
     }
 

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'pl.norbit'
-version = '1.8.0'
+version = '1.9.0'
 
 repositories {
     mavenCentral()
@@ -29,6 +29,18 @@ repositories {
     maven {
         name = "matteodev"
         url = "https://maven.devs.beer/"
+    }
+    maven {
+        url = "https://nexus.phoenixdevt.fr/repository/maven-public/"
+    }
+    maven {
+        url = "https://repo.momirealms.net/releases/"
+    }
+    maven {
+        url = "https://mvn.lumine.io/repository/maven-public/"
+    }
+    maven {
+        url = "https://repo.oraxen.com/releases"
     }
 }
 
@@ -55,13 +67,17 @@ dependencies {
 
     //SuperVanish
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.18-3'
-    compileOnly files('libs/MythicMobs-5.10.0.jar')
 
-    //nexo
+    //custom
+    compileOnly("beer.devs:itemsadder-api:4.0.18-beta-9")
     compileOnly("com.nexomc:nexo:1.24.0")
-
-    //itemsadder
-    compileOnly("dev.lone:api-itemsadder:4.0.10")
+    compileOnly("io.th0rgal:oraxen:1.163.0:dev")
+    compileOnly("io.lumine:MythicLib-dist:1.6.2-SNAPSHOT")
+    compileOnly("net.Indyuce:MMOItems-API:6.9.5-SNAPSHOT")
+    compileOnly("net.momirealms:craft-engine-core:26.7.1")
+    compileOnly("net.momirealms:craft-engine-bukkit:26.7.1")
+    compileOnly("io.lumine:MythicCrucible-API:5.13.0-SNAPSHOT")
+    compileOnly("io.lumine:Mythic-Dist:5.12.1")
 }
 
 def targetJavaVersion = 21

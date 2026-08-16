@@ -11,6 +11,9 @@ softdepend:
   - MythicMobs
   - ItemsAdder
   - Nexo
+  - Oraxen
+  - MMOItems
+  - CraftEngine
   - SuperVanish
 commands:
   survivaltweaks:

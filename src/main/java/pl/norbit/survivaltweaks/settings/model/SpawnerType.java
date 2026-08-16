@@ -3,7 +3,7 @@ package pl.norbit.survivaltweaks.settings.model;
 import lombok.Data;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
-import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
+import pl.norbit.survivaltweaks.settings.custom.CustomItemsUtils;
 
 import java.util.List;
 import java.util.Set;
@@ -29,7 +29,7 @@ public class SpawnerType {
         }
 
         for (String toolId : tools) {
-            if(ItemsUtils.isValidItem(itemStack, toolId)){
+            if(CustomItemsUtils.isEqual(toolId, itemStack)){
                 return true;
             }
         }

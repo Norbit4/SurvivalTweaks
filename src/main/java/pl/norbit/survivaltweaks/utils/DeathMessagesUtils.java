@@ -6,6 +6,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
+import pl.norbit.survivaltweaks.plugins.PluginHook;
+import pl.norbit.survivaltweaks.plugins.PluginService;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 
 public class DeathMessagesUtils {
@@ -24,7 +26,7 @@ public class DeathMessagesUtils {
 
         if(causingEntity != null){
             String mobName = null;
-            if(SurvivalTweaks.isMythicMobsEnabled()){
+            if(PluginService.isEnabled(PluginHook.MYTHIC_MOBS)){
                 MythicResponse response = MythicUtils.getMobName(causingEntity);
 
                 if(response.getType() == MythicResponseType.WRONG_NAME){

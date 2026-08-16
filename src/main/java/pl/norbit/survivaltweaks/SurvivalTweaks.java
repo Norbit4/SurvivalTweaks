@@ -24,6 +24,8 @@ import pl.norbit.survivaltweaks.mechanics.listeners.entity.*;
 import pl.norbit.survivaltweaks.mechanics.listeners.explode.ExplodeListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.player.*;
 import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerInteractListener;
+import pl.norbit.survivaltweaks.plugins.PluginHook;
+import pl.norbit.survivaltweaks.plugins.PluginService;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.MythicUtils;
 import pl.norbit.survivaltweaks.utils.PlaceholderUtils;
@@ -32,20 +34,12 @@ public final class SurvivalTweaks extends JavaPlugin {
     @Getter
     @Setter(AccessLevel.PRIVATE)
     private static SurvivalTweaks instance;
-    @Getter
-    @Setter
-    private static boolean mythicMobsEnabled;
-    @Getter
-    @Setter
-    private static boolean nexoEnabled;
-    @Getter
-    @Setter
-    private static boolean itemsAdderEnabled;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         setInstance(this);
+        PluginService.load(this);
 
         ConfigManager.load();
         MechanicsLoader.load(false);
@@ -63,37 +57,12 @@ public final class SurvivalTweaks extends JavaPlugin {
                     ItemSignatureCommand.register(event.registrar());
                 }
         );
-        checkPlugins();
-        loadBStats();
-    }
 
-    private void checkPlugins(){
-        if(checkPlugin("MythicMobs")){
-            setMythicMobsEnabled(true);
+        if(PluginService.isEnabled(PluginHook.MYTHIC_MOBS)){
             MythicUtils.init();
         }
-        if(checkPlugin("Nexo")){
-            setNexoEnabled(true);
-            getServer().getPluginManager().registerEvents(new NexoItemUpdateListener(), this);
-        }
 
-        if(checkPlugin("ItemsAdder")){
-            setItemsAdderEnabled(true);
-        }
-    }
-
-    private boolean checkPlugin(String pluginName) {
-        var pM = getServer().getPluginManager();
-        var plugin = pM.getPlugin(pluginName);
-
-        if(plugin != null && plugin.isEnabled()){
-            var logger = getServer().getLogger();
-            String message = "Hooked to: " + pluginName;
-
-            logger.info(message);
-            return true;
-        }
-        return false;
+        loadBStats();
     }
 
     private void loadBStats(){
@@ -144,5 +113,9 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         pluginManager.registerEvents(new GrindstoneListener(), this);
         pluginManager.registerEvents(new PlayerWaypointListener(), this);
+
+        if(PluginService.isEnabled(PluginHook.NEXO)){
+            pluginManager.registerEvents(new NexoItemUpdateListener(), this);
+        }
     }
 }

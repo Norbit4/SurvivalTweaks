@@ -5,9 +5,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.norbit.survivaltweaks.settings.custom.CustomItemsUtils;
 import pl.norbit.survivaltweaks.settings.model.InfinityFood;
 import pl.norbit.survivaltweaks.settings.model.SpawnerType;
-import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
 import java.util.*;
 
@@ -136,7 +136,7 @@ public class MechanicsConfig extends ConfigFile {
 
     public boolean isAlwaysKeepItem(ItemStack itemStack){
         for (String id : keepItemsAlwaysKeep) {
-            if(ItemsUtils.isValidItem(itemStack, id)){
+            if(CustomItemsUtils.isEqual(id, itemStack)){
                 return true;
             }
         }

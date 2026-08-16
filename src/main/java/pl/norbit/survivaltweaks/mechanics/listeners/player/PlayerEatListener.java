@@ -16,10 +16,10 @@ import pl.norbit.survivaltweaks.mechanics.SizeMechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.settings.MechanicsConfig;
 import pl.norbit.survivaltweaks.settings.MessagesConfig;
+import pl.norbit.survivaltweaks.settings.custom.CustomItemsUtils;
 import pl.norbit.survivaltweaks.settings.model.InfinityFood;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 import pl.norbit.survivaltweaks.utils.TaskUtils;
-import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
 
 import java.util.Set;
 import java.util.UUID;
@@ -38,7 +38,7 @@ public class PlayerEatListener implements Listener {
 
         ItemStack item = e.getItem().clone();
 
-        String id = ItemsUtils.getId(item);
+        String id = CustomItemsUtils.getId(item);
         NamespacedKey key = new NamespacedKey(SurvivalTweaks.getInstance(), id);
 
         MechanicsConfig mechanicsConfig = ConfigManager.getMechanicsConfig();
@@ -103,11 +103,11 @@ public class PlayerEatListener implements Listener {
         String normalSizeItem = mechanicsConfig.getNormalSizeItem();
         String bigSizeItem = mechanicsConfig.getBigSizeItem();
 
-        if(ItemsUtils.isValidItem(item, smallSizeItem)){
+        if(CustomItemsUtils.isEqual(smallSizeItem, item)){
             SizeMechanic.setSize(p, PlayerSize.SMALL);
-        }else if(ItemsUtils.isValidItem(item, normalSizeItem)){
+        }else if(CustomItemsUtils.isEqual(normalSizeItem, item)){
             SizeMechanic.setSize(p, PlayerSize.NORMAL);
-        }else if(ItemsUtils.isValidItem(item, bigSizeItem)){
+        }else if(CustomItemsUtils.isEqual(bigSizeItem, item)){
             SizeMechanic.setSize(p, PlayerSize.BIG);
         }
     }

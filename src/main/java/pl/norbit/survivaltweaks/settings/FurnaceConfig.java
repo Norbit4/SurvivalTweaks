@@ -5,7 +5,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.norbit.survivaltweaks.utils.items.ItemsUtils;
+import pl.norbit.survivaltweaks.settings.custom.CustomItemsUtils;
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ public class FurnaceConfig extends ConfigFile {
     private List<Material> fuelsBlacklist;
 
     public Integer getBurnTime(ItemStack stack) {
-        String id = ItemsUtils.getId(stack);
+        String id = CustomItemsUtils.getId(stack);
         return fuelsMap.get(id);
     }
 
