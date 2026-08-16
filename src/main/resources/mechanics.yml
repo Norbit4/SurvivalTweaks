@@ -35,6 +35,8 @@ mechanics:
     enabled: true
     cooldown: 3
   # Allows players to change their size by eating specific items.
+  # Custom items can also be used to trigger the size change.
+  # Use the item format shown above to define the required custom item.
   #
   # Small size:
   # - Reduced health
@@ -90,13 +92,13 @@ mechanics:
       normal:
         silk-touch: true
         chance: 0.9
-        # ItemsAdder - ia:<id> Nexo - nexo:<id>
+        # Custom items can be used in the same format as above.
         tools:
           - 'DIAMOND_PICKAXE'
         worlds:
           - 'world'
       nether:
-        silk-touch: false
+        silk-touch: true
         chance: 0.9
         tools:
           - 'NETHERITE_PICKAXE'
@@ -204,7 +206,8 @@ mechanics:
     enabled: false
     items:
       white_monster:
-        id: 'white_monster' #example id from nexo or itemsadder
+        # use only the ID, without 'nexo:' or 'ia:' etc.
+        id: 'white_monster'
         cooldown: 30
       golden_apple:
         id: 'GOLDEN_APPLE'
@@ -214,6 +217,7 @@ mechanics:
   enchantment-extraction:
     enabled: true
     success-chance: 0.5
+    # Custom items can be used in the same format as above.
     required-item: "LAPIS_LAZULI"
   # This overrides Minecraft default waypoint attributes
   # (waypoint_receive_range and waypoint_transmit_range).
