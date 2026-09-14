@@ -28,11 +28,16 @@ public class MechanicsLoader {
                     ItemStack headItem = inv.getHelmet();
 
                     ActionHealthMechanic.check(p, itemInMainHand, itemInOffHand);
-                    CompassMechanic.check(p, itemInMainHand, itemInOffHand);
-                    ClockMechanic.check(p, itemInMainHand, itemInOffHand);
-                    RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
 
-                    TurtleHelmetMechanic.check(p, headItem);
+                    if(!itemInMainHand.isEmpty() || !itemInOffHand.isEmpty()){
+                        CompassMechanic.check(p, itemInMainHand, itemInOffHand);
+                        ClockMechanic.check(p, itemInMainHand, itemInOffHand);
+                        RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
+                    }
+
+                    if(headItem != null){
+                        TurtleHelmetMechanic.check(p, headItem);
+                    }
                 },
                 null,
                 30L,
@@ -91,28 +96,4 @@ public class MechanicsLoader {
             case WAYPOINTS -> mechanicsConfig.isWaypointsEnabled();
         };
     }
-
-//    private static void heldItemTask(){
-//        PlayerUtils.getOnlinePlayers().forEach(p -> {
-//            ItemStack itemInMainHand = p.getInventory().getItemInMainHand();
-//            ItemStack itemInOffHand = p.getInventory().getItemInOffHand();
-//
-//            ActionHealthMechanic.check(p, itemInMainHand, itemInOffHand);
-//            CompassMechanic.check(p, itemInMainHand, itemInOffHand);
-//            ClockMechanic.check(p, itemInMainHand, itemInOffHand);
-//            RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
-//        });
-//    }
-//
-//    private static void headItemTask(){
-//        PlayerUtils.getOnlinePlayers().forEach(p -> {
-//            ItemStack headItem = p.getInventory().getHelmet();
-//
-//            if(headItem == null){
-//                return;
-//            }
-//
-//            TurtleHelmetMechanic.check(p, headItem);
-//        });
-//    }
 }

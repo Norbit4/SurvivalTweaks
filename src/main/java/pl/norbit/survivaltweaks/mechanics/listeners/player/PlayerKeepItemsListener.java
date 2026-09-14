@@ -1,5 +1,7 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,6 +15,7 @@ import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.settings.MechanicsConfig;
 import pl.norbit.survivaltweaks.utils.ChatUtils;
 
+import java.time.Duration;
 import java.util.*;
 
 public class PlayerKeepItemsListener implements Listener {
@@ -92,10 +95,12 @@ public class PlayerKeepItemsListener implements Listener {
             p.getInventory().addItem(item);
         }
 
-        String title = ChatUtils.format(ConfigManager.getMessagesConfig().getRespawnTitle());
-        String subtitle = ChatUtils.format(ConfigManager.getMessagesConfig().getRespawnSubtitle());
+        Component title = ChatUtils.format(ConfigManager.getMessagesConfig().getRespawnTitle());
+        Component subtitle = ChatUtils.format(ConfigManager.getMessagesConfig().getRespawnSubtitle());
 
-        p.sendTitle(title, subtitle, 10, 70, 20);
+        p.showTitle(Title.title(title, subtitle,
+                Title.Times.times(Duration.ofMillis(500), Duration.ofMillis(3500), Duration.ofMillis(1000))
+        ));
     }
 }
 

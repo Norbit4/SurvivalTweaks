@@ -1,5 +1,6 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.entity;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -57,7 +58,7 @@ public class VillagerChangeListener implements Listener {
                 String message = ConfigManager.getMessagesConfig().getVillagerProfessionCooldownMessage()
                         .replace("{TIME}", time);
 
-                String finalMessage = ChatUtils.format(message, null);
+                Component finalMessage = ChatUtils.format(message, null);
 
                 List<Player> playersAroundVillager = getPlayersAroundVillager(villager, 8);
                 playersAroundVillager.forEach(player -> player.sendMessage(finalMessage));

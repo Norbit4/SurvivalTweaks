@@ -83,7 +83,7 @@ public class PlayerDeadListener implements Listener {
 
         String message = DeathMessagesUtils.getMessage(p, lastDamageCause);
 
-        e.setDeathMessage(ChatUtils.format(message, p));
+        e.deathMessage(ChatUtils.format(message, p));
     }
 
     public static void removeDeathStats(Player victim) {

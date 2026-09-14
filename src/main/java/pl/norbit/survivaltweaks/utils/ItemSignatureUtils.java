@@ -1,5 +1,6 @@
 package pl.norbit.survivaltweaks.utils;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -36,21 +37,23 @@ public final class ItemSignatureUtils {
         String playerName = p.getName();
         String date = DateUtils.getCurrentDateTime();
 
-        meta.displayName(
-                LegacyComponentSerializer.legacySection()
-                        .deserialize(ChatUtils.format("&f" + signedName))
-        );
+        // Display name
+        meta.displayName(ChatUtils.format("<italic:false><white>" + signedName));
 
-        List<String> signatureLore = createSignatureLore(playerName, date);
+        // Signature lore
+        List<Component> signatureLore = createSignatureLore(playerName, date);
 
-        List<String> lore = meta.hasLore()
-                ? new ArrayList<>(meta.getLore())
+        List<Component> lore = meta.hasLore()
+                ? new ArrayList<>(meta.lore())
                 : new ArrayList<>();
 
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
 
         if (pdc.has(SIGNATURE_LINES_KEY, PersistentDataType.INTEGER)) {
-            Integer previousLines = pdc.get(SIGNATURE_LINES_KEY, PersistentDataType.INTEGER);
+            Integer previousLines = pdc.get(
+                    SIGNATURE_LINES_KEY,
+                    PersistentDataType.INTEGER
+            );
 
             if (previousLines != null
                     && previousLines > 0
@@ -64,7 +67,8 @@ public final class ItemSignatureUtils {
         }
 
         lore.addAll(signatureLore);
-        meta.setLore(lore);
+
+        meta.lore(lore);
 
         saveSignatureData(
                 pdc,
@@ -76,6 +80,63 @@ public final class ItemSignatureUtils {
 
         item.setItemMeta(meta);
     }
+
+//    public static void signItem(String signedName, ItemStack item, Player p) {
+//        if (item == null || item.isEmpty()) {
+//            return;
+//        }
+//
+//        ItemMeta meta = item.getItemMeta();
+//
+//        if (meta == null) {
+//            return;
+//        }
+//
+//        String playerName = p.getName();
+//        String date = DateUtils.getCurrentDateTime();
+//
+////        meta.displayName(
+////                LegacyComponentSerializer.legacySection()
+////                        .deserialize(ChatUtils.format("&f" + signedName))
+////        );
+//
+//        meta.displayName((ChatUtils.format("<white>" + signedName)));
+//
+//        List<Component> signatureLore = createSignatureLore(playerName, date);
+//
+//        List<String> lore = meta.hasLore()
+//                ? new ArrayList<>(meta.getLore())
+//                : new ArrayList<>();
+//
+//        PersistentDataContainer pdc = meta.getPersistentDataContainer();
+//
+//        if (pdc.has(SIGNATURE_LINES_KEY, PersistentDataType.INTEGER)) {
+//            Integer previousLines = pdc.get(SIGNATURE_LINES_KEY, PersistentDataType.INTEGER);
+//
+//            if (previousLines != null
+//                    && previousLines > 0
+//                    && lore.size() >= previousLines) {
+//
+//                lore.subList(
+//                        lore.size() - previousLines,
+//                        lore.size()
+//                ).clear();
+//            }
+//        }
+//
+//        lore.addAll(signatureLore);
+//        meta.setLore(lore);
+//
+//        saveSignatureData(
+//                pdc,
+//                playerName,
+//                date,
+//                signedName,
+//                signatureLore.size()
+//        );
+//
+//        item.setItemMeta(meta);
+//    }
 
     public static void restoreSignature(ItemStack oldItem, ItemStack newItem) {
         if (oldItem == null || newItem == null) {
@@ -104,14 +165,13 @@ public final class ItemSignatureUtils {
             return;
         }
 
+        // Display name
         newMeta.displayName(
-                LegacyComponentSerializer.legacyAmpersand()
-                        .deserialize("&f" + signedName)
+                ChatUtils.format("<white>" + signedName)
         );
 
-
-        List<String> oldLore = oldMeta.getLore();
-        List<String> newLore = newMeta.getLore();
+        List<Component> oldLore = oldMeta.lore();
+        List<Component> newLore = newMeta.lore();
 
         if (oldLore == null) {
             oldLore = List.of();
@@ -122,19 +182,84 @@ public final class ItemSignatureUtils {
         }
 
         if (!oldLore.equals(newLore)) {
-            List<String> signatureLore = createSignatureLore(playerName, date);
+            List<Component> signatureLore = createSignatureLore(
+                    playerName,
+                    date
+            );
 
-            List<String> lore = new ArrayList<>(newLore);
+            List<Component> lore = new ArrayList<>(newLore);
             lore.addAll(signatureLore);
 
-            newMeta.setLore(lore);
-            newPdc.set(SIGNATURE_LINES_KEY, PersistentDataType.INTEGER, signatureLore.size());
+            newMeta.lore(lore);
+
+            newPdc.set(
+                    SIGNATURE_LINES_KEY,
+                    PersistentDataType.INTEGER,
+                    signatureLore.size()
+            );
         }
 
         newItem.setItemMeta(newMeta);
     }
 
-    private static List<String> createSignatureLore(String player, String date) {
+//    public static void restoreSignature(ItemStack oldItem, ItemStack newItem) {
+//        if (oldItem == null || newItem == null) {
+//            return;
+//        }
+//
+//        ItemMeta oldMeta = oldItem.getItemMeta();
+//        ItemMeta newMeta = newItem.getItemMeta();
+//
+//        if (oldMeta == null || newMeta == null) {
+//            return;
+//        }
+//
+//        PersistentDataContainer oldPdc = oldMeta.getPersistentDataContainer();
+//        PersistentDataContainer newPdc = newMeta.getPersistentDataContainer();
+//
+//        if (!oldPdc.has(SIGNED_KEY, PersistentDataType.BYTE)) {
+//            return;
+//        }
+//
+//        String playerName = oldPdc.get(PLAYER_KEY, PersistentDataType.STRING);
+//        String date = oldPdc.get(DATE_KEY, PersistentDataType.STRING);
+//        String signedName = oldPdc.get(NAME_KEY, PersistentDataType.STRING);
+//
+//        if (playerName == null || date == null || signedName == null) {
+//            return;
+//        }
+//
+//        newMeta.displayName(
+//                LegacyComponentSerializer.legacyAmpersand()
+//                        .deserialize("<white>" + signedName)
+//        );
+//
+//
+//        List<String> oldLore = oldMeta.getLore();
+//        List<String> newLore = newMeta.getLore();
+//
+//        if (oldLore == null) {
+//            oldLore = List.of();
+//        }
+//
+//        if (newLore == null) {
+//            newLore = List.of();
+//        }
+//
+//        if (!oldLore.equals(newLore)) {
+//            List<String> signatureLore = createSignatureLore(playerName, date);
+//
+//            List<String> lore = new ArrayList<>(newLore);
+//            lore.addAll(signatureLore);
+//
+//            newMeta.setLore(lore);
+//            newPdc.set(SIGNATURE_LINES_KEY, PersistentDataType.INTEGER, signatureLore.size());
+//        }
+//
+//        newItem.setItemMeta(newMeta);
+//    }
+
+    private static List<Component> createSignatureLore(String player, String date) {
         return ConfigManager.getMessagesConfig()
                 .getItemSignatureLore()
                 .stream()
@@ -156,10 +281,11 @@ public final class ItemSignatureUtils {
         pdc.set(SIGNATURE_LINES_KEY, PersistentDataType.INTEGER, signatureLines);
     }
 
-    private static String replaceName(String line, String name, String date) {
-        return ChatUtils.format(line
-                .replace("{player}", name)
-                .replace("{date}", date));
+    private static Component replaceName(String line, String name, String date) {
+        return ChatUtils.format(
+                line.replace("{player}", name)
+                        .replace("{date}", date)
+        );
     }
 
     public static boolean isNotSigned(ItemStack item) {

@@ -80,7 +80,7 @@ public class MobsRandomNamesListener implements Listener {
     }
 
     private void setEntityName(Entity entity, String color, String name) {
-        entity.setCustomName(ChatUtils.format(color + name));
+        entity.customName(ChatUtils.format(color + name));
         entity.setCustomNameVisible(true);
     }
 }

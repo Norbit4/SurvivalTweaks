@@ -62,7 +62,7 @@ public class TrackCommand implements CommandExecutor, TabCompleter {
                     .replace("{X}", x)
                     .replace("{Z}", z);
 
-            compassMeta.setDisplayName(ChatUtils.format(displayName, null));
+            compassMeta.displayName(ChatUtils.format(displayName, null));
 
             itemInMainHand.setItemMeta(compassMeta);
 

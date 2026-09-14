@@ -1,39 +1,39 @@
 # Reload: /survivaltweaks reload, permission: survivaltweaks.command
 
-reload-message: '&aPlugin has been reloaded!'
+reload-message: '<green>Plugin has been reloaded!'
 
 dead-messages:
-  prefix: '&#9e9e9e[{DEATH}&f&l☠&#9e9e9e] &#ee6535{PLAYER}'
+  prefix: '<#9e9e9e>[{DEATH}<white><bold>☠</bold><#9e9e9e>] <#ee6535>{PLAYER}'
   messages:
-    drowning: '{PREFIX} &#e5dbd8drowing!'
-    suffocation: '{PREFIX} &#e5dbd8suffocated in a wall!'
-    fall: '{PREFIX} &#e5dbd8fell from a high place!'
-    lava: '{PREFIX} &#e5dbd8fell into a pit of lava!'
-    fire: '{PREFIX} &#e5dbd8burned to death!'
-    fire-tick: '{PREFIX} &#e5dbd8walked into fire!'
-    void: '{PREFIX} &#e5dbd8fell out of the world!'
-    lightning: '{PREFIX} &#e5dbd8was struck by lightning!'
-    entity-attack: '{PREFIX} &#e5dbd8was slain by {ENTITY}!'
-    entity-explosion: '{PREFIX} &#e5dbd8was blown up by {ENTITY}!'
-    projectile: '{PREFIX} &#e5dbd8was shot by {ENTITY}!'
-    magic: '{PREFIX} &#e5dbd8was killed with magic by {ENTITY}!'
-    wither: '{PREFIX} &#e5dbd8withered away!'
-    starvation: '{PREFIX} &#e5dbd8starved to death!'
-    poison: '{PREFIX} &#e5dbd8was poisoned!'
-    thorns: '{PREFIX} &#e5dbd8was killed by thorns!'
-    dragon: '{PREFIX} &#e5dbd8was killed by the ender dragon!'
-    hot-floor: '{PREFIX} &#e5dbd8discovered the floor was lava!'
-    other: '{PREFIX} &#e5dbd8died!'
+    drowning: '{PREFIX} <#e5dbd8>drowing!'
+    suffocation: '{PREFIX} <#e5dbd8>suffocated in a wall!'
+    fall: '{PREFIX} <#e5dbd8>fell from a high place!'
+    lava: '{PREFIX} <#e5dbd8>fell into a pit of lava!'
+    fire: '{PREFIX} <#e5dbd8>burned to death!'
+    fire-tick: '{PREFIX} <#e5dbd8>walked into fire!'
+    void: '{PREFIX} <#e5dbd8>fell out of the world!'
+    lightning: '{PREFIX} <#e5dbd8>was struck by lightning!'
+    entity-attack: '{PREFIX} <#e5dbd8>was slain by {ENTITY}!'
+    entity-explosion: '{PREFIX} <#e5dbd8>was blown up by {ENTITY}!'
+    projectile: '{PREFIX} <#e5dbd8>was shot by {ENTITY}!'
+    magic: '{PREFIX} <#e5dbd8>was killed with magic by {ENTITY}!'
+    wither: '{PREFIX} <#e5dbd8>withered away!'
+    starvation: '{PREFIX} <#e5dbd8>starved to death!'
+    poison: '{PREFIX} <#e5dbd8>was poisoned!'
+    thorns: '{PREFIX} <#e5dbd8>was killed by thorns!'
+    dragon: '{PREFIX} <#e5dbd8>was killed by the ender dragon!'
+    hot-floor: '{PREFIX} <#e5dbd8>discovered the floor was lava!'
+    other: '{PREFIX} <#e5dbd8>died!'
 
 # {ENTITY} - display entity name
 # {HEALTH} - display entity health
 # {DISTANCE} - display distance from entity
 spyglass:
-  display: '&#dcee9a {ENTITY} [{HEALTH}&c&c❤&#dcee9a] {DISTANCE}m'
+  display: '<#dcee9a> {ENTITY} [{HEALTH}<red><red>❤<#dcee9a>] {DISTANCE}m'
 
 # {TIME} - display time
 clock:
-  display: '&7Time: &#d786f3{TIME}'
+  display: '<gray>Time: <#d786f3>{TIME}'
 
 # {X} - display X cord
 # {Y} - display Y cord
@@ -41,64 +41,64 @@ clock:
 # {BIOME} - display biome name
 # {WORLD} - display world name
 compass:
-  display: '&7X: &#dcee9a{X} &7Y: &#dcee9a{Y} &7Z: &#dcee9a{Z} &#7ed323[{BIOME}]'
+  display: '<gray>X: <#dcee9a>{X} <gray>Y: <#dcee9a>{Y} <gray>Z: <#dcee9a>{Z}<#7ed323> [{BIOME}]'
   messages:
-    track-usage: '&7Usage: /track <x, z>'
-    only-player: '&cOnly player can use this command!'
-    invalid-material: '&cYou must be holding a compass to use this command!'
-    invalid-number: '&cInvalid number format!'
-    track-success: '&7Tracking location: &#a6e194{X}, {Z}'
-    track-item: '&fTracking Compass &7[&#a6e194{X}, {Z}&7]'
+    track-usage: '<gray>Usage: /track <x, z>'
+    only-player: '<red>Only player can use this command!'
+    invalid-material: '<red>You must be holding a compass to use this command!'
+    invalid-number: '<red>Invalid number format!'
+    track-success: '<gray>Tracking location: <#a6e194>{X}, {Z}'
+    track-item: '<white>Tracking Compass <gray>[<#a6e194>{X}, {Z}<gray>]'
 
 # {X} - display X cord
 # {Y} - display Y cord
 # {Z} - display Z cord
 # {WORLD} - display world name
 recovery-compass:
-  display: '&f&l☠ &7X: &c{X} &7Y: &c{Y} &7Z: &c{Z}'
-  display-no-death-location: '&f&l☠ &7You have not died yet!'
+  display: '<white><bold>☠</bold>  <gray>X: <red>{X} <gray>Y: <red>{Y} <gray>Z: <red>{Z}'
+  display-no-death-location: '<white><bold>☠</bold> <gray>You have not died yet!'
 
 # {ENTITY} - display entity name
 # {HEALTH} - display entity health
 entity-hp:
-  display: '&#decfa6{ENTITY} &#df5252{HEALTH}❤'
+  display: '<#decfa6>{ENTITY} <#df5252>{HEALTH}❤'
 
 # {TIME} - display time
 villager-profession-cooldown:
-  message: '&fChanging a villagers profession is possible for &c{TIME}.'
+  message: '<white>Changing a villagers profession is possible for <red>{TIME}.'
   time:
     minutes: 'minutes'
     seconds: 'seconds'
 
 block-bone-meal:
-  messages: '&cYou can not use bonemeal here!'
+  messages: '<red>You can not use bonemeal here!'
 
 keep-items:
   messages:
-    title: '&c&l☠ You died!'
-    subtitle: '&7You kept &a50% &7items!'
+    title: '<red><bold>☠</bold> You died!'
+    subtitle: '<gray>You kept <green>50% <gray>items!'
 
 infinity-food:
-  cooldown: '&cCooldown: {cooldown}'
+  cooldown: '<red>Cooldown: {cooldown}'
 block-spawn-egg-change:
-  message: '&cYou cannot change the spawner type using a spawn egg!'
+  message: '<red>You cannot change the spawner type using a spawn egg!'
 block-spawn-near-spawner:
-  message: '&cYou cannot place a spawner this close to another spawner!'
+  message: '<red>You cannot place a spawner this close to another spawner!'
 
 global:
-  no-permission: '&cYou do not have permission to use this command.'
-  cooldown: '&cYou must wait &e{time}s &cbefore using this command again.'
+  no-permission: '<red>You do not have permission to use this command.'
+  cooldown: '<red>You must wait <yellow>{time}s <red>before using this command again.'
 
 item-signature:
-  usage: '&cUsage: /signature <name>'
+  usage: '<red>Usage: /signature <name>'
   permission: 'survivaltweaks.sign'
-  success: '&aItem signed successfully!'
-  error: '&cYou must hold an item in your hand!'
+  success: '<green>Item signed successfully!'
+  error: '<red>You must hold an item in your hand!'
   lore:
-    - ' &#f5e898{player} &8({date})'
+    - ' <italic:false><#f5e898>{player} <dark_gray>({date})'
 
 enchantment-extraction:
-  book-lore: '&cChance of failure: 50%'
+  book-lore: '<red>Chance of failure: 50%'
 
 # Custom names for mob types.
 mob-names:

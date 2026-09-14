@@ -1,5 +1,6 @@
 package pl.norbit.survivaltweaks.utils;
 
+import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -50,7 +51,7 @@ public class PlayerUtils {
     }
 
     public static void sendActionBar(Player p, String message) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatUtils.format(message, p)));
+        p.sendActionBar(ChatUtils.format(message, p));
     }
 
     public static Entity getEntityLookingAt(Player player, double maxDistance) {

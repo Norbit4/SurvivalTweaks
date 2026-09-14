@@ -1,48 +1,25 @@
 package pl.norbit.survivaltweaks.utils;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 
+
 public class ChatUtils {
-    private static final String WITH_DELIMITER = "((?<=%1$s)|(?=%1$s))";
+    private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
-    private ChatUtils() {
-        throw new IllegalStateException("Utility class");
+    private ChatUtils() {}
+
+    public static Component format(String text, Player player) {
+
+        return MINI_MESSAGE.deserialize(
+                PlaceholderUtils.setPlaceholders(text, player)
+        );
     }
 
-    public static String format(String text, Player p) {
-        return PlaceholderUtils.setPlaceholders(translateColorCodes(text), p);
-    }
-
-    public static String format(String text) {
-        return PlaceholderUtils.setPlaceholders(translateColorCodes(text), null);
-    }
-
-    /**
-     * @param text The string of text to apply color/effects to
-     * @return Returns a string of text with color/effects applied
-     */
-    private static String translateColorCodes(String text){
-        String[] texts = text.split(String.format(WITH_DELIMITER, "&"));
-
-        StringBuilder finalText = new StringBuilder();
-
-        for (int i = 0; i < texts.length; i++){
-            if (texts[i].equalsIgnoreCase("&")){
-                //get the next string
-                i++;
-                if (texts[i].charAt(0) == '#'){
-                    finalText
-                            .append(net.md_5.bungee.api.ChatColor.of(texts[i].substring(0, 7)))
-                            .append(texts[i].substring(7));
-                }else{
-                    finalText.append(ChatColor.translateAlternateColorCodes('&', "&" + texts[i]));
-                }
-            }else{
-                finalText.append(texts[i]);
-            }
-        }
-
-        return finalText.toString();
+    public static Component format(String text) {
+        return MINI_MESSAGE.deserialize(
+                PlaceholderUtils.setPlaceholders(text, null)
+        );
     }
 }
