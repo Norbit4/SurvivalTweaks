@@ -13,14 +13,14 @@ import pl.norbit.survivaltweaks.settings.ConfigManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ItemSignatureUtil {
+public final class ItemSignatureUtils {
     private static final NamespacedKey SIGNED_KEY = new NamespacedKey(SurvivalTweaks.getInstance(), "signed");
     private static final NamespacedKey PLAYER_KEY = new NamespacedKey(SurvivalTweaks.getInstance(), "signed_by");
     private static final NamespacedKey DATE_KEY = new NamespacedKey(SurvivalTweaks.getInstance(), "signed_date");
     private static final NamespacedKey NAME_KEY = new NamespacedKey(SurvivalTweaks.getInstance(), "signed_name");
     private static final NamespacedKey SIGNATURE_LINES_KEY = new NamespacedKey(SurvivalTweaks.getInstance(), "signature_lines");
 
-    private ItemSignatureUtil() {}
+    private ItemSignatureUtils() {}
 
     public static void signItem(String signedName, ItemStack item, Player p) {
         if (item == null || item.isEmpty()) {

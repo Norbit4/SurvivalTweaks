@@ -42,7 +42,6 @@ public final class SurvivalTweaks extends JavaPlugin {
         PluginService.load(this);
 
         ConfigManager.load();
-        MechanicsLoader.load(false);
 
         PlaceholderUtils.load();
 
@@ -113,6 +112,8 @@ public final class SurvivalTweaks extends JavaPlugin {
 
         pluginManager.registerEvents(new GrindstoneListener(), this);
         pluginManager.registerEvents(new PlayerWaypointListener(), this);
+
+        pluginManager.registerEvents(new PlayerJoinListener(), this);
 
         if(PluginService.isEnabled(PluginHook.NEXO)){
             pluginManager.registerEvents(new NexoItemUpdateListener(), this);

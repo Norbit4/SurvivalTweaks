@@ -20,7 +20,7 @@ public class ProjectileDespawnListener implements Listener {
         Projectile projectile = e.getEntity();
 
         if (projectile instanceof EnderPearl) {
-            TaskUtils.syncLater(() -> {
+            TaskUtils.syncLater(projectile, () -> {
                 if (!projectile.isDead() && projectile.isValid()) {
                     projectile.remove();
                 }

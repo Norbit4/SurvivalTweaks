@@ -65,7 +65,7 @@ public class VillagerChangeListener implements Listener {
             }
         }
         if (e.getProfession() != Villager.Profession.NONE) {
-            TaskUtils.syncLater(() -> villagerCooldowns.put(villagerUUID, currentTime), 30L);
+            TaskUtils.syncLater(villager, () -> villagerCooldowns.put(villagerUUID, currentTime), 30L);
         }
     }
     public List<Player> getPlayersAroundVillager(Villager villager, double radius) {

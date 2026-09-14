@@ -70,7 +70,7 @@ public class ItemSignatureCommand {
             return 0;
         }
 
-        ItemSignatureUtil.signItem(signature, itemInMainHand, p);
+        ItemSignatureUtils.signItem(signature, itemInMainHand, p);
 
         p.sendMessage(ChatUtils.format(messagesConfig.getItemSignatureSuccess()));
 

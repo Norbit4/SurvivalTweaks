@@ -48,7 +48,7 @@ public class AnvilTooExpensiveListener implements Listener {
             e.setResult(result.clone());
         }
 
-        TaskUtils.syncLater(() ->{
+        TaskUtils.syncLater(view.getPlayer(), () ->{
             HumanEntity viewer = inv.getViewers().isEmpty() ? null : inv.getViewers().getFirst();
             if (viewer instanceof Player pView) {
                 pView.updateInventory();

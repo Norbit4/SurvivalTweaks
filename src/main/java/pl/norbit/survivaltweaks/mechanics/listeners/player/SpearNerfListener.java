@@ -79,7 +79,7 @@ public class SpearNerfListener implements Listener {
         if (!item.containsEnchantment(Enchantment.LUNGE)) return;
 
         if (p.getCooldown(item.getType()) > 0) {
-            TaskUtils.syncLater(()-> p.setVelocity(p.getVelocity().multiply(0)), 1L);
+            TaskUtils.syncLater(p, ()-> p.setVelocity(p.getVelocity().multiply(0)), 1L);
             return;
         }
         p.setCooldown(item.getType(), mechanicsConfig.getSpearCooldown());

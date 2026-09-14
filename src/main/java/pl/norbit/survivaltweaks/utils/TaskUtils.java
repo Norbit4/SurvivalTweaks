@@ -1,35 +1,43 @@
 package pl.norbit.survivaltweaks.utils;
 
+import org.bukkit.entity.Entity;
 import pl.norbit.survivaltweaks.SurvivalTweaks;
+
+import java.util.concurrent.TimeUnit;
 
 public class TaskUtils {
 
-    private TaskUtils() {
-        throw new IllegalStateException("Utility class");
+    private TaskUtils() {}
+
+    public static void syncLater(Entity entity, Runnable runnable, long delay) {
+        SurvivalTweaks inst = SurvivalTweaks.getInstance();
+        entity.getScheduler().runDelayed(
+                inst,
+                task -> runnable.run(),
+                null,
+                delay
+        );
     }
 
-    public static void sync(Runnable runnable){
+    public static void asyncLater(Runnable runnable, long delayTicks) {
         SurvivalTweaks inst = SurvivalTweaks.getInstance();
-        inst.getServer().getScheduler().runTask(inst, runnable);
+
+        inst.getServer().getAsyncScheduler().runDelayed(
+                inst,
+                task -> runnable.run(),
+                delayTicks * 50,
+                TimeUnit.MILLISECONDS
+        );
     }
 
-    public static void syncLater(Runnable runnable, long delay){
+    public static void syncTimer(Runnable runnable, long delay, long period) {
         SurvivalTweaks inst = SurvivalTweaks.getInstance();
-        inst.getServer().getScheduler().runTaskLater(inst, runnable, delay);
-    }
 
-    public static void async(Runnable runnable){
-        SurvivalTweaks inst = SurvivalTweaks.getInstance();
-        inst.getServer().getScheduler().runTaskAsynchronously(inst, runnable);
-    }
-
-    public static void asyncLater(Runnable runnable, int delay){
-        SurvivalTweaks inst = SurvivalTweaks.getInstance();
-        inst.getServer().getScheduler().runTaskLaterAsynchronously(inst, runnable, delay);
-    }
-
-    public static void asyncTimer(Runnable runnable, long delay, long period){
-        SurvivalTweaks inst = SurvivalTweaks.getInstance();
-        inst.getServer().getScheduler().runTaskTimerAsynchronously(inst, runnable, delay, period);
+        inst.getServer().getGlobalRegionScheduler().runAtFixedRate(
+                inst,
+                task -> runnable.run(),
+                delay,
+                period
+        );
     }
 }

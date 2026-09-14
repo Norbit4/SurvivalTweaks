@@ -13,9 +13,7 @@ import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class RecoveryCompassMechanic {
 
-    private RecoveryCompassMechanic() {
-        throw new IllegalStateException("Utility class");
-    }
+    private RecoveryCompassMechanic() {}
 
     public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
         if(MechanicsLoader.isDisabled(Mechanic.RECOVERY_COMPASS)) {

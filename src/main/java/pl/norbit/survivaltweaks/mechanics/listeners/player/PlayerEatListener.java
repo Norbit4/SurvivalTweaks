@@ -66,7 +66,7 @@ public class PlayerEatListener implements Listener {
 
         EquipmentSlot hand = e.getHand();
 
-        TaskUtils.syncLater(() -> {
+        TaskUtils.syncLater(p, () -> {
             if (hand == EquipmentSlot.HAND) {
                 p.getInventory().setItemInMainHand(item);
             } else {

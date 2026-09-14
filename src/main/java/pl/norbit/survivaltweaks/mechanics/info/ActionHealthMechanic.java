@@ -11,8 +11,6 @@ import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
-import static pl.norbit.survivaltweaks.utils.TaskUtils.sync;
-
 public class ActionHealthMechanic {
 
     private ActionHealthMechanic() {
@@ -34,61 +32,59 @@ public class ActionHealthMechanic {
             return;
         }
 
-        sync(() ->{
-            Entity targetEntity = PlayerUtils.getEntityLookingAt(p, 4);
+        Entity targetEntity = PlayerUtils.getEntityLookingAt(p, 4);
 
-            if(targetEntity == null){
+        if(targetEntity == null){
+            return;
+        }
+
+        if(!(targetEntity instanceof LivingEntity livingEntity)){
+            return;
+        }
+
+        if(targetEntity instanceof ArmorStand){
+            return;
+        }
+
+        //check npc
+        if(targetEntity instanceof Player player){
+            String playerName = player.getName();
+
+            if(player.isInvisible()){
                 return;
             }
 
-            if(!(targetEntity instanceof LivingEntity livingEntity)){
+            if(player.getGameMode() == GameMode.SPECTATOR){
                 return;
             }
 
-            if(targetEntity instanceof ArmorStand){
+            if (SuperVanish.isVanished(player)) { // Player is Vanished?
+                if (!SuperVanish.canSeeVanished(p)){ // IF SuperVanish IS OP
+                    return;
+                }
+            }
+
+            if(player.hasPotionEffect(PotionEffectType.INVISIBILITY)){
                 return;
             }
 
-            //check npc
-            if(targetEntity instanceof Player player){
-                String playerName = player.getName();
-
-                if(player.isInvisible()){
-                    return;
-                }
-
-                if(player.getGameMode() == GameMode.SPECTATOR){
-                    return;
-                }
-
-                if (SuperVanish.isVanished(player)) { // Player is Vanished?
-                    if (!SuperVanish.canSeeVanished(p)){ // IF SuperVanish IS OP
-                        return;
-                    }
-                }
-
-                if(player.hasPotionEffect(PotionEffectType.INVISIBILITY)){
-                    return;
-                }
-
-                if(PlayerUtils.getPlayerByName(playerName) == null){
-                    return;
-                }
+            if(PlayerUtils.getPlayerByName(playerName) == null){
+                return;
             }
+        }
 
-            //translate entity name
-            String customName = targetEntity.getCustomName();
+        //translate entity name
+        String customName = targetEntity.getCustomName();
 
-            String displayName = customName != null
-                    ? customName
-                    : ConfigManager.getMessagesConfig().getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
+        String displayName = customName != null
+                ? customName
+                : ConfigManager.getMessagesConfig().getMobNameOrDefault(targetEntity.getType(), targetEntity.getName());
 
 
-            String message = ConfigManager.getMessagesConfig().getEntityHpDisplay()
-                    .replace("{ENTITY}", displayName)
-                    .replace("{HEALTH}", Integer.toString((int) livingEntity.getHealth()));
+        String message = ConfigManager.getMessagesConfig().getEntityHpDisplay()
+                .replace("{ENTITY}", displayName)
+                .replace("{HEALTH}", Integer.toString((int) livingEntity.getHealth()));
 
-            PlayerUtils.sendActionBar(p, message);
-        });
+        PlayerUtils.sendActionBar(p, message);
     }
 }

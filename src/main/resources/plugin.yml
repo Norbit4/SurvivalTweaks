@@ -5,6 +5,7 @@ api-version: '1.21'
 authors: [Norbit4]
 website: https://github.com/Norbit4
 description: 'This plugin is created to add some useful mechanics for useless items in Minecraft.'
+folia-supported: true
 softdepend:
   - PlaceholderAPI
   - PremiumVanish

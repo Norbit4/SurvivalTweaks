@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NonNull;
-import pl.norbit.survivaltweaks.utils.ItemSignatureUtil;
+import pl.norbit.survivaltweaks.utils.ItemSignatureUtils;
 
 public class NexoItemUpdateListener implements Listener {
 
@@ -19,7 +19,7 @@ public class NexoItemUpdateListener implements Listener {
                     @Override
                     public @NonNull ItemStack postUpdate(String itemId, ItemStack itemStack, ItemStack preUpdateItemStack) {
                         // Restore signature lost when Nexo regenerates item name and lore.
-                        ItemSignatureUtil.restoreSignature(preUpdateItemStack, itemStack);
+                        ItemSignatureUtils.restoreSignature(preUpdateItemStack, itemStack);
                         return itemStack;
                     }
                 }

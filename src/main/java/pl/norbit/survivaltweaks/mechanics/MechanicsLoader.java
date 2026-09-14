@@ -1,6 +1,9 @@
 package pl.norbit.survivaltweaks.mechanics;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import pl.norbit.survivaltweaks.SurvivalTweaks;
 import pl.norbit.survivaltweaks.mechanics.info.ActionHealthMechanic;
 import pl.norbit.survivaltweaks.mechanics.info.ClockMechanic;
 import pl.norbit.survivaltweaks.mechanics.info.CompassMechanic;
@@ -9,21 +12,32 @@ import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.BlockerConfig;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.settings.MechanicsConfig;
-import pl.norbit.survivaltweaks.utils.PlayerUtils;
-
-import static pl.norbit.survivaltweaks.utils.TaskUtils.asyncTimer;
 
 public class MechanicsLoader {
 
-    private MechanicsLoader() {
-        throw new IllegalStateException("Utility class");
-    }
+    private MechanicsLoader() {}
 
-    public static void load(boolean reload) {
-        if(!reload) {
-            asyncTimer(MechanicsLoader::heldItemTask, 30L, 20L);
-            asyncTimer(MechanicsLoader::headItemTask, 30L, 25L);
-        }
+    public static void onJoin(Player p){
+        p.getScheduler().runAtFixedRate(
+                SurvivalTweaks.getInstance(),
+                task -> {
+                    PlayerInventory inv = p.getInventory();
+
+                    ItemStack itemInMainHand = inv.getItemInMainHand();
+                    ItemStack itemInOffHand = inv.getItemInOffHand();
+                    ItemStack headItem = inv.getHelmet();
+
+                    ActionHealthMechanic.check(p, itemInMainHand, itemInOffHand);
+                    CompassMechanic.check(p, itemInMainHand, itemInOffHand);
+                    ClockMechanic.check(p, itemInMainHand, itemInOffHand);
+                    RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
+
+                    TurtleHelmetMechanic.check(p, headItem);
+                },
+                null,
+                30L,
+                20L
+        );
     }
 
     public static boolean isDisabled(Mechanic mechanic) {
@@ -78,27 +92,27 @@ public class MechanicsLoader {
         };
     }
 
-    private static void heldItemTask(){
-        PlayerUtils.getOnlinePlayers().forEach(p -> {
-            ItemStack itemInMainHand = p.getInventory().getItemInMainHand();
-            ItemStack itemInOffHand = p.getInventory().getItemInOffHand();
-
-            ActionHealthMechanic.check(p, itemInMainHand, itemInOffHand);
-            CompassMechanic.check(p, itemInMainHand, itemInOffHand);
-            ClockMechanic.check(p, itemInMainHand, itemInOffHand);
-            RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
-        });
-    }
-
-    private static void headItemTask(){
-        PlayerUtils.getOnlinePlayers().forEach(p -> {
-            ItemStack headItem = p.getInventory().getHelmet();
-
-            if(headItem == null){
-                return;
-            }
-
-            TurtleHelmetMechanic.check(p, headItem);
-        });
-    }
+//    private static void heldItemTask(){
+//        PlayerUtils.getOnlinePlayers().forEach(p -> {
+//            ItemStack itemInMainHand = p.getInventory().getItemInMainHand();
+//            ItemStack itemInOffHand = p.getInventory().getItemInOffHand();
+//
+//            ActionHealthMechanic.check(p, itemInMainHand, itemInOffHand);
+//            CompassMechanic.check(p, itemInMainHand, itemInOffHand);
+//            ClockMechanic.check(p, itemInMainHand, itemInOffHand);
+//            RecoveryCompassMechanic.check(p, itemInMainHand, itemInOffHand);
+//        });
+//    }
+//
+//    private static void headItemTask(){
+//        PlayerUtils.getOnlinePlayers().forEach(p -> {
+//            ItemStack headItem = p.getInventory().getHelmet();
+//
+//            if(headItem == null){
+//                return;
+//            }
+//
+//            TurtleHelmetMechanic.check(p, headItem);
+//        });
+//    }
 }

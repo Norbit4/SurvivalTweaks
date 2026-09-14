@@ -2,6 +2,7 @@ package pl.norbit.survivaltweaks.mechanics.info;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -14,9 +15,7 @@ import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class CompassMechanic {
 
-    private CompassMechanic() {
-        throw new IllegalStateException("Utility class");
-    }
+    private CompassMechanic() {}
 
     public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
         if(MechanicsLoader.isDisabled(Mechanic.COMPASS)) {
@@ -38,12 +37,14 @@ public class CompassMechanic {
         World w = loc.getWorld();
         Block b = loc.getBlock();
 
+        NamespacedKey biomeKey = b.getBiome().getKey();
+
         String message = ConfigManager.getMessagesConfig().getCompass()
                 .replace("{X}", x)
                 .replace("{Y}", y)
                 .replace("{Z}", z)
                 .replace("{WORLD}", w.getName())
-                .replace("{BIOME}", b.getBiome().getKey().namespace());
+                .replace("{BIOME}", biomeKey.getNamespace() + ":" + biomeKey.value());
 
         PlayerUtils.sendActionBar(p, message);
     }

@@ -144,10 +144,10 @@ public class GrindstoneListener implements Listener {
         }
 
         item.removeEnchantment(enchant);
-        restoreInventory(inv, item);
+        restoreInventory(p, inv, item);
     }
 
-    private void restoreInventory(GrindstoneInventory inv, ItemStack item) {
+    private void restoreInventory(Player p, GrindstoneInventory inv, ItemStack item) {
         boolean itemInUpper = isEnchantable(inv.getUpperItem());
 
         ItemStack catalyst = null;
@@ -172,7 +172,7 @@ public class GrindstoneListener implements Listener {
         // Clear to prevent item duplication.
         inv.clear();
 
-        TaskUtils.syncLater(() -> {
+        TaskUtils.syncLater(p, () -> {
             inv.clear();
 
             if (itemInUpper) {

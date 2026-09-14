@@ -11,9 +11,7 @@ import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class ClockMechanic {
 
-    private ClockMechanic() {
-        throw new IllegalStateException("Utility class");
-    }
+    private ClockMechanic() {}
 
     public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
         if(MechanicsLoader.isDisabled(Mechanic.CLOCK)) {
