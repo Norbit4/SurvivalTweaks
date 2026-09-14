@@ -65,8 +65,6 @@ public class PlayerSpyGlassListener implements Listener {
             }
         }
 
-        Location location = p.getLocation();
-
         int distance = (int) p.getLocation().distance(targetEntity.getLocation());
 
         //translate entity name

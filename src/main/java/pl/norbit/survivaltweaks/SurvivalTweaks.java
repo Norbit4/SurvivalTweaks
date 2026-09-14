@@ -12,7 +12,6 @@ import pl.norbit.survivaltweaks.commands.MainCommand;
 import pl.norbit.survivaltweaks.commands.TrackCommand;
 import pl.norbit.survivaltweaks.hooks.SuperVanish;
 import pl.norbit.survivaltweaks.mechanics.listeners.*;
-import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.listeners.block.AmethystBreakListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.block.BoneMealListener;
 import pl.norbit.survivaltweaks.mechanics.listeners.spawner.SpawnerMobDeath;

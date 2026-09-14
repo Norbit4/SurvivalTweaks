@@ -1,6 +1,5 @@
 package pl.norbit.survivaltweaks.mechanics.listeners.player;
 
-import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
