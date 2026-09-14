@@ -13,9 +13,7 @@ import pl.norbit.survivaltweaks.utils.PlayerUtils;
 
 public class ActionHealthMechanic {
 
-    private ActionHealthMechanic() {
-        throw new IllegalStateException("Utility class");
-    }
+    private ActionHealthMechanic() {}
 
     public static void check(Player p, ItemStack itemInMainHand, ItemStack itemInOffHand){
         if(MechanicsLoader.isDisabled(Mechanic.ENTITY_HP)) {

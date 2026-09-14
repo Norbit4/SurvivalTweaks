@@ -2,10 +2,7 @@ package pl.norbit.survivaltweaks.utils;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,9 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class PlayerUtils {
-    private PlayerUtils() {
-        throw new IllegalStateException("Utility class");
-    }
+    private PlayerUtils() {}
 
     public static Optional<Player> getPlayer(UUID playerUUID) {
         return Optional.ofNullable(SurvivalTweaks.getInstance().getServer().getPlayer(playerUUID));
@@ -58,31 +53,20 @@ public class PlayerUtils {
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatUtils.format(message, p)));
     }
 
-    public static Entity getEntityLookingAt(Player p, double maxDist) {
-        Location eyeLoc = p.getEyeLocation();
-        Vector direction = eyeLoc.getDirection();
-        World w = p.getWorld();
+    public static Entity getEntityLookingAt(Player player, double maxDistance) {
+        Location eye = player.getEyeLocation();
+        Vector direction = eye.getDirection();
 
+        RayTraceResult result = player.getWorld().rayTrace(
+                eye,
+                direction,
+                maxDistance,
+                FluidCollisionMode.NEVER,
+                true,
+                0.1,
+                entity -> entity != player
+        );
 
-
-        RayTraceResult rayTraceResult = w.rayTraceEntities(eyeLoc, direction, maxDist, entity -> entity != p);
-
-        if (rayTraceResult != null) {
-            Entity hitEntity = rayTraceResult.getHitEntity();
-
-            if (hitEntity == null) {
-                return null;
-            }
-
-            Location entityLoc = hitEntity.getLocation();
-            RayTraceResult bTrace = w.rayTraceBlocks(eyeLoc, direction, entityLoc.distance(eyeLoc));
-
-            if (bTrace != null && bTrace.getHitBlock() != null) {
-                return null;
-            }
-            return hitEntity;
-        }
-
-        return null;
+        return result != null ? result.getHitEntity() : null;
     }
 }
