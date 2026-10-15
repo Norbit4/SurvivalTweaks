@@ -20,6 +20,7 @@ import pl.norbit.survivaltweaks.mechanics.MechanicsLoader;
 import pl.norbit.survivaltweaks.mechanics.model.Mechanic;
 import pl.norbit.survivaltweaks.settings.ConfigManager;
 import pl.norbit.survivaltweaks.settings.custom.CustomItemsUtils;
+import pl.norbit.survivaltweaks.utils.ChatUtils;
 import pl.norbit.survivaltweaks.utils.TaskUtils;
 
 import java.util.*;
@@ -229,8 +230,7 @@ public class GrindstoneListener implements Listener {
 
         meta.lore(List.of(
                 Component.empty(),
-                LegacyComponentSerializer.legacyAmpersand()
-                        .deserialize(ConfigManager.getMessagesConfig().getEnchantmentExtractionBookLore())
+                ChatUtils.format(ConfigManager.getMessagesConfig().getEnchantmentExtractionBookLore())
         ));
 
         book.setItemMeta(meta);
