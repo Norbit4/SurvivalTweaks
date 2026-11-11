@@ -20,7 +20,7 @@ import java.util.Map;
 public class AnvilTooExpensiveListener implements Listener {
     private final Map<AnvilInventory, Integer> realMaxRepairCosts = new HashMap<>();
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onAnvilEvent(PrepareAnvilEvent e) {
         if(MechanicsLoader.isDisabled(Mechanic.ANVIL_TOO_EXPENSIVE)){
             return;
